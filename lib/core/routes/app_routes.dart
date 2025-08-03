@@ -4,11 +4,12 @@ import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart
 
 class AppRoutes {
   Route? generateRoute(RouteSettings settings) {
+
+    final arguments = settings.arguments;
+    
     switch (settings.name) {
       case Routes.reviews:
-        return MaterialPageRoute(
-          builder: (_) => const ReviewsView(),
-        );
+        return MaterialPageRoute(builder: (_) => const ReviewsView());
       default:
         return null;
     }
