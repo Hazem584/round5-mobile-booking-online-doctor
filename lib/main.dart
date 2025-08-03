@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(const DocApp());
+  runApp(const DocDocApp());
 }
 
-class DocApp extends StatelessWidget {
-  const DocApp({super.key});
+class DocDocApp extends StatelessWidget {
+  const DocDocApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+        );
+      },
+    );
   }
 }
-    
