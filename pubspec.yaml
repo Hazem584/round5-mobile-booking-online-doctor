@@ -42,20 +42,4 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/images/
 
-  fonts:
-    - family: NotoSansGeorgian
-      fonts:
-        - asset: assets/fonts/NotoSansGeorgian-Regular.ttf
-        - asset: assets/fonts/NotoSansGeorgian-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/NotoSansGeorgian-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/NotoSansGeorgian-Light.ttf
-          weight: 300
-        - asset: assets/fonts/NotoSansGeorgian-SemiBold.ttf
-          weight: 400
-    # For details regarding fonts from package dependencies,
-    # see https://flutter.dev/to/font-from-package
