@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
 
 class SpecialtyItem extends StatelessWidget {

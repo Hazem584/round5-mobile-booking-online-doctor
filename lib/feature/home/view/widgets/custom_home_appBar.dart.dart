@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_assets.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/action_icon.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/appbar_user_info.dart';

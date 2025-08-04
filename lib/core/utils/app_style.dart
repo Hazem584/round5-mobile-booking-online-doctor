@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
@@ -20,10 +20,22 @@ abstract class AppStyle {
     fontStyle: FontStyle.normal,
     color: AppColors.grayTextSecondaryColor,
   );
-  static const TextStyle georgia22 = TextStyle(
+  static final TextStyle georgia22 = TextStyle(
     fontFamily: 'Georgia',
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     fontSize: 22, // القيمة حسب التصميم
+  );
+
+  static final TextStyle plusJakartaSansSemiB = GoogleFonts.plusJakartaSans(
+    fontSize: 10,
+    fontWeight: FontWeight.w600, // SemiBold
+    color: Color(0xFFD8F0F3),
+  );
+  static final TextStyle plusJakartaSansBold24 = GoogleFonts.plusJakartaSans(
+    fontSize: 20,
+    fontWeight: FontWeight.w700, // Bold
+    height: 1.4,
+    color: Colors.white,
   );
 }

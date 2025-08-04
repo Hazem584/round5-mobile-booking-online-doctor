@@ -2,6 +2,22 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsImagesDoctor
+  /// assets/images/doctor.png
+  static const String assetsImagesDoctor = "assets/images/doctor.png";
+
+  /// Assets for assetsImagesEllipse5
+  /// assets/images/Ellipse5.png
+  static const String assetsImagesEllipse5 = "assets/images/Ellipse5.png";
+
+  /// Assets for assetsImagesEllipse6
+  /// assets/images/Ellipse6.png
+  static const String assetsImagesEllipse6 = "assets/images/Ellipse6.png";
+
+  /// Assets for assetsImagesEllipse7
+  /// assets/images/Ellipse7.png
+  static const String assetsImagesEllipse7 = "assets/images/Ellipse7.png";
+
   /// Assets for assetsImagesIconsArrowDown
   /// assets/images/icons/ArrowDown.svg
   static const String assetsImagesIconsArrowDown = "assets/images/icons/ArrowDown.svg";

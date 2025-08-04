@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_assets.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
