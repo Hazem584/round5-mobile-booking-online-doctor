@@ -22,6 +22,18 @@ class Assets {
   /// assets/images/icons/ArrowDown.svg
   static const String assetsImagesIconsArrowDown = "assets/images/icons/ArrowDown.svg";
 
+  /// Assets for assetsImagesIconsClockCircle
+  /// assets/images/icons/ClockCircle.svg
+  static const String assetsImagesIconsClockCircle = "assets/images/icons/ClockCircle.svg";
+
+  /// Assets for assetsImagesIconsFavorite
+  /// assets/images/icons/Favorite.svg
+  static const String assetsImagesIconsFavorite = "assets/images/icons/Favorite.svg";
+
+  /// Assets for assetsImagesIconsFavoriteRed
+  /// assets/images/icons/FavoriteRed.svg
+  static const String assetsImagesIconsFavoriteRed = "assets/images/icons/FavoriteRed.svg";
+
   /// Assets for assetsImagesIconsHeart
   /// assets/images/icons/Heart.svg
   static const String assetsImagesIconsHeart = "assets/images/icons/Heart.svg";
@@ -33,6 +45,10 @@ class Assets {
   /// Assets for assetsImagesIconsMagnifer
   /// assets/images/icons/Magnifer.svg
   static const String assetsImagesIconsMagnifer = "assets/images/icons/Magnifer.svg";
+
+  /// Assets for assetsImagesIconsStar
+  /// assets/images/icons/Star.svg
+  static const String assetsImagesIconsStar = "assets/images/icons/Star.svg";
 
   /// Assets for assetsImagesIconsVector
   /// assets/images/icons/Vector.svg

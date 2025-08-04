@@ -3,8 +3,8 @@ import 'package:mobile_booking_online_doctor/core/utils/app_assets.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/decorative_circle.dart';
 
-class DoctorAdWidget extends StatelessWidget {
-  const DoctorAdWidget({super.key});
+class DoctordWidget extends StatelessWidget {
+  const DoctordWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
