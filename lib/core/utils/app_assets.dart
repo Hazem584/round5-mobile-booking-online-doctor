@@ -34,9 +34,21 @@ class Assets {
   /// assets/images/icons/FavoriteRed.svg
   static const String assetsImagesIconsFavoriteRed = "assets/images/icons/FavoriteRed.svg";
 
+  /// Assets for assetsImagesIconsFavoritesView
+  /// assets/images/icons/favoritesView.svg
+  static const String assetsImagesIconsFavoritesView = "assets/images/icons/favoritesView.svg";
+
   /// Assets for assetsImagesIconsHeart
   /// assets/images/icons/Heart.svg
   static const String assetsImagesIconsHeart = "assets/images/icons/Heart.svg";
+
+  /// Assets for assetsImagesIconsHome
+  /// assets/images/icons/Home.svg
+  static const String assetsImagesIconsHome = "assets/images/icons/Home.svg";
+
+  /// Assets for assetsImagesIconsHomeActive
+  /// assets/images/icons/HomeActive.svg
+  static const String assetsImagesIconsHomeActive = "assets/images/icons/HomeActive.svg";
 
   /// Assets for assetsImagesIconsLocation
   /// assets/images/icons/Location.svg
@@ -45,6 +57,10 @@ class Assets {
   /// Assets for assetsImagesIconsMagnifer
   /// assets/images/icons/Magnifer.svg
   static const String assetsImagesIconsMagnifer = "assets/images/icons/Magnifer.svg";
+
+  /// Assets for assetsImagesIconsProfile
+  /// assets/images/icons/Profile.svg
+  static const String assetsImagesIconsProfile = "assets/images/icons/Profile.svg";
 
   /// Assets for assetsImagesIconsStar
   /// assets/images/icons/Star.svg
