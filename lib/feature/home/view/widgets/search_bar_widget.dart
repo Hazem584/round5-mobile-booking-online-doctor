@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,10 +13,14 @@ class SearchBarWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TextField(
+        onTap: () {
+          //  navigate to search page
+        },
+        readOnly: true,
         onChanged: (value) {},
         decoration: InputDecoration(
           hintText: 'Search for specialty, doctor',
-          hintStyle: AppStyle.georgiaNormal12,
+          hintStyle: AppStyle.georgiaNormal16,
           prefixIcon: IconButton(
             onPressed: () {},
             icon: SvgPicture.asset(
@@ -27,6 +30,7 @@ class SearchBarWidget extends StatelessWidget {
             ),
           ),
           filled: true,
+
           fillColor: AppColors.searchBackgroundColore,
           contentPadding: EdgeInsets.symmetric(vertical: 0),
           border: OutlineInputBorder(

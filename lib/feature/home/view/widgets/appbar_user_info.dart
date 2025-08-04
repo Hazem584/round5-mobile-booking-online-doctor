@@ -12,7 +12,7 @@ class AppbarUserInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Welcome back, Seif', style: AppStyle.georgiaNormal14),
+          Text('Welcome back, Seif', style: AppStyle.georgiaNormal18),
           Row(
             children: [
               SvgPicture.asset(
@@ -23,7 +23,7 @@ class AppbarUserInfo extends StatelessWidget {
 
               Text(
                 '129, El-Nasr Street, Cairo',
-                style: AppStyle.georgiaNormal10,
+                style: AppStyle.georgiaNormal12,
               ),
               const SizedBox(width: 4),
               SvgPicture.asset(
