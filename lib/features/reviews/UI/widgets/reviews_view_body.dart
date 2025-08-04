@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/widgets/app_text_button.dart';
@@ -55,12 +56,12 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              Image.asset('assets/images/star.png', width: 32, height: 32),
-              Image.asset('assets/images/star.png', width: 32, height: 32),
-              Image.asset('assets/images/star.png', width: 32, height: 32),
-              Image.asset('assets/images/star.png', width: 32, height: 32),
+              Image.asset(Assets.assetsImagesStar, width: 32, height: 32),
+              Image.asset(Assets.assetsImagesStar, width: 32, height: 32),
+              Image.asset(Assets.assetsImagesStar, width: 32, height: 32),
+              Image.asset(Assets.assetsImagesStar, width: 32, height: 32),
               Image.asset(
-                'assets/images/star.png',
+                Assets.assetsImagesStar,
                 width: 32,
                 height: 32,
                 color: Color(0xFFBBC1C7),

@@ -35,4 +35,10 @@ class TextStyles {
     color: Colors.white,
     fontFamily: "NotoSansGeorgian",
   );
+      static TextStyle font12lightGrayNormal = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.normal,
+    color: ColorsManger.textColor,
+    fontFamily: "NotoSansGeorgian",
+  );
 }

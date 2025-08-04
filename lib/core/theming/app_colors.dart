@@ -7,4 +7,5 @@ class ColorsManger {
   static const Color darkGrey = Color(0xFFBBC1C7);
   static const Color lightGrey = Color(0xFFF5F6F7);
   static const Color darkBlue = Color(0xFF05162C);
+  static const Color textColor = Color(0xFF6D7379);
 }
