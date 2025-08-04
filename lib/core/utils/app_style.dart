@@ -4,17 +4,20 @@ import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
 abstract class AppStyle {
   static final TextStyle georgiaNormal14 = GoogleFonts.gelasio(
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: FontWeight.w600,
     letterSpacing: 0,
   );
   static final TextStyle georgiaNormal10 = GoogleFonts.montserrat(
-    fontSize: 10, // ← لازم تتأكدي من الحجم الحقيقي من Figma
+    fontSize: 12,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
-    height: 1.0,
-    letterSpacing: 0,
-    color:
-        AppColors.grayTextSecondaryColor, // اللون اللي مكتوب في background هنا
+    color: AppColors.grayTextSecondaryColor,
+  );
+  static final TextStyle georgiaNormal12 = GoogleFonts.montserrat(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    color: AppColors.grayTextSecondaryColor,
   );
 }
