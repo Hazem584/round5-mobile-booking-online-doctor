@@ -25,6 +25,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  bottom_picker:
+    dependency: "direct main"
+    description:
+      name: bottom_picker
+      sha256: "98ce0cff39799cf6032b3c66a8828d5921996071fa7064ef17c0c7822168b05d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   characters:
     dependency: transitive
     description:

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
+import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/profile_edit_view_body.dart';
+import 'package:online_booking_with_doctor/features/profile/UI/profile_edit_view_body.dart';
 import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
 
 class AppRoutes {
@@ -17,6 +18,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case Routes.profileEditViewRouteName:
         return MaterialPageRoute(builder: (_) => ProfileEditViewBody());
+      case Routes.notifications:
+        return MaterialPageRoute(builder: (_) => NotificationsView());
       default:
         return null;
     }

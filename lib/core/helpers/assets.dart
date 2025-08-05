@@ -26,9 +26,21 @@ class Assets {
   /// assets/fonts/NotoSansGeorgian-SemiBold.ttf
   static const String assetsFontsNotoSansGeorgianSemiBold = "assets/fonts/NotoSansGeorgian-SemiBold.ttf";
 
+  /// Assets for assetsIconsTimeQuarter
+  /// assets/icons/time-quarter.svg
+  static const String assetsIconsTimeQuarter = "assets/icons/time-quarter.svg";
+
+  /// Assets for assetsImagesCalendarRemove
+  /// assets/images/calendar-remove.png
+  static const String assetsImagesCalendarRemove = "assets/images/calendar-remove.png";
+
   /// Assets for assetsImagesCamera
   /// assets/images/camera.png
   static const String assetsImagesCamera = "assets/images/camera.png";
+
+  /// Assets for assetsImagesCompleted
+  /// assets/images/completed.png
+  static const String assetsImagesCompleted = "assets/images/completed.png";
 
   /// Assets for assetsImagesFavorite
   /// assets/images/favorite.png
@@ -54,6 +66,10 @@ class Assets {
   /// assets/images/notif.png
   static const String assetsImagesNotif = "assets/images/notif.png";
 
+  /// Assets for assetsImagesNotificationsImage
+  /// assets/images/notifications_image.png
+  static const String assetsImagesNotificationsImage = "assets/images/notifications_image.png";
+
   /// Assets for assetsImagesPayment
   /// assets/images/payment.png
   static const String assetsImagesPayment = "assets/images/payment.png";
@@ -73,5 +89,9 @@ class Assets {
   /// Assets for assetsImagesStar
   /// assets/images/star.png
   static const String assetsImagesStar = "assets/images/star.png";
+
+  /// Assets for assetsImagesTimeQuarter
+  /// assets/images/time-quarter.png
+  static const String assetsImagesTimeQuarter = "assets/images/time-quarter.png";
 }
 

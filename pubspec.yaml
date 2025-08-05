@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bottom_picker: ^4.0.1
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
@@ -59,3 +60,7 @@ flutter:
           weight: 400
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/to/font-from-package
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/helpers/
+  filename: assets.dart

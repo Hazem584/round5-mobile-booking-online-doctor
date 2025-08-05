@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class CustomLogoutModal {
   static void show(BuildContext context) {
@@ -17,34 +20,16 @@ class CustomLogoutModal {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Title
-              Text(
-                'Logout',
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87,
-                ),
-              ),
-
-              SizedBox(height: 16.h),
-
-              // Message
+              Text('Logout', style: TextStyles.font20LightBlackNormal),
+              verticalSpace(16),
               Text(
                 'Are you sure you want to log out?',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  color: Colors.grey[600],
-                  height: 1.4,
-                ),
+                style: TextStyles.font14lightGrayNormal,
               ),
-
-              SizedBox(height: 32.h),
-
-              // Buttons Row
+              verticalSpace(24),
               Row(
                 children: [
-                  // Cancel Button
                   Expanded(
                     child: Container(
                       height: 48.h,
@@ -61,30 +46,22 @@ class CustomLogoutModal {
                         ),
                         child: Text(
                           'Cancel',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey[700],
-                          ),
+                          style: TextStyles.font16LightBlackNormal,
                         ),
                       ),
                     ),
                   ),
-
-                  SizedBox(width: 12.w),
-
-                  // Logout Button
+                  horizontalSpace(12),
                   Expanded(
                     child: Container(
                       height: 48.h,
                       decoration: BoxDecoration(
-                        color: Color(0xFF4A90E2),
+                        color: ColorsManger.lightBlue,
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
-                          _performLogout(context);
                         },
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(
@@ -93,11 +70,7 @@ class CustomLogoutModal {
                         ),
                         child: Text(
                           'Yes, Logout',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                          style: TextStyles.font16WhiteNormal,
                         ),
                       ),
                     ),
@@ -109,10 +82,5 @@ class CustomLogoutModal {
         );
       },
     );
-  }
-
-  static void _performLogout(BuildContext context) {
-    // Your logout implementation
-    print('User logged out');
   }
 }
