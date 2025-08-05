@@ -21,7 +21,7 @@ class DocDocApp extends StatelessWidget {
             fontFamily: "NotoSansGeorgian",
             scaffoldBackgroundColor: Colors.white,
           ),
-          initialRoute: Routes.profile,
+          initialRoute: Routes.favorite,
           onGenerateRoute: appRouter.generatetRoute,
         );
       },

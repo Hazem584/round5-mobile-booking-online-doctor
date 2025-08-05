@@ -42,6 +42,26 @@ class Assets {
   /// assets/images/completed.png
   static const String assetsImagesCompleted = "assets/images/completed.png";
 
+  /// Assets for assetsImagesDoctor1
+  /// assets/images/doctor_1.jpg
+  static const String assetsImagesDoctor1 = "assets/images/doctor_1.jpg";
+
+  /// Assets for assetsImagesDoctor1Edit
+  /// assets/images/doctor_1_edit.png
+  static const String assetsImagesDoctor1Edit = "assets/images/doctor_1_edit.png";
+
+  /// Assets for assetsImagesDoctor2
+  /// assets/images/doctor_2.jpg
+  static const String assetsImagesDoctor2 = "assets/images/doctor_2.jpg";
+
+  /// Assets for assetsImagesDoctor3
+  /// assets/images/doctor_3.jpg
+  static const String assetsImagesDoctor3 = "assets/images/doctor_3.jpg";
+
+  /// Assets for assetsImagesDoctor4
+  /// assets/images/doctor-4.jpg
+  static const String assetsImagesDoctor4 = "assets/images/doctor-4.jpg";
+
   /// Assets for assetsImagesFavorite
   /// assets/images/favorite.png
   static const String assetsImagesFavorite = "assets/images/favorite.png";
@@ -49,6 +69,18 @@ class Assets {
   /// Assets for assetsImagesFlag
   /// assets/images/Flag.png
   static const String assetsImagesFlag = "assets/images/Flag.png";
+
+  /// Assets for assetsImagesHospital1
+  /// assets/images/hospital_1.jpg
+  static const String assetsImagesHospital1 = "assets/images/hospital_1.jpg";
+
+  /// Assets for assetsImagesHospital2
+  /// assets/images/hospital_2.jpg
+  static const String assetsImagesHospital2 = "assets/images/hospital_2.jpg";
+
+  /// Assets for assetsImagesHospital3
+  /// assets/images/hospital_3.jpg
+  static const String assetsImagesHospital3 = "assets/images/hospital_3.jpg";
 
   /// Assets for assetsImagesLocation
   /// assets/images/Location.png
@@ -93,5 +125,9 @@ class Assets {
   /// Assets for assetsImagesTimeQuarter
   /// assets/images/time-quarter.png
   static const String assetsImagesTimeQuarter = "assets/images/time-quarter.png";
+
+  /// Assets for assetsImagesYourFavorite
+  /// assets/images/your_favorite.png
+  static const String assetsImagesYourFavorite = "assets/images/your_favorite.png";
 }
 
