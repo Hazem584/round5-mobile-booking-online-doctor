@@ -1,5 +1,7 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
@@ -8,24 +10,90 @@ class DeleteAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-              width: 230.w,
-              height: 50.h,
-              decoration: BoxDecoration(
-                color: AppColors.lightGray,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Row(
-                  children: [
-                    Icon(Icons.person),
-                    horizontalSpace(5.w),
-                    Text("Delete account"),
-                    Spacer(),
-                  ],
+    return InkWell(
+      onTap: () {
+        showConfirmDeleteAccountDialog(context);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        child: Container(
+          width: double.infinity,
+          height: 50.h,
+          decoration: BoxDecoration(
+            color: AppColors.lightGray,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(
+              children: [
+                SvgPicture.asset("assets/svgs/user_profile.svg", height: 24.h),
+
+                horizontalSpace(5.w),
+                Text("Delete account"),
+                Spacer(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void showConfirmDeleteAccountDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.symmetric(horizontal: 30),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(52),
+          ),
+          title: Center(child: const Text('Delete Account')),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Divider(color: AppColors.buttonCancelColor),
+                Text(
+                  'Are you sure you want to delete your account?',
+                  style: TextStyles.font14DarkGrayRegular,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(double.infinity, 30),
+                backgroundColor: AppColors.buttonCancelColor,
+
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
-            );
+              child: Text('Cancel', style: TextStyles.font12BlackRegular),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                fixedSize: Size(double.infinity, 30),
+
+                backgroundColor: AppColors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: Text('Yes,delete', style: TextStyles.font12WhiteRegular),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

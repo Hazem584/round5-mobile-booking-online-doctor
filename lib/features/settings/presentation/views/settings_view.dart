@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_app_bar.dart';
+import 'package:mobile_booking_online_doctor/features/settings/presentation/widgets/delete_account.dart';
+import 'package:mobile_booking_online_doctor/features/settings/presentation/widgets/password_management.dart';
+
+
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -10,17 +13,14 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.arrow_back_ios),
-        title: Text("Settings", style: TextStyle(fontSize: 16)),
-        centerTitle: true,
-      ),
       body: Center(
         child: Column(
           children: [
-          
+            CustomAppBar(title: "Settings"),
+            verticalSpace(50.h),
+            PasswordManagement(),
             verticalSpace(20.h),
-           
+            DeleteAccount(),
           ],
         ),
       ),
