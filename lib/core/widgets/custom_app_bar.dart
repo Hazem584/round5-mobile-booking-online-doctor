@@ -10,7 +10,7 @@ class CustomAppBar extends StatelessWidget {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.arrow_back_ios, size: 20),
-        onPressed: () => GoRouter.of(context).pop,
+        onPressed: () => GoRouter.of(context).pop(),
       ),
       title: Text(
         title,

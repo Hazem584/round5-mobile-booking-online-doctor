@@ -1,12 +1,10 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_button.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_app_bar.dart';
-import 'package:mobile_booking_online_doctor/features/settings/presentation/widgets/custom_text_form_field.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_text_form_field.dart';
 
 class PasswordManagementView extends StatelessWidget {
   const PasswordManagementView({super.key});
@@ -23,23 +21,47 @@ class PasswordManagementView extends StatelessWidget {
             child: Text("Current password"),
           ),
           verticalSpace(20.h),
-          CustomTextFormField(),
+          CustomTextFormField(
+            hintText: "********",
+            suffixIcon: SvgPicture.asset(
+              "assets/svgs/closed_eye.svg",
+              width: 12.h, // or just use a number like 20.0
+              height: 12.h,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
           verticalSpace(20.h),
           Padding(
             padding: const EdgeInsets.only(left: 14),
             child: Text("New password"),
           ),
           verticalSpace(20.h),
-          CustomTextFormField(),
+          CustomTextFormField(
+            hintText: "********",
+            suffixIcon: SvgPicture.asset(
+              "assets/svgs/closed_eye.svg",
+              width: 12.h, // or just use a number like 20.0
+              height: 12.h,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
           verticalSpace(20.h),
           Padding(
             padding: const EdgeInsets.only(left: 14),
             child: Text("Confirm New password"),
           ),
           verticalSpace(20.h),
-          CustomTextFormField(),
+          CustomTextFormField(
+            hintText: "********",
+            suffixIcon: SvgPicture.asset(
+              "assets/svgs/closed_eye.svg",
+              width: 12.h, // or just use a number like 20.0
+              height: 12.h,
+              fit: BoxFit.scaleDown,
+            ),
+          ),
 
-          CustomButton(text: "Change password")
+          CustomButton(text: "Change password"),
         ],
       ),
     );
