@@ -66,6 +66,10 @@ class Assets {
   /// assets/images/favorite.png
   static const String assetsImagesFavorite = "assets/images/favorite.png";
 
+  /// Assets for assetsImagesFavoriteStar
+  /// assets/images/favorite_star.png
+  static const String assetsImagesFavoriteStar = "assets/images/favorite_star.png";
+
   /// Assets for assetsImagesFlag
   /// assets/images/Flag.png
   static const String assetsImagesFlag = "assets/images/Flag.png";

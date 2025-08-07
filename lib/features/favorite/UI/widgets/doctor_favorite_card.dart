@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
 
 class DoctorFavoriteCard extends StatelessWidget {
@@ -15,77 +18,67 @@ class DoctorFavoriteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(12),
+          topLeft: Radius.circular(12),
+        ),
         border: Border.all(color: Colors.grey.shade200),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         children: [
-          // Doctor Image
           Container(
-            width: 60,
-            height: 60,
+            width: 90,
+            height: 90,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
                 image: AssetImage(doctor.image),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          const SizedBox(width: 16),
-          // Doctor Info
+          horizontalSpace(8),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  doctor.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 7.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(doctor.name, style: TextStyles.font16BlackNormal),
+                  verticalSpace(4),
+                  Text(
+                    '${doctor.specialty} | ${doctor.hospital}',
+                    style: TextStyles.font14lightGrayNormal,
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${doctor.specialty} | ${doctor.hospital}',
-                  style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    const Icon(Icons.star, color: Colors.orange, size: 16),
-                    const SizedBox(width: 4),
-                    Text(
-                      doctor.rating.toString(),
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                  verticalSpace(5),
+                  Row(
+                    children: [
+                      Image.asset(
+                        Assets.assetsImagesFavoriteStar,
+                        width: 16,
+                        height: 16,
                       ),
-                    ),
-                    const SizedBox(width: 16),
-                    const Icon(Icons.access_time, color: Colors.grey, size: 16),
-                    const SizedBox(width: 4),
-                    Text(
-                      doctor.workingHours,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey.shade600,
+                      horizontalSpace(4),
+                      Text(
+                        doctor.rating.toString(),
+                        style: TextStyles.font14lightGrayNormal,
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      horizontalSpace(12),
+                      const Icon(
+                        Icons.access_time,
+                        color: Colors.grey,
+                        size: 16,
+                      ),
+                      horizontalSpace(4),
+                      Text(
+                        doctor.workingHours,
+                        style: TextStyles.font14LightBlackNormal,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           // Favorite Button

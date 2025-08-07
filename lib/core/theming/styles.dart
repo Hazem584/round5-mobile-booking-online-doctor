@@ -46,16 +46,28 @@ class TextStyles {
     color: ColorsManger.textColor,
     fontFamily: "NotoSansGeorgian",
   );
-    static TextStyle font16RedNormal = TextStyle(
+  static TextStyle font16RedNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.red,
     fontFamily: "NotoSansGeorgian",
   );
-    static TextStyle font18LightBlackNormal = TextStyle(
+  static TextStyle font18LightBlackNormal = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
+    fontFamily: "NotoSansGeorgian",
+  );
+  static TextStyle font14LightBlackNormal = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.normal,
+    color: ColorsManger.lightBlack,
+    fontFamily: "NotoSansGeorgian",
+  );
+    static TextStyle font16BlackNormal = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.normal,
+    color: Colors.black,
     fontFamily: "NotoSansGeorgian",
   );
 }
