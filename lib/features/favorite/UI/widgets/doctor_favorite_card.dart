@@ -21,8 +21,8 @@ class DoctorFavoriteCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(12),
-          topLeft: Radius.circular(12),
+          bottomLeft: Radius.circular(15),
+          topLeft: Radius.circular(15),
         ),
         border: Border.all(color: Colors.grey.shade200),
       ),

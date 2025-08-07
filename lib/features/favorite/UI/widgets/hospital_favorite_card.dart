@@ -20,15 +20,17 @@ class HospitalFavoriteCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          bottomLeft: Radius.circular(15),
+        ),
         border: Border.all(color: Colors.grey.shade200),
       ),
       child: Row(
         children: [
-          // Hospital Image
           Container(
-            width: 85,
-            height: 85,
+            width: 90,
+            height: 90,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               image: DecorationImage(
@@ -88,10 +90,7 @@ class HospitalFavoriteCard extends StatelessWidget {
                       horizontalSpace(4),
                       Text(
                         hospital.workingHours,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade600,
-                        ),
+                        style: TextStyles.font14LightBlackNormal,
                       ),
                     ],
                   ),
