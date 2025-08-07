@@ -30,6 +30,10 @@ class Assets {
   /// assets/icons/time-quarter.svg
   static const String assetsIconsTimeQuarter = "assets/icons/time-quarter.svg";
 
+  /// Assets for assetsImagesCalendar
+  /// assets/images/calendar.png
+  static const String assetsImagesCalendar = "assets/images/calendar.png";
+
   /// Assets for assetsImagesCalendarRemove
   /// assets/images/calendar-remove.png
   static const String assetsImagesCalendarRemove = "assets/images/calendar-remove.png";

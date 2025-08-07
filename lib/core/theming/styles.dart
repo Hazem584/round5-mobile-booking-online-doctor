@@ -70,4 +70,10 @@ class TextStyles {
     color: Colors.black,
     fontFamily: "NotoSansGeorgian",
   );
+      static TextStyle font18BlackNormal = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.normal,
+    color: Colors.black,
+    fontFamily: "NotoSansGeorgian",
+  );
 }

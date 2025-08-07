@@ -21,7 +21,7 @@ class DocDocApp extends StatelessWidget {
             fontFamily: "NotoSansGeorgian",
             scaffoldBackgroundColor: Colors.white,
           ),
-          initialRoute: Routes.favorite,
+          initialRoute: Routes.confirmAppointment,
           onGenerateRoute: appRouter.generatetRoute,
         );
       },
