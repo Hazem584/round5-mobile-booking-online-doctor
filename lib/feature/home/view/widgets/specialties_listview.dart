@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
 
 class SpecialtiesListView extends StatelessWidget {
   const SpecialtiesListView({
@@ -16,11 +17,16 @@ class SpecialtiesListView extends StatelessWidget {
     return SizedBox(
       height: 41,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: specialties.length,
-          itemBuilder: (context, i){
-            return CustomSpecialtyCard(specialties: specialties[i]);
-          }
+        scrollDirection: Axis.horizontal,
+        itemCount: specialties.length,
+        itemBuilder: (context, i){
+          return GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i]['specialty'],);
+            },
+            child: CustomSpecialtyCard(specialties: specialties[i])
+          );
+        }
       ),
     );
   }

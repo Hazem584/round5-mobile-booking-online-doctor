@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
+import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
 
 class SpecialtiesViewBody extends StatelessWidget {
    SpecialtiesViewBody({super.key});
@@ -31,7 +32,12 @@ class SpecialtiesViewBody extends StatelessWidget {
           runSpacing: 8,
           children: List.generate(
             specialties.length,
-            (i) => CustomSpecialtyCard(specialties: specialties[i])
+            (i) => GestureDetector(
+              onTap: (){
+                Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i]['specialty'],);
+              },
+              child: CustomSpecialtyCard(specialties: specialties[i])
+            )
           ).toList()
         ),
       ),

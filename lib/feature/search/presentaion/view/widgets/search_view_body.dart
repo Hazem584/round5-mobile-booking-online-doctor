@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
+import 'package:mobile_booking_online_doctor/feature/home/view/widgets/doctor_card_item.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
+import 'package:mobile_booking_online_doctor/feature/search/presentaion/cubit/search_doctors_cubit.dart';
+import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
 
 class SearchViewBody extends StatelessWidget {
    SearchViewBody({super.key});
@@ -31,57 +35,100 @@ class SearchViewBody extends StatelessWidget {
         title: Text('Search'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomSearchTextFiled(),
-              const SizedBox(height: 16,),
-              Row(
-                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Search by your location ', style: AppStyle.regular13,),
-                  Text('129,El-Nasr Street, Cairo', style: AppStyle.regular11.copyWith(color: AppColors.lightPrimaryColor),),
-                ],
+              CustomSearchTextFiled(
+                onChange: (value){
+                  if (value.toString().trim().isNotEmpty) {
+                    context.read<SearchDoctorsCubit>().searchDoctors(value.toString().trim());
+                  }
+                },
               ),
               const SizedBox(height: 16,),
-              Text('All Specialties',style: AppStyle.medium18,),
-              const SizedBox(height: 16,),
-              Wrap(
-                runSpacing: 8,
-                children: List.generate(
-                  specialties.length,
-                  (i) => CustomSpecialtyCard(specialties: specialties[i])
-                ).toList(),
-              ),
-              const SizedBox(height: 16,),
-              Text('History',style: AppStyle.medium18,),
-              const SizedBox(height: 16,),
-              Wrap(
-                children: List.generate(
-                  history.length,
-                  (i) => Padding(
-                    padding: const EdgeInsets.only(right:8.0, bottom: 8.0),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        border: Border.all(
-                            width: 1,
-                            color: AppColors.borderColor
-                        )
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
+              BlocBuilder<SearchDoctorsCubit, SearchDoctorsState>(
+                builder: (context, state) {
+                  if (state is SearchDoctorsInitial) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(history[i],style: AppStyle.regular14),
+                          Row(
+                             mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Search by your location ', style: AppStyle.regular13,),
+                              Text('129,El-Nasr Street, Cairo', style: AppStyle.regular11.copyWith(color: AppColors.lightPrimaryColor),),
+                            ],
+                          ),
+                          const SizedBox(height: 16,),
+                          Text('All Specialties',style: AppStyle.medium18,),
+                          const SizedBox(height: 16,),
+                          Wrap(
+                            runSpacing: 8,
+                            children: List.generate(
+                              specialties.length,
+                              (i) => GestureDetector(
+                                onTap: (){
+                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i]['specialty'],);
+                                },
+                                child: CustomSpecialtyCard(specialties: specialties[i])
+                              )
+                            ).toList(),
+                          ),
+                          const SizedBox(height: 16,),
+                          Text('History',style: AppStyle.medium18,),
+                          const SizedBox(height: 16,),
+                          Wrap(
+                            children: List.generate(
+                              history.length,
+                              (i) => Padding(
+                                padding: const EdgeInsets.only(right:8.0, bottom: 8.0),
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(14),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: AppColors.borderColor
+                                    )
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(history[i],style: AppStyle.regular14),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ).toList(),
+                          ),
                         ],
                       ),
-                    ),
-                  )
-                ).toList(),
+                    );
+                  }else if (state is SearchDoctorsLoading){
+                    return Center(child: CircularProgressIndicator(),);
+                  }else if (state is SearchDoctorsSuccess){
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount:state.doctors.length,
+                      itemBuilder: (context, i){
+                        return DoctorCardItem(
+                            image: state.doctors[i].image,
+                            name: state.doctors[i].name,
+                            specialist: state.doctors[i].specialist,
+                            location:state.doctors[i].location,
+                            rating: state.doctors[i].rating,
+                            time: state.doctors[i].availableTime
+                        );
+                      }
+                    );
+                  }else if (state is SearchDoctorsError){
+                    return Center(child: Text('Not Found'),);
+                  }else {return SizedBox();}
+                },
               ),
             ],
           ),

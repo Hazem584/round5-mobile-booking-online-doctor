@@ -5,9 +5,10 @@ import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
 
 class CustomSearchTextFiled extends StatelessWidget {
   const CustomSearchTextFiled({
-    super.key, this.onTap, this.readOnly = false,
+    super.key, this.onTap, this.readOnly = false, this.onChange,
   });
   final VoidCallback? onTap;
+  final ValueChanged? onChange;
   final bool readOnly;
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,7 @@ class CustomSearchTextFiled extends StatelessWidget {
         padding: const EdgeInsets.only(left: 16),
         child: TextField(
           onTap: onTap,
+          onChanged: onChange,
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: 'Search for specialty, doctor',
