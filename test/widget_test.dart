@@ -7,13 +7,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:online_booking_with_doctor/core/routes/app_routes.dart';
+import 'package:online_booking_with_doctor/features/docdoc_app.dart';
 
-import 'package:mobile_booking_online_doctor/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const DocApp());
+    await tester.pumpWidget(DocDocApp(appRouter: AppRoutes(),));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
