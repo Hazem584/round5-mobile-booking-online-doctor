@@ -60,9 +60,11 @@ class PasswordManagementView extends StatelessWidget {
               fit: BoxFit.scaleDown,
             ),
           ),
-
-          CustomButton(text: "Change password"),
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: CustomButton(text: "Change password"),
       ),
     );
   }

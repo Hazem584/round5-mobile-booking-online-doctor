@@ -12,10 +12,7 @@ class CustomAppBar extends StatelessWidget {
         icon: Icon(Icons.arrow_back_ios, size: 20),
         onPressed: () => GoRouter.of(context).pop(),
       ),
-      title: Text(
-        title,
-        style: TextStyles.font18BlackRegular.copyWith(fontFamily: "Montserrat"),
-      ),
+      title: Text(title, style: TextStyles.font22BlackRegular),
       centerTitle: true,
     );
   }

@@ -9,6 +9,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.fromString("regular"),
     color: Colors.black,
   );
+  static TextStyle font22BlackRegular = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeightHelper.fromString("regular"),
+    color: Colors.black,
+  );
   static TextStyle font12BlackRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
@@ -24,8 +29,23 @@ class TextStyles {
     fontWeight: FontWeightHelper.fromString("medium"),
     color: Colors.white,
   );
+  static TextStyle font14BlackMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.fromString("medium"),
+    color: Colors.black,
+  );
+  static TextStyle font16blackSemiBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.fromString("semiBold"),
+    color: Colors.black,
+  );
   static TextStyle font14DarkGrayRegular = TextStyle(
     fontSize: 14.sp,
+    fontWeight: FontWeightHelper.fromString("regular"),
+    color: AppColors.darkGray,
+  );
+  static TextStyle font16DarkGrayRegular = TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
     color: AppColors.darkGray,
   );

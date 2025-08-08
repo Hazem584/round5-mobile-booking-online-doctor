@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
-
-
 class CardType extends StatelessWidget {
   const CardType({
     super.key,
@@ -19,7 +17,6 @@ class CardType extends StatelessWidget {
   final String text;
   final String leftSvg;
   final Icon rightIcon;
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +35,8 @@ class CardType extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Row(
               children: [
-                SvgPicture.asset(leftSvg, height: 24.h),
-                horizontalSpace(5.w),
+                SvgPicture.asset(leftSvg, height: 18.h),
+                horizontalSpace(10.w),
                 Text(text),
                 Spacer(),
                 rightIcon,

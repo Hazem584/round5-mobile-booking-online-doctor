@@ -33,7 +33,7 @@ class PasswordManagement extends StatelessWidget {
                 horizontalSpace(5.w),
                 Text("Password management"),
                 Spacer(),
-                Icon(Icons.arrow_forward_ios, color: AppColors.gray, size: 14),
+                Icon(Icons.arrow_forward_ios, color: AppColors.gray, size: 18),
               ],
             ),
           ),

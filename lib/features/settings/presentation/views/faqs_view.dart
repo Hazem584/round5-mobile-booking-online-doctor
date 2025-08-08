@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_app_bar.dart';
+import 'package:mobile_booking_online_doctor/features/settings/presentation/widgets/faq_item.dart';
+import 'package:mobile_booking_online_doctor/features/settings/presentation/widgets/faq_item_tile.dart';
 
-class FaqsView extends StatelessWidget {
-  FaqsView({super.key});
+class FaqsView extends StatefulWidget {
+  const FaqsView({super.key});
+
+  @override
+  State<FaqsView> createState() => _FaqsViewState();
+}
+
+class _FaqsViewState extends State<FaqsView> {
+  int? expandedIndex;
 
   final List<FAQItem> faqItems = [
     FAQItem(
@@ -41,35 +50,29 @@ class FaqsView extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          CustomAppBar(title: "FAQs"),
-          ListView(
-            children: faqItems.map((item) {
-              return ExpansionTile(
-                title: Text(
-                  item.question,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 8,
-                    ),
-                    child: Text(item.answer),
-                  ),
-                ],
-              );
-            }).toList(),
+          const CustomAppBar(title: "FAQs"),
+          Expanded(
+            child: ListView.builder(
+              itemCount: faqItems.length,
+              itemBuilder: (context, index) {
+                final item = faqItems[index];
+                final isExpanded = expandedIndex == index;
+
+                return FaqItemTile(
+                  question: item.question,
+                  answer: item.answer,
+                  isExpanded: isExpanded,
+                  onTap: () {
+                    setState(() {
+                      expandedIndex = isExpanded ? null : index;
+                    });
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
     );
   }
-}
-
-class FAQItem {
-  final String question;
-  final String answer;
-
-  FAQItem({required this.question, required this.answer});
 }
