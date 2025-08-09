@@ -18,7 +18,7 @@ class DocDocApp extends StatelessWidget {
           title: 'DocDoc App',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            fontFamily: "NotoSansGeorgian",
+            fontFamily: "Montserrat",
             scaffoldBackgroundColor: Colors.white,
           ),
           initialRoute: Routes.confirmAppointment,

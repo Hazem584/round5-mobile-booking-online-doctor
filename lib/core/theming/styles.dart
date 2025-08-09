@@ -8,72 +8,72 @@ class TextStyles {
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font16LightBlackNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font30LightBlackNormal = TextStyle(
     fontSize: 30.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font20LightBlackNormal = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font16WhiteNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
     color: Colors.white,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font12lightGrayNormal = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.textColor,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font14lightGrayNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.textColor,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font16RedNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.red,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font18LightBlackNormal = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
   static TextStyle font14LightBlackNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.normal,
     color: ColorsManger.lightBlack,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
     static TextStyle font16BlackNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
     color: Colors.black,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
       static TextStyle font18BlackNormal = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.normal,
     color: Colors.black,
-    fontFamily: "NotoSansGeorgian",
+    fontFamily: "Montserrat",
   );
 }
