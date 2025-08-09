@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:mobile_booking_online_doctor/feature/favorite/presentation/view/favorite_view.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/buildI_icon_button.dart';
+import 'package:mobile_booking_online_doctor/feature/notifications/presentation/view/notifications_view.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSize{
   const CustomAppBar({
@@ -41,9 +43,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSize{
               ],
             ),
           ),
-          buildIconButton(icon: SvgPicture.asset('assets/icons/Favourite-Heart.svg')),
+          buildIconButton(
+            onTap: () {
+              Navigator.pushNamed(context, FavoriteView.routeName);
+            }, icon: SvgPicture.asset('assets/icons/Favourite-Heart.svg')),
           const SizedBox(width: 16),
-          buildIconButton(icon: SvgPicture.asset('assets/icons/Notification-Bell.svg')),
+          buildIconButton(
+            onTap: () {
+              Navigator.pushNamed(context, NotificationsView.routeName);
+            }, icon: SvgPicture.asset('assets/icons/Notification-Bell.svg')),
         ],
       ),
     );

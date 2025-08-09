@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/bloc/doctor_cubit.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/doctor_card_item.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
 import 'package:mobile_booking_online_doctor/feature/search/presentaion/view/search_view.dart';
 
@@ -40,7 +40,7 @@ class DoctorsNearUViewBody extends StatelessWidget {
               return Center(child: CircularProgressIndicator(),);
             case DoctorSuccess():
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: [
                     CustomSearchTextFiled(
@@ -50,24 +50,9 @@ class DoctorsNearUViewBody extends StatelessWidget {
                     ),
                     SizedBox(height: 16,),
                     SpecialtiesListView(specialties: specialties),
-                    SizedBox(height: 8,),
+                    SizedBox(height: 16,),
                     Expanded(
-                      child: ListView.builder(
-                        itemCount: state.doctors.length,
-                        itemBuilder: (context, i){
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8),
-                            child: DoctorCardItem(
-                                image: state.doctors[i].image,
-                                name: state.doctors[i].name,
-                                specialist: state.doctors[i].specialist,
-                                location:state.doctors[i].location,
-                                rating: state.doctors[i].rating,
-                                time: state.doctors[i].availableTime
-                            ),
-                          );
-                        }
-                      ),
+                      child: ListOfDoctors(state: state, itemCount: state.doctors.length)
                     ),
                   ],
                 ),

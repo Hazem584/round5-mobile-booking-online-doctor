@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
+import 'package:mobile_booking_online_doctor/feature/home/view/widgets/bottom_bar_icon_item.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
+class CustomBottomNavigationBar extends StatelessWidget {
+  const CustomBottomNavigationBar(
+      {super.key, required this.currentIndex, required this.onTabSelected});
 
-  @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
-}
-
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  int _currentIndex = 0;
+  final int currentIndex;
+  final ValueChanged<int> onTabSelected;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      onTap: (index){
-        _currentIndex = index;
-        setState(() {});
-      },
+      backgroundColor: Colors.white,
+      currentIndex: currentIndex,
+      onTap: onTabSelected,
       selectedItemColor: AppColors.primaryColor,
       items: [
         BottomNavigationBarItem(
-          icon: _currentIndex == 0
-            ? SvgPicture.asset('assets/icons/home-active.svg')
-            : SvgPicture.asset('assets/icons/home.svg'),
+          icon: currentIndex == 0
+              ? IconItem(path: 'assets/icons/home-active.svg',)
+              : IconItem(path: 'assets/icons/home.svg'),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/icons/booking.svg'),
+          icon: currentIndex == 1
+              ? IconItem(path: 'assets/icons/booking-active.svg',)
+              : IconItem(path: 'assets/icons/booking.svg'),
           label: 'Booking',
         ),
         BottomNavigationBarItem(
-          icon: SvgPicture.asset('assets/icons/profile.svg'),
+          icon: currentIndex == 2
+              ? IconItem(path: 'assets/icons/profile-active.svg',)
+              : IconItem(path: 'assets/icons/profile.svg'),
           label: 'Profile',
         ),
       ],

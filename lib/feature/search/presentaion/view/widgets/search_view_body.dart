@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/doctor_card_item.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
 import 'package:mobile_booking_online_doctor/feature/search/presentaion/cubit/search_doctors_cubit.dart';
 import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
@@ -110,20 +110,11 @@ class SearchViewBody extends StatelessWidget {
                   }else if (state is SearchDoctorsLoading){
                     return Center(child: CircularProgressIndicator(),);
                   }else if (state is SearchDoctorsSuccess){
-                    return ListView.builder(
+                    return ListOfDoctors(
+                      state: state,
+                      itemCount: state.doctors.length,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      itemCount:state.doctors.length,
-                      itemBuilder: (context, i){
-                        return DoctorCardItem(
-                            image: state.doctors[i].image,
-                            name: state.doctors[i].name,
-                            specialist: state.doctors[i].specialist,
-                            location:state.doctors[i].location,
-                            rating: state.doctors[i].rating,
-                            time: state.doctors[i].availableTime
-                        );
-                      }
                     );
                   }else if (state is SearchDoctorsError){
                     return Center(child: Text('Not Found'),);
