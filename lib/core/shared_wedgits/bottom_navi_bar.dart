@@ -15,17 +15,17 @@ class MainBottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: currentIndex,
       onTap: onTap,
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
+          icon:  Image.asset("assets/icons/Home.png",height: 24,width: 24),
           label: "Home",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today),
+         BottomNavigationBarItem(
+          icon: Image.asset("assets/icons/calendar-02.png",height: 24,width: 24,),
           label: "Booking",
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
+         BottomNavigationBarItem(
+          icon: Image.asset("assets/icons/elements.png",height: 24,width: 24),
           label: "Profile",
         ),
       ],

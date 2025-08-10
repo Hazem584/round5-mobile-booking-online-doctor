@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/shared_wedgits/bottom_navi_bar.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-
-import '../../../../core/shared_wedgits/bottom_navi_bar.dart';
+import '../../../../core/utils/app_style.dart';
 import '../wedgits/booking_card.dart';
 
-
-class MyBookingPage extends StatelessWidget {
-  const MyBookingPage({super.key});
+class BookScreen extends StatelessWidget {
+  const BookScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> days = ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue 16', 'Wed', 'Thu'];
-    final List<String> data = ['11', '12', '13', '14', '15', '16', '17', '18'];
+    final List<String> days = ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+    final List<String> dates = ['11', '12', '13', '14', '15', '16', '17', '18'];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Booking'),
+        title: Text('My Booking', style: AppTextStyles.black16w700),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -23,7 +22,7 @@ class MyBookingPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 50,
+            height: 60,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: days.length,
@@ -32,25 +31,24 @@ class MyBookingPage extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6.0),
                   child: ChoiceChip(
-                    label: Container(
+                    label: SizedBox(
                       width: MediaQuery.of(context).size.width / 9,
-                      height: 40,
-                      alignment: Alignment.center,
-                      child: Column(children: [
-                        Text(days[index],style: TextStyle(fontSize: 13),),
-                        Text(data[index],style: TextStyle(fontSize: 13),),
-                      ],),
-                      // child: Text(days[index]),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(days[index], style: AppTextStyles.black12w500),
+                          Text(dates[index], style: AppTextStyles.black12w500),
+                        ],
+                      ),
                     ),
                     selected: selected,
                     onSelected: (_) {},
                     showCheckmark: false,
-                    selectedColor:AppColors.primary,
-                    labelStyle: TextStyle(color: selected ? Colors.white : Colors.black),
+                    selectedColor: AppColors.primary,
+                    labelStyle: selected ? AppTextStyles.white12w500 : AppTextStyles.black12w500,
                     backgroundColor: Colors.grey[200],
                   ),
                 );
-
               },
             ),
           ),
@@ -69,11 +67,8 @@ class MyBookingPage extends StatelessWidget {
       ),
       bottomNavigationBar: MainBottomNavBar(
         currentIndex: 1,
-        onTap: (index) {
-          // Navigate to pages
-        },
+        onTap: (index) {},
       ),
-
     );
   }
 }

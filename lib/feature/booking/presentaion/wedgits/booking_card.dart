@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
+import '../../../../core/utils/app_style.dart';
 import 'elevate_button.dart';
 import 'outline_button.dart';
 
@@ -9,8 +10,6 @@ class BookingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     Color statusColor;
     Widget? actionRow;
 
@@ -60,12 +59,16 @@ class BookingCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.calendar_month, color: Colors.grey, size: 20),
+                Image.asset("assets/icons/calendar-02.png", height: 20, width: 20),
                 const SizedBox(width: 6),
-                const Expanded(
-                  child: Text("Monday, July 21 • 11:00 AM", overflow: TextOverflow.ellipsis),
+                Expanded(
+                  child: Text(
+                    "Monday, July 21 • 11:00 AM",
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTextStyles.black14w500,
+                  ),
                 ),
-                Text(status, style: TextStyle(color: statusColor, fontWeight: FontWeight.bold)),
+                Text(status, style: AppTextStyles.black14w500.copyWith(color: statusColor)),
               ],
             ),
             const Divider(height: 16),
@@ -77,18 +80,18 @@ class BookingCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("Jennifer Miller", style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text("Psychiatrist"),
-                      SizedBox(height: 4),
+                    children: [
+                      Text("Jennifer Miller", style: AppTextStyles.black14w500),
+                      Text("Psychiatrist", style: AppTextStyles.grey12w400),
+                      const SizedBox(height: 4),
                       Row(
                         children: [
-                          Icon(Icons.location_on_outlined, size: 14, color: Colors.grey),
-                          SizedBox(width: 4),
+                          const Icon(Icons.location_on_outlined, size: 14, color: Colors.grey),
+                          const SizedBox(width: 4),
                           Expanded(
                             child: Text(
                               "129, El-Nasr Street, Cairo, Egypt",
-                              style: TextStyle(fontSize: 12),
+                              style: AppTextStyles.grey12w400,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
