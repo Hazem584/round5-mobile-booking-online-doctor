@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/bloc/doctor_cubit.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
@@ -27,12 +28,7 @@ class DoctorsNearUViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DoctorCubit>().loadDoctors();
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Doctors'),
-        centerTitle: true,
-        scrolledUnderElevation: 0,
-        forceMaterialTransparency: true,
-      ),
+      appBar: CustomAppbar(title: 'Doctors',),
       body: BlocBuilder<DoctorCubit, DoctorState>(
         builder: (context, state) {
           switch(state){

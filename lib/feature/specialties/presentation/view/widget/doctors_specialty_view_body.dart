@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
 import 'package:mobile_booking_online_doctor/feature/specialties/presentation/cubit/doctors_specialty_cubit.dart';
 
@@ -10,12 +11,7 @@ class DoctorsSpecialtyViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<DoctorsSpecialtyCubit>().loadDoctorsBySpecialty(specialty);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(specialty),
-        centerTitle: true,
-        forceMaterialTransparency: true,
-        scrolledUnderElevation: 0,
-      ),
+      appBar: CustomAppbar(title: specialty,),
       body: BlocBuilder<DoctorsSpecialtyCubit, DoctorsSpecialtyState>(
         builder: (context, state) {
           switch(state){

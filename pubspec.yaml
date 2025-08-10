@@ -92,11 +92,13 @@ flutter:
           weight: 500
         - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
           weight: 400
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+
+    - family: Georgia
+      fonts:
+       - asset: assets/fonts/georgia/georgia-bold.ttf
+         weight: 700
+       - asset: assets/fonts/georgia/georgia-regular.ttf
+         weight: 400
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

@@ -23,7 +23,11 @@ class DocApp extends StatelessWidget {
       onGenerateRoute: generateRoute,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(color: Colors.white),
+        appBarTheme: AppBarTheme(color: Colors.white, titleTextStyle: TextStyle(
+          fontFamily: 'Georgia',
+          fontSize: 24,
+          color: Colors.black,
+        ),),
         fontFamily: 'Montserrat',
       ),
     );

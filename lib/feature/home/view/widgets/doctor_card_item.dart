@@ -51,7 +51,7 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.name, style: AppStyle.regular14),
+                  Text(widget.name, style: AppStyle.regular14.copyWith(fontFamily: 'Georgia')),
                   const SizedBox(height: 4.0),
                   Row(
                     children: [

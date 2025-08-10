@@ -44,7 +44,7 @@ class HoneViewBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Specialties', style: AppStyle.regular20),
+                  Text('Specialties', style: AppStyle.regular20.copyWith(fontFamily: 'Georgia')),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, SpecialtiesView.routeName);
@@ -64,7 +64,7 @@ class HoneViewBody extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Doctors near you', style: AppStyle.regular20),
+                  Text('Doctors near you', style: AppStyle.regular20.copyWith(fontFamily: 'Georgia')),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, DoctorsNearUView.routeName);

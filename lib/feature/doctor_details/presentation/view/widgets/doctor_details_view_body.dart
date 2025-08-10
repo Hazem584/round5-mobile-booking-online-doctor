@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
 
 class DoctorDetailsViewBody extends StatelessWidget {
   const DoctorDetailsViewBody({super.key});
@@ -7,10 +8,7 @@ class DoctorDetailsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Doctor details'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppbar(title: 'Doctor details',),
       body: Center(
         child: Text('Doctor'),
       ),

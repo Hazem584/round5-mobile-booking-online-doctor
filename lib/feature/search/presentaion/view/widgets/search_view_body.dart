@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
@@ -31,10 +32,7 @@ class SearchViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Search'),
-        centerTitle: true,
-      ),
+      appBar: CustomAppbar(title: 'Search',),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

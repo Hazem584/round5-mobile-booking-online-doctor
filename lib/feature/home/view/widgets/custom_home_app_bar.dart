@@ -7,8 +7,8 @@ import 'package:mobile_booking_online_doctor/feature/favorite/presentation/view/
 import 'package:mobile_booking_online_doctor/feature/home/view/widgets/buildI_icon_button.dart';
 import 'package:mobile_booking_online_doctor/feature/notifications/presentation/view/notifications_view.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSize{
-  const CustomAppBar({
+class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
+  const CustomHomeAppBar({
     super.key,
   });
 
@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSize{
                   children: [
                     SvgPicture.asset('assets/icons/Location-Icon.svg'),
                     const SizedBox(width: 4),
-                    Text('129,El-Nasr Street, Cairo',style: AppStyle.regular12.copyWith(color: AppColors.greyColor)), // location of user
+                    Text('129,El-Nasr Street, Cairo',style: AppStyle.regular12.copyWith(color: AppColors.greyColor, fontFamily: 'Montserrat')), // location of user
                     const SizedBox(width: 4),
                     SvgPicture.asset('assets/icons/arrow-down.svg',width: 8,height: 8,)
                   ],
@@ -56,9 +56,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSize{
       ),
     );
   }
-
-  @override
-  Widget get child => throw UnimplementedError();
 
   @override
   Size get preferredSize => const Size.fromHeight(70);
