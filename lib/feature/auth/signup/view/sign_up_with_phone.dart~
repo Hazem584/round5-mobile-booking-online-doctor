@@ -1,0 +1,176 @@
+import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/feature/auth/signup_with_phone/view/widgets/signup_auth_divider.dart';
+import 'package:mobile_booking_online_doctor/feature/auth/signup_with_phone/view/widgets/signup_auth_elevated_button.dart';
+import 'package:mobile_booking_online_doctor/feature/auth/signup_with_phone/view/widgets/social_media_container.dart';
+
+import '../../../../core/utils/app_assets.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_style.dart';
+
+class CreateAccountScreen extends StatelessWidget {
+  const CreateAccountScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            // Handle back button press
+
+          },
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: AppStyle.defaultSpace),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: AppStyle.spaceBtwSections),
+              Center(
+                child: Image.asset(
+                  Assets.splashHeart,
+                  color: AppColors.primaryColor,
+                  height: 60,
+                  width: 60,
+                ),
+              ),
+
+              const SizedBox(height: AppStyle.spaceBtwItems),
+
+              Align(
+                alignment: Alignment.center,
+                child: const Text(
+                  Assets.signupTitle,
+                  style: TextStyle(fontSize: 32,fontFamily: "Georgia"),
+                ),
+              ),
+
+              const SizedBox(height: AppStyle.spaceBtwSections * 2),
+
+              // Full Name
+              TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person,color: AppColors.darkGrey,),
+                  labelText: Assets.hintName,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: AppStyle.spaceBetweenInputFields),
+
+              // Email
+              TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email,color: AppColors.darkGrey,),
+                  labelText: Assets.hintEmail,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: AppStyle.spaceBetweenInputFields),
+
+              // Password
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.vpn_key,color: AppColors.darkGrey,),
+                  labelText: Assets.hintPassword,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: AppStyle.spaceBetweenInputFields / 2),
+                // Remember me
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Transform.scale(
+                      scale: 1.4, // 👈 حجم أكبر
+                      child: Theme(
+                        data: Theme.of(context).copyWith(
+                          unselectedWidgetColor: AppColors.darkGrey,
+                          checkboxTheme: CheckboxThemeData(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6), // 👈 Border radius
+                            ),
+                          ),
+                        ),
+                        child: Checkbox(
+                          value: true,
+                          fillColor: MaterialStatePropertyAll(AppColors.primaryColor),
+                          onChanged: (value) {},
+                        ),
+                      ),
+                    ),
+                    const Text(
+                      "Remember me",
+                      style: TextStyle(fontSize: 16), // ممكن تكبره لو حبيت
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: AppStyle.spaceBtwSections),
+
+              // Sign Up Button
+              SignupAuthElevatedButton(buttonTitle: "Signup", primaryButton: true),
+
+              const SizedBox(height: AppStyle.spaceBtwItems),
+
+              // Divider
+              SignupAuthDivider(),
+
+              const SizedBox(height: AppStyle.spaceBtwItems),
+
+              // Social Media Buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Facebook
+                  SocialMediaContainer(image: Assets.facebookIcon),
+                  const SizedBox(width: AppStyle.spaceBtwItems,),
+                  // Google
+                  SocialMediaContainer(image: Assets.googleIcon),
+                  const SizedBox(width: AppStyle.spaceBtwItems,),
+                  // Apple
+                  SocialMediaContainer(image: Assets.appleIcon),
+            ],
+          ),
+              const SizedBox(height: AppStyle.spaceBtwItems),
+              // Already have an account
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Already have an account? ",style: TextStyle(color: AppColors.darkGrey),),
+                  GestureDetector(
+                    onTap: () {
+                      // Navigate to Login
+                    },
+                    child: const Text(
+                      'Sign in',
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ]
+        ),
+      ),
+      ),
+    );
+  }
+}

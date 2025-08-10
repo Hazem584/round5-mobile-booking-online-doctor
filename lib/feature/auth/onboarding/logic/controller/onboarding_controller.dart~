@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+part 'onboarding_state.dart';
+
+class OnboardingCubit extends Cubit<OnboardingState> {
+  final PageController pageController = PageController();
+
+  OnboardingCubit() : super(OnboardingState(currentPage: 0));
+
+  // ✅ أضف هذا السطر:
+  int get pageCount => 2;
+
+  void updatePage(int index) {
+    emit(state.copyWith(currentPage: index));
+  }
+
+  void nextPage() {
+    if (state.currentPage < pageCount - 1) {
+      final nextPage = state.currentPage + 1;
+      pageController.animateToPage(
+        nextPage,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.ease,
+      );
+      emit(state.copyWith(currentPage: nextPage));
+    } else {
+      Navigator.of(context).pushReplacementNamed('/main_auth');
+    }
+  }
+
+  void skipPage() {
+    pageController.jumpToPage(pageCount - 1);
+    emit(state.copyWith(currentPage: pageCount - 1));
+  }
+
+  void goToPage(int index) {
+    pageController.jumpToPage(index);
+    emit(state.copyWith(currentPage: index));
+  }
+}
