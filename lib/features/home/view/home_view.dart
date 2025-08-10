@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/service/get_it.dart';
+import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
 import 'package:online_booking_with_doctor/features/home/view/bloc/doctor_cubit.dart';
 import 'package:online_booking_with_doctor/features/home/view/booking_view.dart';
 import 'package:online_booking_with_doctor/features/home/view/profile_view.dart';

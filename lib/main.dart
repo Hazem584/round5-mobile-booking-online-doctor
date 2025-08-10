@@ -1,43 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/routes/app_router.dart';
-import 'package:online_booking_with_doctor/core/service/bloc_observer.dart';
-import 'package:online_booking_with_doctor/core/service/get_it.dart';
-import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/routes/app_router.dart';
+import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
+import 'package:online_booking_with_doctor/core/service/bloc_observer.dart';
+import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
+import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
   Bloc.observer = BlocObserverService();
-  setupGetIt();
-  runApp(const DocApp());
+  await setupGetIt();
+  runApp(const DocDocApp());
 }
 
-class DocApp extends StatelessWidget {
-  const DocApp({super.key});
+class DocDocApp extends StatelessWidget {
+  const DocDocApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      minTextAdapt: true,
-      designSize: const Size(375, 812),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: HomeView.routeName,
-        onGenerateRoute: AppRouter.generateRoute,
-        theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(
-            color: Colors.white,
-            titleTextStyle: TextStyle(
-              fontFamily: 'Georgia',
-              fontSize: 24,
-              color: Colors.black,
+    return MultiBlocProvider(
+      providers: [
+        // Add NotificationsCubit to app level
+        BlocProvider(create: (context) => getIt<NotificationsCubit>()),
+        // Add other BlocProviders here if you have them
+        // BlocProvider(
+        //   create: (context) => getIt<AuthCubit>(),
+        // ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'DocDoc App',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              fontFamily: "Montserrat",
+              scaffoldBackgroundColor: Colors.white,
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.white,
+                titleTextStyle: TextStyle(
+                  fontFamily: 'Georgia',
+                  fontSize: 24,
+                  color: Colors.black,
+                ),
+              ),
             ),
-          ),
-          fontFamily: 'Montserrat',
-        ),
+            initialRoute:
+                HomeView.routeName,
+            onGenerateRoute: AppRouter.generateRoute,
+          );
+        },
       ),
     );
   }

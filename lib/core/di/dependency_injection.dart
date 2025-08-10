@@ -1,92 +1,146 @@
-// Fixed dependency_injection.dart
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:online_booking_with_doctor/features/notifications/data/repos/notifications_repository.dart';
 import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-
 final getIt = GetIt.instance;
 
-Future<void> setupNotificationsDependencies() async {
+/// Main setup function that initializes all dependencies
+Future<void> setupGetIt() async {
   try {
     if (kDebugMode) {
-      print('🔧 Setting up notifications dependencies...');
+      print('🔧 Setting up all dependencies...');
     }
 
+    // Setup core dependencies first
+    await _setupCoreDependencies();
+
+    // Setup feature-specific dependencies
+    await _setupDoctorDependencies();
+    await _setupNotificationsDependencies();
+
+    // Verify all dependencies are healthy
+    if (_checkDependenciesHealth()) {
+      if (kDebugMode) {
+        print('✅ All dependencies setup complete and healthy');
+      }
+    } else {
+      if (kDebugMode) {
+        print('⚠️ Some dependencies may have issues');
+      }
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Critical error in dependency setup: $e');
+    }
+    await _setupFallbackDependencies();
+  }
+}
+
+/// Setup core dependencies (Dio, etc.)
+Future<void> _setupCoreDependencies() async {
+  try {
     // Register Dio instance (if not already registered)
     if (!getIt.isRegistered<Dio>()) {
       getIt.registerLazySingleton<Dio>(() {
         final dio = Dio();
-        
+
         // Configure Dio for performance and reliability
-        dio.options.connectTimeout = const Duration(seconds: 3);
-        dio.options.receiveTimeout = const Duration(seconds: 3);
-        dio.options.sendTimeout = const Duration(seconds: 3);
-        
+        dio.options.connectTimeout = const Duration(seconds: 10);
+        dio.options.receiveTimeout = const Duration(seconds: 10);
+        dio.options.sendTimeout = const Duration(seconds: 10);
+        dio.options.baseUrl =
+            'https://your-api-base-url.com/api/'; // Add your base URL
+
         // Add logging interceptor only in debug mode
-        dio.interceptors.add(LogInterceptor(
-          requestBody: false, // Disable body logging to reduce overhead
-          responseBody: false,
-          requestHeader: false,
-          responseHeader: false,
-          error: true,
-          logPrint: (obj) {
-            // Only log important information
-            if (obj.toString().contains('ERROR') || obj.toString().contains('DioException')) {
-              if (kDebugMode) {
+        if (kDebugMode) {
+          dio.interceptors.add(
+            LogInterceptor(
+              requestBody: true,
+              responseBody: true,
+              requestHeader: true,
+              responseHeader: false,
+              error: true,
+              logPrint: (obj) {
                 print('🌐 HTTP: $obj');
-              }
-            }
-          },
-        ));
-        
+              },
+            ),
+          );
+        }
+
         // Add error handling interceptor
-        dio.interceptors.add(InterceptorsWrapper(
-          onRequest: (options, handler) {
-            // Add your token here if available
-            // final token = getTokenFromSecureStorage();
-            // if (token != null) {
-            //   options.headers['Authorization'] = 'Bearer $token';
-            // }
-            handler.next(options);
-          },
-          onResponse: (response, handler) {
-            handler.next(response);
-          },
-          onError: (error, handler) {
-            // Handle different error types
-            if (error.response?.statusCode == 401) {
-              if (kDebugMode) {
-                print('🔐 Unauthorized access - token may be expired');
-              }
-              // Handle token refresh or logout
-            } else if (error.response?.statusCode == 403) {
-              if (kDebugMode) {
-                print('🚫 Forbidden access');
-              }
-            } else if (error.response?.statusCode == 404) {
-              if (kDebugMode) {
-                print('🔍 Endpoint not found - using mock data');
-              }
-            } else if (error.type == DioExceptionType.connectionTimeout ||
-                       error.type == DioExceptionType.receiveTimeout) {
-              if (kDebugMode) {
-                print('⏰ Request timeout - using mock data');
-              }
-            } else {
-              if (kDebugMode) {
-                print('🌐 Network error: ${error.message}');
-              }
-            }
-            handler.next(error);
-          },
-        ));
-        
+        dio.interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) {
+              // Add your token here if available
+              // final token = getTokenFromSecureStorage();
+              // if (token != null) {
+              //   options.headers['Authorization'] = 'Bearer $token';
+              // }
+              options.headers['Content-Type'] = 'application/json';
+              options.headers['Accept'] = 'application/json';
+              handler.next(options);
+            },
+            onResponse: (response, handler) {
+              handler.next(response);
+            },
+            onError: (error, handler) {
+              _handleDioError(error);
+              handler.next(error);
+            },
+          ),
+        );
+
         if (kDebugMode) {
           print('✅ Dio configured successfully');
         }
         return dio;
       });
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up core dependencies: $e');
+    }
+  }
+}
+
+/// Setup doctor-related dependencies
+Future<void> _setupDoctorDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up doctor dependencies...');
+    }
+
+    // Uncomment and modify these lines based on your actual classes
+    /*
+    if (!getIt.isRegistered<DoctorRemoteDataSource>()) {
+      getIt.registerLazySingleton<DoctorRemoteDataSource>(
+        () => DoctorsRemoteDataSourceImpl(dio: getIt<Dio>()),
+      );
+    }
+
+    if (!getIt.isRegistered<DoctorRepo>()) {
+      getIt.registerLazySingleton<DoctorRepo>(
+        () => DoctorRepoImpl(doctorRemoteDataSource: getIt<DoctorRemoteDataSource>()),
+      );
+    }
+    */
+
+    if (kDebugMode) {
+      print('✅ Doctor dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up doctor dependencies: $e');
+    }
+  }
+}
+
+/// Setup notifications dependencies
+Future<void> _setupNotificationsDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up notifications dependencies...');
     }
 
     // Register Mock Repository with error handling
@@ -112,7 +166,9 @@ Future<void> setupNotificationsDependencies() async {
     if (!getIt.isRegistered<NotificationsCubit>()) {
       getIt.registerFactory<NotificationsCubit>(() {
         try {
-          final cubit = NotificationsCubit(getIt<MockNotificationsRepository>());
+          final cubit = NotificationsCubit(
+            getIt<MockNotificationsRepository>(),
+          );
           if (kDebugMode) {
             print('✅ NotificationsCubit registered');
           }
@@ -128,42 +184,65 @@ Future<void> setupNotificationsDependencies() async {
     }
 
     if (kDebugMode) {
-      print('✅ All notifications dependencies setup complete');
+      print('✅ Notifications dependencies setup complete');
     }
-
   } catch (e) {
     if (kDebugMode) {
-      print('❌ Critical error in dependency setup: $e');
+      print('❌ Error setting up notifications dependencies: $e');
     }
-    
-    // Emergency fallback setup
-    _setupFallbackDependencies();
   }
 }
 
-void _setupFallbackDependencies() {
+/// Handle Dio errors consistently
+void _handleDioError(DioException error) {
+  if (kDebugMode) {
+    switch (error.response?.statusCode) {
+      case 401:
+        print('🔐 Unauthorized access - token may be expired');
+        break;
+      case 403:
+        print('🚫 Forbidden access');
+        break;
+      case 404:
+        print('🔍 Endpoint not found');
+        break;
+      case 500:
+        print('🔥 Server error');
+        break;
+      default:
+        if (error.type == DioExceptionType.connectionTimeout ||
+            error.type == DioExceptionType.receiveTimeout) {
+          print('⏰ Request timeout');
+        } else {
+          print('🌐 Network error: ${error.message}');
+        }
+    }
+  }
+}
+
+/// Emergency fallback setup
+Future<void> _setupFallbackDependencies() async {
   try {
     if (kDebugMode) {
       print('🔧 Setting up fallback dependencies...');
     }
-    
-    // Clear any existing registrations
-    if (getIt.isRegistered<MockNotificationsRepository>()) {
-      getIt.unregister<MockNotificationsRepository>();
-    }
-    if (getIt.isRegistered<NotificationsCubit>()) {
-      getIt.unregister<NotificationsCubit>();
-    }
-    
+
+    // Clear any existing problematic registrations
+    _clearRegistrations();
+
     // Register simple fallback instances
-    getIt.registerLazySingleton<MockNotificationsRepository>(
-      () => MockNotificationsRepository(),
-    );
-    
-    getIt.registerFactory<NotificationsCubit>(
-      () => NotificationsCubit(getIt<MockNotificationsRepository>()),
-    );
-    
+    if (!getIt.isRegistered<MockNotificationsRepository>()) {
+      getIt.registerLazySingleton<MockNotificationsRepository>(
+        () => MockNotificationsRepository(),
+      );
+    }
+
+    if (!getIt.isRegistered<NotificationsCubit>()) {
+      getIt.registerFactory<NotificationsCubit>(
+        () => NotificationsCubit(getIt<MockNotificationsRepository>()),
+      );
+    }
+
     if (kDebugMode) {
       print('✅ Fallback dependencies setup complete');
     }
@@ -174,23 +253,67 @@ void _setupFallbackDependencies() {
   }
 }
 
-// Helper function to reset dependencies (for testing)
-Future<void> resetNotificationsDependencies() async {
+/// Clear existing registrations safely
+void _clearRegistrations() {
+  try {
+    final registrationsToRemove = [
+      MockNotificationsRepository,
+      NotificationsCubit,
+      // Add other types as needed
+    ];
+
+    for (final type in registrationsToRemove) {
+      if (getIt.isRegistered(instance: type)) {
+        getIt.unregister(instance: type);
+      }
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('⚠️ Error clearing registrations: $e');
+    }
+  }
+}
+
+/// Check if all dependencies are properly registered
+bool _checkDependenciesHealth() {
+  try {
+    final hasNotificationRepository = getIt
+        .isRegistered<MockNotificationsRepository>();
+    final hasNotificationCubit = getIt.isRegistered<NotificationsCubit>();
+    // final hasDoctorRepo = getIt.isRegistered<DoctorRepo>();
+    // final hasDoctorDataSource = getIt.isRegistered<DoctorRemoteDataSource>();
+
+    if (kDebugMode) {
+      print('🩺 Dependencies health check:');
+      print(
+        '   Notification Repository: ${hasNotificationRepository ? "✅" : "❌"}',
+      );
+      print('   Notification Cubit: ${hasNotificationCubit ? "✅" : "❌"}');
+      // print('   Doctor Repository: ${hasDoctorRepo ? "✅" : "❌"}');
+      // print('   Doctor DataSource: ${hasDoctorDataSource ? "✅" : "❌"}');
+    }
+
+    return hasNotificationRepository && hasNotificationCubit;
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error checking dependencies health: $e');
+    }
+    return false;
+  }
+}
+
+/// Helper function to reset all dependencies (for testing)
+Future<void> resetAllDependencies() async {
   try {
     if (kDebugMode) {
-      print('🔄 Resetting notifications dependencies...');
+      print('🔄 Resetting all dependencies...');
     }
-    
-    if (getIt.isRegistered<NotificationsCubit>()) {
-      getIt.unregister<NotificationsCubit>();
-    }
-    if (getIt.isRegistered<MockNotificationsRepository>()) {
-      getIt.unregister<MockNotificationsRepository>();
-    }
-    
-    await setupNotificationsDependencies();
+
+    await getIt.reset();
+    await setupGetIt();
+
     if (kDebugMode) {
-      print('✅ Dependencies reset complete');
+      print('✅ All dependencies reset complete');
     }
   } catch (e) {
     if (kDebugMode) {
@@ -199,27 +322,13 @@ Future<void> resetNotificationsDependencies() async {
   }
 }
 
-// Helper function to check dependency health
-bool checkNotificationsDependenciesHealth() {
-  try {
-    final hasRepository = getIt.isRegistered<MockNotificationsRepository>();
-    final hasCubit = getIt.isRegistered<NotificationsCubit>();
-    
-    if (kDebugMode) {
-      print('🩺 Dependencies health check:');
-    }
-    if (kDebugMode) {
-      print('   Repository: ${hasRepository ? "✅" : "❌"}');
-    }
-    if (kDebugMode) {
-      print('   Cubit: ${hasCubit ? "✅" : "❌"}');
-    }
-    
-    return hasRepository && hasCubit;
-  } catch (e) {
-    if (kDebugMode) {
-      print('❌ Error checking dependencies health: $e');
-    }
-    return false;
-  }
+/// Get dependency info for debugging
+Map<String, bool> getDependencyInfo() {
+  return {
+    'Dio': getIt.isRegistered<Dio>(),
+    'NotificationRepository': getIt.isRegistered<MockNotificationsRepository>(),
+    'NotificationCubit': getIt.isRegistered<NotificationsCubit>(),
+    // 'DoctorRepo': getIt.isRegistered<DoctorRepo>(),
+    // 'DoctorDataSource': getIt.isRegistered<DoctorRemoteDataSource>(),
+  };
 }
