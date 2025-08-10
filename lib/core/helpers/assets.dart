@@ -2,33 +2,61 @@
 class Assets {
   Assets._();
   
-  /// Assets for assetsFontsNotoSansGeorgianBold
-  /// assets/fonts/NotoSansGeorgian-Bold.ttf
-  static const String assetsFontsNotoSansGeorgianBold = "assets/fonts/NotoSansGeorgian-Bold.ttf";
+  /// Assets for assetsFontsGeorgioTypefaceRegularR92eA
+  /// assets/fonts/GeorgioTypefaceRegular-R92eA.otf
+  static const String assetsFontsGeorgioTypefaceRegularR92eA = "assets/fonts/GeorgioTypefaceRegular-R92eA.otf";
 
-  /// Assets for assetsFontsNotoSansGeorgianExtraBold
-  /// assets/fonts/NotoSansGeorgian-ExtraBold.ttf
-  static const String assetsFontsNotoSansGeorgianExtraBold = "assets/fonts/NotoSansGeorgian-ExtraBold.ttf";
+  /// Assets for assetsFontsMontserratBold
+  /// assets/fonts/Montserrat-Bold.ttf
+  static const String assetsFontsMontserratBold = "assets/fonts/Montserrat-Bold.ttf";
 
-  /// Assets for assetsFontsNotoSansGeorgianLight
-  /// assets/fonts/NotoSansGeorgian-Light.ttf
-  static const String assetsFontsNotoSansGeorgianLight = "assets/fonts/NotoSansGeorgian-Light.ttf";
+  /// Assets for assetsFontsMontserratLight
+  /// assets/fonts/Montserrat-Light.ttf
+  static const String assetsFontsMontserratLight = "assets/fonts/Montserrat-Light.ttf";
 
-  /// Assets for assetsFontsNotoSansGeorgianMedium
-  /// assets/fonts/NotoSansGeorgian-Medium.ttf
-  static const String assetsFontsNotoSansGeorgianMedium = "assets/fonts/NotoSansGeorgian-Medium.ttf";
+  /// Assets for assetsFontsMontserratMedium
+  /// assets/fonts/Montserrat-Medium.ttf
+  static const String assetsFontsMontserratMedium = "assets/fonts/Montserrat-Medium.ttf";
 
-  /// Assets for assetsFontsNotoSansGeorgianRegular
-  /// assets/fonts/NotoSansGeorgian-Regular.ttf
-  static const String assetsFontsNotoSansGeorgianRegular = "assets/fonts/NotoSansGeorgian-Regular.ttf";
+  /// Assets for assetsFontsMontserratRegular
+  /// assets/fonts/Montserrat-Regular.ttf
+  static const String assetsFontsMontserratRegular = "assets/fonts/Montserrat-Regular.ttf";
 
-  /// Assets for assetsFontsNotoSansGeorgianSemiBold
-  /// assets/fonts/NotoSansGeorgian-SemiBold.ttf
-  static const String assetsFontsNotoSansGeorgianSemiBold = "assets/fonts/NotoSansGeorgian-SemiBold.ttf";
+  /// Assets for assetsIconsBooking
+  /// assets/icons/booking.svg
+  static const String assetsIconsBooking = "assets/icons/booking.svg";
+
+  /// Assets for assetsIconsBookingActive
+  /// assets/icons/booking-active.svg
+  static const String assetsIconsBookingActive = "assets/icons/booking-active.svg";
+
+  /// Assets for assetsIconsHome
+  /// assets/icons/Home.svg
+  static const String assetsIconsHome = "assets/icons/Home.svg";
+
+  /// Assets for assetsIconsHomeActive
+  /// assets/icons/Home-active.svg
+  static const String assetsIconsHomeActive = "assets/icons/Home-active.svg";
+
+  /// Assets for assetsIconsProfile
+  /// assets/icons/Profile.svg
+  static const String assetsIconsProfile = "assets/icons/Profile.svg";
+
+  /// Assets for assetsIconsProfileActive
+  /// assets/icons/Profile-active.svg
+  static const String assetsIconsProfileActive = "assets/icons/Profile-active.svg";
 
   /// Assets for assetsIconsTimeQuarter
   /// assets/icons/time-quarter.svg
   static const String assetsIconsTimeQuarter = "assets/icons/time-quarter.svg";
+
+  /// Assets for assetsImagesBooking
+  /// assets/images/booking.png
+  static const String assetsImagesBooking = "assets/images/booking.png";
+
+  /// Assets for assetsImagesBookingActive
+  /// assets/images/booking-active.png
+  static const String assetsImagesBookingActive = "assets/images/booking-active.png";
 
   /// Assets for assetsImagesCalendar
   /// assets/images/calendar.png
@@ -77,6 +105,14 @@ class Assets {
   /// Assets for assetsImagesFlag
   /// assets/images/Flag.png
   static const String assetsImagesFlag = "assets/images/Flag.png";
+
+  /// Assets for assetsImagesHome
+  /// assets/images/home.png
+  static const String assetsImagesHome = "assets/images/home.png";
+
+  /// Assets for assetsImagesHomeActive
+  /// assets/images/home-active.png
+  static const String assetsImagesHomeActive = "assets/images/home-active.png";
 
   /// Assets for assetsImagesHospital1
   /// assets/images/hospital_1.jpg

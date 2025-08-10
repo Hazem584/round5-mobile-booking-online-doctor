@@ -55,7 +55,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
                 .map(
-                  (day) => Container(
+                  (day) => SizedBox(
                     width: 35,
                     child: Text(
                       day,

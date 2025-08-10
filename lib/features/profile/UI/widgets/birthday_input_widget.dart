@@ -10,12 +10,12 @@ class BirthdayInputWidget extends StatefulWidget {
   final Function(String day, String month, String year) onDateChanged;
 
   const BirthdayInputWidget({
-    Key? key,
+    super.key,
     this.initialDay = '1',
     this.initialMonth = 'January',
     this.initialYear = '2000',
     required this.onDateChanged,
-  }) : super(key: key);
+  });
 
   @override
   _BirthdayInputWidgetState createState() => _BirthdayInputWidgetState();

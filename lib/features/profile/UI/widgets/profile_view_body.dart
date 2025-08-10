@@ -7,6 +7,8 @@ import 'package:online_booking_with_doctor/features/profile/UI/widgets/logout_co
 import 'package:online_booking_with_doctor/features/profile/UI/widgets/profile_container.dart';
 
 class ProfileViewBody extends StatefulWidget {
+  const ProfileViewBody({super.key});
+
   @override
   _ProfileViewBodyState createState() => _ProfileViewBodyState();
 }

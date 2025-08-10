@@ -7,10 +7,10 @@ class HospitalsListWidget extends StatelessWidget {
   final Function(int) onFavoriteToggle;
 
   const HospitalsListWidget({
-    Key? key,
+    super.key,
     required this.favoriteHospitals,
     required this.onFavoriteToggle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

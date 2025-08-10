@@ -14,7 +14,7 @@ class EditProfileButtonWidget extends StatelessWidget {
   final double elevation;
 
   const EditProfileButtonWidget({
-    Key? key,
+    super.key,
     required this.onPressed,
     this.buttonText = 'Edit Profile',
     this.isLoading = false,
@@ -24,11 +24,11 @@ class EditProfileButtonWidget extends StatelessWidget {
     this.textColor,
     this.borderRadius = 12,
     this.elevation = 2,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: ElevatedButton(

@@ -14,6 +14,8 @@ import 'package:online_booking_with_doctor/features/profile/UI/widgets/birthday_
 class ProfileEditViewBody extends StatefulWidget {
   static String routeName = '/profileEdit';
 
+  const ProfileEditViewBody({super.key});
+
   @override
   _ProfileEditViewBodyState createState() => _ProfileEditViewBodyState();
 }

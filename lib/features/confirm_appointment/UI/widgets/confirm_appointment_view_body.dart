@@ -80,27 +80,27 @@ class _ConfirmAppointmentViewBodyState
                     },
                   ),
                   verticalSpace(24),
-                  if (selectedDate != null) ...[
-                    Text(
-                      'Select time',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
+                  ...[
+                  Text(
+                    'Select time',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
                     ),
-                    verticalSpace(14),
-                    TimeSlotsWidget(
-                      selectedTime: selectedTime,
-                      timeSlots: timeSlots,
-                      onTimeSelected: (String time) {
-                        setState(() {
-                          selectedTime = time;
-                        });
-                      },
-                    ),
-                    verticalSpace(24),
-                  ],
+                  ),
+                  verticalSpace(14),
+                  TimeSlotsWidget(
+                    selectedTime: selectedTime,
+                    timeSlots: timeSlots,
+                    onTimeSelected: (String time) {
+                      setState(() {
+                        selectedTime = time;
+                      });
+                    },
+                  ),
+                  verticalSpace(24),
+                ],
                   verticalSpace(120),
                 ],
               ),

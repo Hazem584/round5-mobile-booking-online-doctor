@@ -6,7 +6,7 @@ import 'package:online_booking_with_doctor/features/favorite/UI/widgets/favorite
 import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
 
 class FavoriteViewBody extends StatefulWidget {
-  const FavoriteViewBody({Key? key}) : super(key: key);
+  const FavoriteViewBody({super.key});
 
   @override
   _FavoriteViewBodyState createState() => _FavoriteViewBodyState();

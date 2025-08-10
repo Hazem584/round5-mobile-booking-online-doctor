@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
@@ -92,7 +93,9 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
               });
             },
             onSubmitted: (value) {
-              print('Review submitted: $value');
+              if (kDebugMode) {
+                print('Review submitted: $value');
+              }
             },
           ),
         ),

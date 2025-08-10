@@ -9,10 +9,10 @@ class HospitalFavoriteCard extends StatelessWidget {
   final VoidCallback onFavoriteToggle;
 
   const HospitalFavoriteCard({
-    Key? key,
+    super.key,
     required this.hospital,
     required this.onFavoriteToggle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

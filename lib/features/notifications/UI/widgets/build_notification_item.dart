@@ -1,35 +1,33 @@
+// build_notification_item.dart - Fixed Version
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class BuildNotificationItem extends StatelessWidget {
+  final String? imagePath;
+  final Color? iconColor;
+  final Color? iconBgColor;
+  final String title;
+  final String subtitle;
+  final String time;
+
   const BuildNotificationItem({
     super.key,
-    required this.imagePath,
-    required this.iconColor,
-    required this.iconBgColor,
+    this.imagePath,
+    this.iconColor,
+    this.iconBgColor,
     required this.title,
     required this.subtitle,
     required this.time,
   });
 
-  final String imagePath;
-  final Color iconColor;
-  final Color iconBgColor;
-  final String title;
-  final String subtitle;
-  final String time;
-
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 12.h),
-      margin: EdgeInsets.only(bottom: 12.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.r),
-      ),
+      decoration: BoxDecoration(color: Colors.white),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,7 +40,7 @@ class BuildNotificationItem extends StatelessWidget {
             ),
             child: Center(
               child: Image.asset(
-                imagePath,
+                imagePath!,
                 fit: BoxFit.contain,
                 width: 30.w,
                 height: 30.h,

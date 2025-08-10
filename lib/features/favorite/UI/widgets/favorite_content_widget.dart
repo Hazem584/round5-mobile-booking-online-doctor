@@ -11,12 +11,12 @@ class FavoritesContentWidget extends StatefulWidget {
   final Function(int) onHospitalFavoriteToggle;
 
   const FavoritesContentWidget({
-    Key? key,
+    super.key,
     required this.favoriteDoctors,
     required this.favoriteHospitals,
     required this.onDoctorFavoriteToggle,
     required this.onHospitalFavoriteToggle,
-  }) : super(key: key);
+  });
 
   @override
   _FavoritesContentWidgetState createState() => _FavoritesContentWidgetState();

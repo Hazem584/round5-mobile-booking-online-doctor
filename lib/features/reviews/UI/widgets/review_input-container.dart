@@ -8,13 +8,13 @@ class ReviewInputContainer extends StatefulWidget {
   final int? maxLength;
   final TextEditingController? controller;
   const ReviewInputContainer({
-    Key? key,
+    super.key,
     this.hintText = "Write your review",
     this.onChanged,
     this.onSubmitted,
     this.maxLines = 8,
     this.maxLength, this.controller,
-  }) : super(key: key);
+  });
 
   @override
   State<ReviewInputContainer> createState() => _ReviewInputContainerState();

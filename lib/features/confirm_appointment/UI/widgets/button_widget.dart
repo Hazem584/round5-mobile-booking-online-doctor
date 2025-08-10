@@ -12,7 +12,7 @@ class FixedBottomButton extends StatelessWidget {
   final Color? disabledColor;
 
   const FixedBottomButton({
-    Key? key,
+    super.key,
     required this.price,
     this.priceUnit = '/hour',
     required this.buttonText,
@@ -20,7 +20,7 @@ class FixedBottomButton extends StatelessWidget {
     this.onPressed,
     this.buttonColor,
     this.disabledColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

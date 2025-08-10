@@ -1,59 +1,32 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/build_notification_item.dart';
+import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
+import 'package:online_booking_with_doctor/features/notifications/UI/widgets/notification_item_widget.dart';
 
 class NotificationsList extends StatelessWidget {
-  const NotificationsList({super.key});
+  final List<NotificationModel> notifications;
+
+  const NotificationsList({super.key, required this.notifications});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: EdgeInsets.all(16.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Today',
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              color: Colors.blue,
-            ),
-          ),
-          verticalSpace(12),
-          BuildNotificationItem(
-            imagePath: Assets.assetsImagesTimeQuarter,
-            iconColor: Colors.transparent,
-            iconBgColor: Color(0xffE8EFF8),
-            title: 'Upcoming Appointment',
-            subtitle: 'Reminder: You have an appointment with...',
-            time: '1h',
-          ),
-          verticalSpace(12),
-          BuildNotificationItem(
-            imagePath: Assets.assetsImagesCompleted,
-            iconColor: Colors.transparent,
-            iconBgColor: Color(0xffEDF7EE),
-            title: 'Appointment completed',
-            subtitle:
-                'You have successfully booked your appointment with Dr. Emily Walker.',
-            time: '3h',
-          ),
-          verticalSpace(12),
-          BuildNotificationItem(
-            imagePath: Assets.assetsImagesCalendarRemove,
-            iconColor: Colors.transparent,
-            iconBgColor: Color(0xffFFEDED),
-            title: 'Appointment Cancelled',
-            subtitle:
-                'You have successfully cancelled your appointment with Dr. David Patel.',
-            time: '4h',
-          ),
-        ],
-      ),
+    if (kDebugMode) {
+      print('📋 Building NotificationsList with ${notifications.length} items');
+    }
+
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      itemCount: notifications.length,
+      itemBuilder: (context, index) {
+        final notification = notifications[index];
+
+        if (kDebugMode) {
+          print('🔨 Building item $index: ${notification.title}');
+        }
+
+        return NotificationItemWidget(notification: notification);
+      },
     );
   }
 }
