@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/feature/doctor_details/presentation/view/doctor_details_view.dart';
-import 'package:online_booking_with_doctor/feature/home/view/widgets/doctor_card_item.dart';
+import 'package:online_booking_with_doctor/features/doctor_details/presentaion/screen/doctor_details.dart';
+import 'package:online_booking_with_doctor/features/home/view/widgets/doctor_card_item.dart';
 
 class ListOfDoctors extends StatelessWidget {
   const ListOfDoctors({
@@ -21,7 +21,7 @@ class ListOfDoctors extends StatelessWidget {
       itemBuilder: (context, i){
         return GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, DoctorDetailsView.routeName, arguments: i);
+            Navigator.pushNamed(context, DoctorDetailsPage.routeName, arguments: i);
           },
           child: DoctorCardItem(
             image: state.doctors[i].image,

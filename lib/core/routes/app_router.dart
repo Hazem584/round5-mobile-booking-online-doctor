@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
 import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
+import 'package:online_booking_with_doctor/features/doctors/presentation/view/doctors_near_u_view.dart';
+import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart';
 import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
 import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
 import 'package:online_booking_with_doctor/features/appoinment/appoinment_screen.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/profile_edit_view_body.dart';
 import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
+import 'package:online_booking_with_doctor/features/search/presentaion/view/search_view.dart';
 import 'package:online_booking_with_doctor/features/settings/presentation/views/faqs_view.dart';
 import 'package:online_booking_with_doctor/features/booking/presentaion/screens/book_screen.dart';
 import 'package:online_booking_with_doctor/features/payment/presentation/views/add_card_view.dart';
@@ -19,6 +22,8 @@ import 'package:online_booking_with_doctor/features/settings/presentation/views/
 import 'package:online_booking_with_doctor/features/confirm_appointment/UI/confirm_appointment_view.dart';
 import 'package:online_booking_with_doctor/features/doctor_details/presentaion/screen/doctor_details.dart';
 import 'package:online_booking_with_doctor/features/settings/presentation/views/password_management_view.dart';
+import 'package:online_booking_with_doctor/features/specialties/presentation/view/doctors_specialty_view.dart';
+import 'package:online_booking_with_doctor/features/specialties/presentation/view/specialties_view.dart';
 
 class AppRouter {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
@@ -72,6 +77,17 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => PrivacyPolicyView());
       case Routes.addCardView:
         return MaterialPageRoute(builder: (_) => AddCardView());
+      case HomeView.routeName:
+        return MaterialPageRoute(builder: (_) => const HomeView());
+      case SearchView.routeName:
+        return MaterialPageRoute(builder: (_) => const SearchView());
+      case SpecialtiesView.routeName:
+        return MaterialPageRoute(builder: (_) => const SpecialtiesView());
+      case DoctorsNearUView.routeName:
+        return MaterialPageRoute(builder: (_) => const DoctorsNearUView());
+      case DoctorsSpecialtyView.routeName:
+        final args = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));
 
       default:
         return MaterialPageRoute(
