@@ -1,10 +1,9 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/utils/routes.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_router.dart';
 
 class PasswordManagement extends StatelessWidget {
   const PasswordManagement({super.key});
@@ -12,7 +11,9 @@ class PasswordManagement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => GoRouter.of(context).push(AppRouter.passwordManagementView),
+      onTap: () => 
+        Navigator.pushNamed(context, Routes.passwordManagementView)
+,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Container(

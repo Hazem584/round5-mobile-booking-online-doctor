@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/utils/routes.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_router.dart';
 
 void main() {
@@ -14,8 +15,9 @@ class DocApp extends StatelessWidget {
     return ScreenUtilInit(
       minTextAdapt: true,
       designSize: const Size(375, 812),
-      child: MaterialApp.router(
-        routerConfig: AppRouter.router,
+      child: MaterialApp(
+        onGenerateRoute: AppRouter.generateRoute,
+        initialRoute: Routes.settingsView,
         debugShowCheckedModeBanner: false,
         // theme: ThemeData(fontFamily: "Montserrat"),
       ),

@@ -6,12 +6,22 @@ import 'package:mobile_booking_online_doctor/core/widgets/custom_button.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_app_bar.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_text_form_field.dart';
 
-class PasswordManagementView extends StatelessWidget {
+class PasswordManagementView extends StatefulWidget {
   const PasswordManagementView({super.key});
+
+  @override
+  State<PasswordManagementView> createState() => _PasswordManagementViewState();
+}
+
+class _PasswordManagementViewState extends State<PasswordManagementView> {
+  bool _showCurrentPassword = false;
+  bool _showNewPassword = false;
+  bool _showConfirmPassword = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,11 +33,21 @@ class PasswordManagementView extends StatelessWidget {
           verticalSpace(20.h),
           CustomTextFormField(
             hintText: "********",
-            suffixIcon: SvgPicture.asset(
-              "assets/svgs/closed_eye.svg",
-              width: 12.h, // or just use a number like 20.0
-              height: 12.h,
-              fit: BoxFit.scaleDown,
+            obscureText: !_showCurrentPassword,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showCurrentPassword = !_showCurrentPassword;
+                });
+              },
+              child: SvgPicture.asset(
+                _showCurrentPassword
+                    ? "assets/svgs/open_eye.svg"
+                    : "assets/svgs/closed_eye.svg",
+                width: 12.h,
+                height: 12.h,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
           verticalSpace(20.h),
@@ -38,11 +58,21 @@ class PasswordManagementView extends StatelessWidget {
           verticalSpace(20.h),
           CustomTextFormField(
             hintText: "********",
-            suffixIcon: SvgPicture.asset(
-              "assets/svgs/closed_eye.svg",
-              width: 12.h, // or just use a number like 20.0
-              height: 12.h,
-              fit: BoxFit.scaleDown,
+            obscureText: !_showNewPassword,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showNewPassword = !_showNewPassword;
+                });
+              },
+              child: SvgPicture.asset(
+                _showNewPassword
+                    ? "assets/svgs/open_eye.svg"
+                    : "assets/svgs/closed_eye.svg",
+                width: 12.h,
+                height: 12.h,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
           verticalSpace(20.h),
@@ -53,11 +83,21 @@ class PasswordManagementView extends StatelessWidget {
           verticalSpace(20.h),
           CustomTextFormField(
             hintText: "********",
-            suffixIcon: SvgPicture.asset(
-              "assets/svgs/closed_eye.svg",
-              width: 12.h, // or just use a number like 20.0
-              height: 12.h,
-              fit: BoxFit.scaleDown,
+            obscureText: !_showConfirmPassword,
+            suffixIcon: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showConfirmPassword = !_showConfirmPassword;
+                });
+              },
+              child: SvgPicture.asset(
+                _showConfirmPassword
+                    ? "assets/svgs/open_eye.svg"
+                    : "assets/svgs/closed_eye.svg",
+                width: 12.h,
+                height: 12.h,
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
         ],

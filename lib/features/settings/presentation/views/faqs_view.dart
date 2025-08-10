@@ -48,6 +48,7 @@ class _FaqsViewState extends State<FaqsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           const CustomAppBar(title: "FAQs"),
