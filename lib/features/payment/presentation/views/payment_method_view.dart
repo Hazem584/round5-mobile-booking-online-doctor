@@ -34,7 +34,7 @@ class PaymentMethodView extends StatelessWidget {
             leftSvg: "assets/svgs/visa.svg",
             rightIcon: Icon(
               Icons.arrow_forward_ios,
-              color: AppColors.darkGray,
+              color: ColorsManger.darkGray,
               size: 24.sp,
             ),
           ),
@@ -44,7 +44,7 @@ class PaymentMethodView extends StatelessWidget {
             leftSvg: "assets/svgs/master_card.svg",
             rightIcon: Icon(
               Icons.arrow_forward_ios,
-              color: AppColors.darkGray,
+              color: ColorsManger.darkGray,
               size: 24.sp,
             ),
           ),
@@ -60,7 +60,7 @@ class PaymentMethodView extends StatelessWidget {
             leftSvg: "assets/svgs/apple_pay.svg",
             rightIcon: Icon(
               Icons.circle_outlined,
-              color: AppColors.darkGray,
+              color: ColorsManger.darkGray,
               size: 24.sp,
             ),
           ),
@@ -71,7 +71,7 @@ class PaymentMethodView extends StatelessWidget {
             leftSvg: "assets/svgs/pay_pal.svg",
             rightIcon: Icon(
               Icons.circle_outlined,
-              color: AppColors.darkGray,
+              color: ColorsManger.darkGray,
               size: 24.sp,
             ),
           ),

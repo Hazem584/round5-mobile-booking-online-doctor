@@ -17,7 +17,7 @@ class ProfileContainer extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(

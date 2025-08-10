@@ -105,7 +105,7 @@ class TextStyles {
   static TextStyle font16DarkGrayMedium = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.fromString("medium"),
-    color: AppColors.darkGray,
+    color: ColorsManger.darkGray,
   );
   static TextStyle font20WhiteMedium = TextStyle(
     fontSize: 20.sp,
@@ -144,35 +144,35 @@ class TextStyles {
   static TextStyle font14DarkGrayRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
-    color: AppColors.darkGray,
+    color: ColorsManger.darkGray,
   );
   static TextStyle font16DarkGrayRegular = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
-    color: AppColors.darkGray,
+    color: ColorsManger.darkGray,
   );
   static TextStyle font24LightBlackNormal = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
   static TextStyle font16LightBlackNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
   static TextStyle font30LightBlackNormal = TextStyle(
     fontSize: 30.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
   static TextStyle font20LightBlackNormal = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
   static TextStyle font16WhiteNormal = TextStyle(
@@ -184,31 +184,31 @@ class TextStyles {
   static TextStyle font12lightGrayNormal = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.textColor,
+    color: ColorsManger.textColor,
     fontFamily: "Montserrat",
   );
   static TextStyle font14lightGrayNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.textColor,
+    color: ColorsManger.textColor,
     fontFamily: "Montserrat",
   );
   static TextStyle font16RedNormal = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.red,
+    color: ColorsManger.red,
     fontFamily: "Montserrat",
   );
   static TextStyle font18LightBlackNormal = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
   static TextStyle font14LightBlackNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.normal,
-    color: AppColors.lightBlack,
+    color: ColorsManger.lightBlack,
     fontFamily: "Montserrat",
   );
     static TextStyle font16BlackNormal = TextStyle(

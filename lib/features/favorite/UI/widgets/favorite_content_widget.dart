@@ -54,7 +54,7 @@ class _FavoritesContentWidgetState extends State<FavoritesContentWidget>
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            labelColor: AppColors.lightBlue,
+            labelColor: ColorsManger.lightBlue,
             unselectedLabelColor: Colors.grey.shade600,
             labelStyle: const TextStyle(
               fontSize: 16,

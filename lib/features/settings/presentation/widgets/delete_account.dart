@@ -22,7 +22,7 @@ class DeleteAccount extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           decoration: BoxDecoration(
-            color: AppColors.lightGray,
+            color: ColorsManger.lightGray,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
@@ -56,7 +56,7 @@ class DeleteAccount extends StatelessWidget {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Divider(color: AppColors.buttonCancelColor),
+                Divider(color: ColorsManger.buttonCancelColor),
                 Text(
                   'Are you sure you want to delete your account?',
                   style: TextStyles.font14DarkGrayRegular,
@@ -71,7 +71,7 @@ class DeleteAccount extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(double.infinity, 30),
-                backgroundColor: AppColors.buttonCancelColor,
+                backgroundColor: ColorsManger.buttonCancelColor,
 
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -86,7 +86,7 @@ class DeleteAccount extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(double.infinity, 30),
 
-                backgroundColor: AppColors.blue,
+                backgroundColor: ColorsManger.blue,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),

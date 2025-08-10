@@ -17,7 +17,7 @@ class DropDownArrow extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(12),
       ),
       child: DropdownButtonHideUnderline(

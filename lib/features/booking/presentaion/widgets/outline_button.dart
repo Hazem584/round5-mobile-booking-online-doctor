@@ -12,14 +12,14 @@ final String txt;
       child: OutlinedButton(
         onPressed: () {},
         style: OutlinedButton.styleFrom( side: BorderSide(
-          color:AppColors.primary,
+          color:ColorsManger.primary,
 
         ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(
                 10),  ),
         ),
-        child: Text(txt,style:  TextStyle(color: AppColors.primary,fontSize: 13),),
+        child: Text(txt,style:  TextStyle(color: ColorsManger.primary,fontSize: 13),),
       ),
     );
 

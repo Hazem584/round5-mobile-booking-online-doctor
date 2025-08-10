@@ -34,7 +34,7 @@ class EditProfileButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.lightBlue,
+          backgroundColor: backgroundColor ?? ColorsManger.lightBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),

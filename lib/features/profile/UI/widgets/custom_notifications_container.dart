@@ -21,7 +21,7 @@ class CustomNotificationsContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Padding(

@@ -1,8 +1,7 @@
 import '../widgets/booking_card.dart';
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/shared_wedgits/bottom_navi_bar.dart';
+import 'package:online_booking_with_doctor/core/widgets/bottom_navi_bar.dart';
 
 
 

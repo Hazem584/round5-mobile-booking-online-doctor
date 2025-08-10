@@ -10,7 +10,7 @@ class CustomInputFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(12),
       ),
       child: TextField(

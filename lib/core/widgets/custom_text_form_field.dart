@@ -31,12 +31,12 @@ class CustomTextFormField extends StatelessWidget {
 
         decoration: InputDecoration(
           filled: true,
-          fillColor: AppColors.lightGray,
+          fillColor: ColorsManger.lightGray,
           hintText: hintText,
           hintStyle: TextStyles.font16DarkGrayRegular,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: AppColors.lightGray),
+            borderSide: BorderSide(color: ColorsManger.lightGray),
           ),
           suffixIcon: suffixIcon,
         ),

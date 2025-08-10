@@ -26,7 +26,7 @@ class NotificationItemWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: notification.isRead
             ? Colors.transparent
-            : AppColors.lightBlue,
+            : ColorsManger.lightBlue,
       ),
       child: Stack(
         children: [

@@ -12,7 +12,7 @@ class DateDropdown extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        border: Border.all(color:AppColors.lightBlue),
+        border: Border.all(color:ColorsManger.lightBlue),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

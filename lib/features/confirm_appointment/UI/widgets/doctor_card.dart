@@ -54,7 +54,7 @@ class DoctorCard extends StatelessWidget {
                       Assets.assetsImagesLocation,
                       height: 16,
                       width: 16,
-                      color: AppColors.lightBlue,
+                      color: ColorsManger.lightBlue,
                     ),
                     horizontalSpace(4),
                     Text(

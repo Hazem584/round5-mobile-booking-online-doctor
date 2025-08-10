@@ -31,7 +31,7 @@ class CardType extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           decoration: BoxDecoration(
-            color: AppColors.lightGray,
+            color: ColorsManger.lightGray,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(

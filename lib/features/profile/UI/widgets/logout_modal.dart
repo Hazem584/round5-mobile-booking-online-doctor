@@ -56,7 +56,7 @@ class CustomLogoutModal {
                     child: Container(
                       height: 48.h,
                       decoration: BoxDecoration(
-                        color: AppColors.lightBlue,
+                        color: ColorsManger.lightBlue,
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: TextButton(

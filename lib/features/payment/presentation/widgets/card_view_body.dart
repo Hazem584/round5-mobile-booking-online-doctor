@@ -20,7 +20,7 @@ class CardViewBody extends StatelessWidget {
           leftSvg: "assets/svgs/visa.svg",
           rightIcon: Icon(
             Icons.circle_outlined,
-            color: AppColors.darkGray,
+            color: ColorsManger.darkGray,
             size: 20.sp,
           ),
         ),

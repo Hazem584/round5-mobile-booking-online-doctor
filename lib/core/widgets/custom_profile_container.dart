@@ -23,7 +23,7 @@ class CustomProfileContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
       ),
       child: Row(
         children: [
@@ -35,7 +35,7 @@ class CustomProfileContainer extends StatelessWidget {
           horizontalSpace(10),
           Text(title!, style: TextStyles.font16LightBlackNormal),
           const Spacer(),
-          const Icon(Icons.arrow_forward_ios, color: AppColors.darkGrey),
+          const Icon(Icons.arrow_forward_ios, color: ColorsManger.darkGrey),
         ],
       ),
     );

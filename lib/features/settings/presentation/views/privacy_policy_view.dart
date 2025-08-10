@@ -78,7 +78,7 @@ class PrivacyPolicyView extends StatelessWidget {
                 verticalSpace(20),
                 Text(
                   "Your data is handled in accordance with our Privacy Policy. You are responsible for keeping your login credentials secure.",
-                  style: TextStyle(color: AppColors.darkGray, height: 1.6),
+                  style: TextStyle(color: ColorsManger.darkGray, height: 1.6),
                 ),
                 verticalSpace(20),
               ],

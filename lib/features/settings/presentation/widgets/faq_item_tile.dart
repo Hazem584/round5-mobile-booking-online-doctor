@@ -23,7 +23,7 @@ class FaqItemTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: AppColors.lightGray,
+        color: ColorsManger.lightGray,
         borderRadius: BorderRadius.circular(12),
         boxShadow: const [
           BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 2)),

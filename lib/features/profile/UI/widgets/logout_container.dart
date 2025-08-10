@@ -15,7 +15,7 @@ class LogoutContainer extends StatelessWidget {
       height: 45.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.lightGrey,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(

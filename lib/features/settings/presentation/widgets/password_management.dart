@@ -21,7 +21,7 @@ class PasswordManagement extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           decoration: BoxDecoration(
-            color: AppColors.lightGray,
+            color: ColorsManger.lightGray,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(
@@ -38,7 +38,7 @@ class PasswordManagement extends StatelessWidget {
                   style: TextStyles.font16BlackRegular,
                 ),
                 Spacer(),
-                Icon(Icons.arrow_forward_ios, color: AppColors.gray, size: 18),
+                Icon(Icons.arrow_forward_ios, color: ColorsManger.gray, size: 18),
               ],
             ),
           ),
