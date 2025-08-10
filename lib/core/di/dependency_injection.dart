@@ -1,6 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:online_booking_with_doctor/features/home/data/datasource/doctor_remote_data_source.dart';
+import 'package:online_booking_with_doctor/features/home/data/datasource/doctor_remote_data_source_impl.dart';
+import 'package:online_booking_with_doctor/features/home/data/repo/doctor_repo_impl.dart';
+import 'package:online_booking_with_doctor/features/home/domain/repo/doctor_repo.dart';
 import 'package:online_booking_with_doctor/features/notifications/data/repos/notifications_repository.dart';
 import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
 final getIt = GetIt.instance;
@@ -112,10 +116,10 @@ Future<void> _setupDoctorDependencies() async {
     }
 
     // Uncomment and modify these lines based on your actual classes
-    /*
+    
     if (!getIt.isRegistered<DoctorRemoteDataSource>()) {
       getIt.registerLazySingleton<DoctorRemoteDataSource>(
-        () => DoctorsRemoteDataSourceImpl(dio: getIt<Dio>()),
+        () => DoctorsRemoteDataSourceImpl(),
       );
     }
 
@@ -124,7 +128,7 @@ Future<void> _setupDoctorDependencies() async {
         () => DoctorRepoImpl(doctorRemoteDataSource: getIt<DoctorRemoteDataSource>()),
       );
     }
-    */
+    
 
     if (kDebugMode) {
       print('✅ Doctor dependencies setup complete');

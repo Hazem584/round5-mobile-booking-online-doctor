@@ -24,7 +24,6 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
           padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              verticalSpace(30),
               ProfileContainer(),
               verticalSpace(55),
               CustomNotificationsContainer(
