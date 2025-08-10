@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
-import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
 
 class SpecialtiesListView extends StatelessWidget {
   const SpecialtiesListView({
@@ -50,7 +50,7 @@ class CustomSpecialtyCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
               width: 1,
-              color: AppColors.borderColor
+              color: ColorsManger.borderColor
           )
         ),
         child: Row(

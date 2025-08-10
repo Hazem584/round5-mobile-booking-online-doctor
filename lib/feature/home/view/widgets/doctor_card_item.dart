@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
 
 class DoctorCardItem extends StatefulWidget {
   const DoctorCardItem({
@@ -55,9 +55,9 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
                   const SizedBox(height: 4.0),
                   Row(
                     children: [
-                      Text(widget.specialist, style: AppStyle.regular12.copyWith(color: AppColors.greyColor,),),
-                      Text(' | ', style: AppStyle.regular12.copyWith(color: AppColors.greyColor,),),
-                      Text(widget.location, style: AppStyle.regular12.copyWith(color: AppColors.greyColor,),),
+                      Text(widget.specialist, style: AppStyle.regular12.copyWith(color: ColorsManger.greyColor,),),
+                      Text(' | ', style: AppStyle.regular12.copyWith(color: ColorsManger.greyColor,),),
+                      Text(widget.location, style: AppStyle.regular12.copyWith(color: ColorsManger.greyColor,),),
                     ],
                   ),
                   const SizedBox(height: 4.0),

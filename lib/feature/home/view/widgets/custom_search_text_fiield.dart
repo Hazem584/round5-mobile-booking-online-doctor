@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
 
 class CustomSearchTextFiled extends StatelessWidget {
   const CustomSearchTextFiled({
@@ -25,7 +25,7 @@ class CustomSearchTextFiled extends StatelessWidget {
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: 'Search for specialty, doctor',
-            hintStyle: AppStyle.regular14.copyWith(color: AppColors.greyColor),
+            hintStyle: AppStyle.regular14.copyWith(color: ColorsManger.greyColor),
             icon: SvgPicture.asset('assets/icons/Search.svg'),
             border: InputBorder.none,
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_booking_online_doctor/feature/doctor_details/presentation/view/doctor_details_view.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/doctor_card_item.dart';
+import 'package:online_booking_with_doctor/feature/doctor_details/presentation/view/doctor_details_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/doctor_card_item.dart';
 
 class ListOfDoctors extends StatelessWidget {
   const ListOfDoctors({

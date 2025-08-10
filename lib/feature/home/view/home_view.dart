@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/service/get_it.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/bloc/doctor_cubit.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/booking_view.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/profile_view.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_home_app_bar.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_bottom_navigation_bar.dart';
+import 'package:online_booking_with_doctor/core/service/get_it.dart';
+import 'package:online_booking_with_doctor/feature/home/view/bloc/doctor_cubit.dart';
+import 'package:online_booking_with_doctor/feature/home/view/booking_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/profile_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/custom_home_app_bar.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/custom_bottom_navigation_bar.dart';
 import '../domain/repo/doctor_repo.dart';
 import 'widgets/hone_view_body.dart';
 

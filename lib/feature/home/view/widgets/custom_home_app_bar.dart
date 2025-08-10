@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
-import 'package:mobile_booking_online_doctor/feature/favorite/presentation/view/favorite_view.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/buildI_icon_button.dart';
-import 'package:mobile_booking_online_doctor/feature/notifications/presentation/view/notifications_view.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/feature/favorite/presentation/view/favorite_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/buildI_icon_button.dart';
+import 'package:online_booking_with_doctor/feature/notifications/presentation/view/notifications_view.dart';
 
 class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomHomeAppBar({
@@ -35,7 +35,7 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
                   children: [
                     SvgPicture.asset('assets/icons/Location-Icon.svg'),
                     const SizedBox(width: 4),
-                    Text('129,El-Nasr Street, Cairo',style: AppStyle.regular12.copyWith(color: AppColors.greyColor, fontFamily: 'Montserrat')), // location of user
+                    Text('129,El-Nasr Street, Cairo',style: AppStyle.regular12.copyWith(color: ColorsManger.greyColor, fontFamily: 'Montserrat')), // location of user
                     const SizedBox(width: 4),
                     SvgPicture.asset('assets/icons/arrow-down.svg',width: 8,height: 8,)
                   ],

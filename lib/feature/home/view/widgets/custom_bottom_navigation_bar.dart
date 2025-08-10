@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/bottom_bar_icon_item.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/bottom_bar_icon_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar(
@@ -15,7 +15,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       backgroundColor: Colors.white,
       currentIndex: currentIndex,
       onTap: onTabSelected,
-      selectedItemColor: AppColors.primaryColor,
+      selectedItemColor: ColorsManger.primaryColor,
       items: [
         BottomNavigationBarItem(
           icon: currentIndex == 0

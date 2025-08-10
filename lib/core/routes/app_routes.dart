@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
+import 'package:online_booking_with_doctor/feature/doctor_details/presentation/view/doctor_details_view.dart';
+import 'package:online_booking_with_doctor/feature/doctors/presentation/view/doctors_near_u_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/home_view.dart';
+import 'package:online_booking_with_doctor/feature/search/presentaion/view/search_view.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/specialties_view.dart';
 import 'package:online_booking_with_doctor/features/confirm_appointment/UI/confirm_appointment_view.dart';
 import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
 import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
@@ -40,7 +46,21 @@ class AppRoutes {
       
       case Routes.confirmAppointment:
         return MaterialPageRoute(builder: (_) => const ConfirmAppointmentView());
-      
+
+      case HomeView.routeName:
+        return MaterialPageRoute(builder: (_) => const HomeView());
+      case SearchView.routeName:
+        return MaterialPageRoute(builder: (_) => const SearchView());
+      case SpecialtiesView.routeName:
+        return MaterialPageRoute(builder: (_) => const SpecialtiesView());
+      case DoctorsNearUView.routeName:
+        return MaterialPageRoute(builder: (_) => const DoctorsNearUView());
+      case DoctorsSpecialtyView.routeName:
+        final args = settings.arguments as String;
+        return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));
+      case DoctorDetailsView.routeName:
+        return MaterialPageRoute(builder: (_) => DoctorDetailsView());
+
       default:
         return null;
     }

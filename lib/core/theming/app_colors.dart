@@ -9,4 +9,9 @@ class ColorsManger {
   static const Color darkBlue = Color(0xFF05162C);
   static const Color textColor = Color(0xFF6D7379);
   static const Color red = Color(0xFFFC4B4E);
+  static const primaryColor = Color(0xff145DB8);
+  static const lightPrimaryColor = Color(0xff1490E3);
+  static const shadowColor = Color(0xff22222226);
+  static const greyColor = Color(0xff6D7379);
+  static const borderColor = Color(0xff99A2AB);
 }

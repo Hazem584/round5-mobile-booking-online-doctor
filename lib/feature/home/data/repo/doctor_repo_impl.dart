@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:mobile_booking_online_doctor/core/error/failure.dart';
-import 'package:mobile_booking_online_doctor/feature/home/data/datasource/doctor_remote_data_source.dart';
-import 'package:mobile_booking_online_doctor/feature/home/domain/entities/doctor_entity.dart';
-import 'package:mobile_booking_online_doctor/feature/home/domain/repo/doctor_repo.dart';
+import 'package:online_booking_with_doctor/core/error/failure.dart';
+import 'package:online_booking_with_doctor/feature/home/data/datasource/doctor_remote_data_source.dart';
+import 'package:online_booking_with_doctor/feature/home/domain/entities/doctor_entity.dart';
+import 'package:online_booking_with_doctor/feature/home/domain/repo/doctor_repo.dart';
 
 class DoctorRepoImpl implements DoctorRepo{
   final DoctorRemoteDataSource doctorRemoteDataSource;

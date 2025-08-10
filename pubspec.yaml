@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bottom_picker: ^4.0.1
-  cupertino_icons: ^1.0.8
   dio: ^5.9.0
   flutter:
     sdk: flutter
@@ -42,10 +41,9 @@ dependencies:
   dartz: ^0.10.1
   get_it: ^8.2.0
   flutter_bloc: ^9.1.1
-  flutter_bloc: ^9.1.1
+
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.2.0
-  get_it: ^8.2.0
+
   google_fonts: ^6.3.0
 
 dev_dependencies:
@@ -57,20 +55,9 @@ flutter:
   uses-material-design: true
   assets:
   - assets/images/
+  - assets/icons/
 
-  fonts:
-  - family: Georgio
-    fonts:
-    - asset: assets/fonts/GeorgioTypefaceRegular-R92eA.otf
-  - family: Montserrat
-    fonts:
-    - asset: assets/fonts/Montserrat-Regular.ttf
-    - asset: assets/fonts/Montserrat-Bold.ttf
-      weight: 700
-    - asset: assets/fonts/Montserrat-Medium.ttf
-      weight: 500
-    - assets/images/
-    - assets/icons/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -84,7 +71,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
+fonts:
     - family: Montserrat
       fonts:
         - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf

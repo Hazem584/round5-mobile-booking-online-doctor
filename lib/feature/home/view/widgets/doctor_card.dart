@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({super.key});
@@ -13,7 +13,7 @@ class DoctorCard extends StatelessWidget {
       height: 183,
       decoration: BoxDecoration(
         borderRadius: BorderRadiusGeometry.circular(24),
-        color: AppColors.primaryColor,
+        color: ColorsManger.primaryColor,
       ),
       child: Stack(
         children: [

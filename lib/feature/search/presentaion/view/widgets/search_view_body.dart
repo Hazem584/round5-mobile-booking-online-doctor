@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
-import 'package:mobile_booking_online_doctor/feature/search/presentaion/cubit/search_doctors_cubit.dart';
-import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/specialties_listview.dart';
+import 'package:online_booking_with_doctor/feature/search/presentaion/cubit/search_doctors_cubit.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/doctors_specialty_view.dart';
 
 class SearchViewBody extends StatelessWidget {
    SearchViewBody({super.key});
@@ -57,7 +57,7 @@ class SearchViewBody extends StatelessWidget {
                              mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text('Search by your location ', style: AppStyle.regular13,),
-                              Text('129,El-Nasr Street, Cairo', style: AppStyle.regular11.copyWith(color: AppColors.lightPrimaryColor),),
+                              Text('129,El-Nasr Street, Cairo', style: AppStyle.regular11.copyWith(color: ColorsManger.lightPrimaryColor),),
                             ],
                           ),
                           const SizedBox(height: 16,),
@@ -89,7 +89,7 @@ class SearchViewBody extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(14),
                                     border: Border.all(
                                         width: 1,
-                                        color: AppColors.borderColor
+                                        color: ColorsManger.borderColor
                                     )
                                   ),
                                   child: Row(

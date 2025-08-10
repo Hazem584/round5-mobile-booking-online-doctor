@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:mobile_booking_online_doctor/feature/home/domain/entities/doctor_entity.dart';
-import 'package:mobile_booking_online_doctor/feature/home/domain/repo/doctor_repo.dart';
+import 'package:online_booking_with_doctor/feature/home/domain/entities/doctor_entity.dart';
+import 'package:online_booking_with_doctor/feature/home/domain/repo/doctor_repo.dart';
 
 part 'doctors_specialty_state.dart';
 

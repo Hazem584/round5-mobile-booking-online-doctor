@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_style.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:mobile_booking_online_doctor/feature/doctors/presentation/view/doctors_near_u_view.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/bloc/doctor_cubit.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/doctor_card.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
-import 'package:mobile_booking_online_doctor/feature/search/presentaion/view/search_view.dart';
-import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/specialties_view.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/utils/app_style.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
+import 'package:online_booking_with_doctor/feature/doctors/presentation/view/doctors_near_u_view.dart';
+import 'package:online_booking_with_doctor/feature/home/view/bloc/doctor_cubit.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/doctor_card.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/specialties_listview.dart';
+import 'package:online_booking_with_doctor/feature/search/presentaion/view/search_view.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/specialties_view.dart';
 
 class HoneViewBody extends StatelessWidget {
    HoneViewBody({super.key});
@@ -51,7 +51,7 @@ class HoneViewBody extends StatelessWidget {
                     },
                     child: Text(
                       'View all',
-                      style: AppStyle.regular14.copyWith(color: AppColors.primaryColor),
+                      style: AppStyle.regular14.copyWith(color: ColorsManger.primaryColor),
                     ),
                   ),
                 ],
@@ -71,7 +71,7 @@ class HoneViewBody extends StatelessWidget {
                     },
                     child: Text(
                       'View all',
-                      style: AppStyle.regular14.copyWith(color: AppColors.primaryColor),
+                      style: AppStyle.regular14.copyWith(color: ColorsManger.primaryColor),
                     ),
                   ),
                 ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_booking_online_doctor/feature/specialties/presentation/view/widget/specialties_view_body.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/view/widget/specialties_view_body.dart';
 
 class SpecialtiesView extends StatelessWidget {
   const SpecialtiesView({super.key});

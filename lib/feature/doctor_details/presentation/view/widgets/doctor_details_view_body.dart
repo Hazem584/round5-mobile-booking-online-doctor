@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
 
 class DoctorDetailsViewBody extends StatelessWidget {
   const DoctorDetailsViewBody({super.key});

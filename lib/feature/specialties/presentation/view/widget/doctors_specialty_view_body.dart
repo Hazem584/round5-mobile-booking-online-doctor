@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:mobile_booking_online_doctor/feature/specialties/presentation/cubit/doctors_specialty_cubit.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
+import 'package:online_booking_with_doctor/feature/specialties/presentation/cubit/doctors_specialty_cubit.dart';
 
 class DoctorsSpecialtyViewBody extends StatelessWidget {
   const DoctorsSpecialtyViewBody({super.key, required this.specialty});

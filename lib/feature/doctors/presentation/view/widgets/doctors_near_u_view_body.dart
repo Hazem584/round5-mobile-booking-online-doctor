@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_appbar.dart';
-import 'package:mobile_booking_online_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/bloc/doctor_cubit.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:mobile_booking_online_doctor/feature/home/view/widgets/specialties_listview.dart';
-import 'package:mobile_booking_online_doctor/feature/search/presentaion/view/search_view.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
+import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
+import 'package:online_booking_with_doctor/feature/home/view/bloc/doctor_cubit.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/custom_search_text_fiield.dart';
+import 'package:online_booking_with_doctor/feature/home/view/widgets/specialties_listview.dart';
+import 'package:online_booking_with_doctor/feature/search/presentaion/view/search_view.dart';
 
 class DoctorsNearUViewBody extends StatelessWidget {
   DoctorsNearUViewBody({super.key});
