@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
 class CustomNotificationsContainer extends StatelessWidget {
   final String title;
@@ -21,7 +21,7 @@ class CustomNotificationsContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ColorsManger.lightGrey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Padding(

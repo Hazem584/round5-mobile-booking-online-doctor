@@ -9,9 +9,12 @@ android {
     namespace = "com.example.mobile_booking_online_doctor"
 <<<<<<< HEAD
     compileSdk = flutter.compileSdkVersion
+<<<<<<< HEAD
 =======
     compileSdk = 35
 >>>>>>> booking
+=======
+>>>>>>> roqaia
     ndkVersion = "27.0.12077973"
 
     compileOptions {

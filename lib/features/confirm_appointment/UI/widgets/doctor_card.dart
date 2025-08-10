@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class DoctorCard extends StatelessWidget {
   const DoctorCard({super.key});
@@ -54,7 +54,7 @@ class DoctorCard extends StatelessWidget {
                       Assets.assetsImagesLocation,
                       height: 16,
                       width: 16,
-                      color: ColorsManger.lightBlue,
+                      color: AppColors.lightBlue,
                     ),
                     horizontalSpace(4),
                     Text(

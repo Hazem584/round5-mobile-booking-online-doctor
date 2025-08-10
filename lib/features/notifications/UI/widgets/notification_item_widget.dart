@@ -1,12 +1,12 @@
-// notification_item_widget.dart - Fixed Version
-import 'package:flutter/foundation.dart';
+import 'build_notification_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
 import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-import 'build_notification_item.dart';
+// notification_item_widget.dart - Fixed Version
 
 class NotificationItemWidget extends StatelessWidget {
   final NotificationModel notification;
@@ -26,7 +26,7 @@ class NotificationItemWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: notification.isRead
             ? Colors.transparent
-            : ColorsManger.lightBlue,
+            : AppColors.lightBlue,
       ),
       child: Stack(
         children: [

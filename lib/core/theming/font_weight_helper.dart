@@ -10,4 +10,28 @@ class FontWeightHelper{
   static const FontWeight bold = FontWeight.w700;
   static const FontWeight extraBold = FontWeight.w800;
   static const FontWeight black = FontWeight.w900;
+  static FontWeight fromString(String weight) {
+    switch (weight.toLowerCase()) {
+      case "thin":
+        return thin;
+      case "extra_light":
+        return extraLight;
+      case "light":
+        return light;
+      case "normal":
+        return normal;
+      case "medium":
+        return medium;
+      case "semi_bold":
+        return semiBold;
+      case "bold":
+        return bold;
+      case "extra_bold":
+        return extraBold;
+      case "black":
+        return black;
+      default:
+        throw ArgumentError("Invalid font weight: $weight");
+    }
+  }
 }

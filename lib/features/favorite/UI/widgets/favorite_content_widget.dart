@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
 import 'package:online_booking_with_doctor/features/favorite/UI/widgets/doctor_favorite_list_view_card.dart';
 import 'package:online_booking_with_doctor/features/favorite/UI/widgets/hospital_favorite_list_view_card.dart';
-import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
 
 class FavoritesContentWidget extends StatefulWidget {
   final List<Doctor> favoriteDoctors;
@@ -54,7 +54,7 @@ class _FavoritesContentWidgetState extends State<FavoritesContentWidget>
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
             ),
-            labelColor: ColorsManger.lightBlue,
+            labelColor: AppColors.lightBlue,
             unselectedLabelColor: Colors.grey.shade600,
             labelStyle: const TextStyle(
               fontSize: 16,

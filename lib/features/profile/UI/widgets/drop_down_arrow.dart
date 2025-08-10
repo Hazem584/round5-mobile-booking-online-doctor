@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
 class DropDownArrow extends StatelessWidget {
   const DropDownArrow({
@@ -17,7 +17,7 @@ class DropDownArrow extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
-        color: ColorsManger.lightGrey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(12),
       ),
       child: DropdownButtonHideUnderline(

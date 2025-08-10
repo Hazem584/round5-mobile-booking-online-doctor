@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
 class EditProfileButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
@@ -34,7 +34,7 @@ class EditProfileButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: isLoading ? null : onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? ColorsManger.lightBlue,
+          backgroundColor: backgroundColor ?? AppColors.lightBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),

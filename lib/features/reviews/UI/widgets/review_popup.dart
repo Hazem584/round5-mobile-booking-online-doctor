@@ -76,7 +76,7 @@ class ReviewPopup extends StatelessWidget {
                   onDone?.call();
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManger.darkBlue, // Dark navy color
+                  backgroundColor: AppColors.darkBlue, // Dark navy color
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),

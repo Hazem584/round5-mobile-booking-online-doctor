@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class CustomProfileContainer extends StatelessWidget {
   final String? title;
@@ -23,7 +23,7 @@ class CustomProfileContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: ColorsManger.lightGrey,
+        color: AppColors.lightGrey,
       ),
       child: Row(
         children: [
@@ -35,7 +35,7 @@ class CustomProfileContainer extends StatelessWidget {
           horizontalSpace(10),
           Text(title!, style: TextStyles.font16LightBlackNormal),
           const Spacer(),
-          const Icon(Icons.arrow_forward_ios, color: ColorsManger.darkGrey),
+          const Icon(Icons.arrow_forward_ios, color: AppColors.darkGrey),
         ],
       ),
     );

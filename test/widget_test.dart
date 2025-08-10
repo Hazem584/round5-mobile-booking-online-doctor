@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:online_booking_with_doctor/features/docdoc_app.dart';
 // This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
@@ -5,16 +8,10 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:online_booking_with_doctor/core/routes/app_routes.dart';
-import 'package:online_booking_with_doctor/features/docdoc_app.dart';
-
-
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(DocDocApp(appRouter: AppRoutes(),));
+    await tester.pumpWidget(DocDocApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

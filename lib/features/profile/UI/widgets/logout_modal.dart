@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class CustomLogoutModal {
   static void show(BuildContext context) {
@@ -56,7 +56,7 @@ class CustomLogoutModal {
                     child: Container(
                       height: 48.h,
                       decoration: BoxDecoration(
-                        color: ColorsManger.lightBlue,
+                        color: AppColors.lightBlue,
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: TextButton(

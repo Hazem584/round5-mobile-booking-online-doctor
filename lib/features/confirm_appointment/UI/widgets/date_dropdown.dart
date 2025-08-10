@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 class DateDropdown extends StatelessWidget {
   const DateDropdown({super.key});
@@ -12,7 +12,7 @@ class DateDropdown extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: ColorsManger.lightBlue),
+        border: Border.all(color:AppColors.lightBlue),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

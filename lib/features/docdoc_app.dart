@@ -1,15 +1,16 @@
-// Updated docdoc_app.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
-import 'package:online_booking_with_doctor/core/routes/app_routes.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
+import 'package:online_booking_with_doctor/core/routes/app_router.dart';
+import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
 import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
+// Updated docdoc_app.dart
+
 
 class DocDocApp extends StatelessWidget {
-  final AppRoutes appRouter;
-  const DocDocApp({super.key, required this.appRouter});
+ 
+  const DocDocApp({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class DocDocApp extends StatelessWidget {
               scaffoldBackgroundColor: Colors.white,
             ),
             initialRoute: Routes.notifications,
-            onGenerateRoute: appRouter.generatetRoute,
+            onGenerateRoute: AppRouter.generateRoute,
           );
         },
       ),

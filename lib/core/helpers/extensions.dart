@@ -1,26 +1,24 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
-extension Navigation on BuildContext {
-  Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
-    return Navigator.of(this).pushNamed(routeName, arguments: arguments);
+extension Navigation on BuildContext{
+  void pushNamed(String routeName, {Object? arguments}) {
+    Navigator.pushNamed(this, routeName, arguments: arguments);
   }
 
-  Future<dynamic> pushReplacementNamed(String routeName, {Object? arguments}) {
-    return Navigator.of(this)
-        .pushReplacementNamed(routeName, arguments: arguments);
+  void pushReplacementNamed(String routeName, {Object? arguments}) {
+    Navigator.pushReplacementNamed(this, routeName, arguments: arguments);
+  }
+  void pushNamedAndRemoveUntil(String routeName, {Object? arguments}) {
+    Navigator.pushNamedAndRemoveUntil(this, routeName, (route) => false, arguments: arguments);
   }
 
-  Future<dynamic> pushNamedAndRemoveUntil(String routeName,
-      {Object? arguments, required RoutePredicate predicate}) {
-    return Navigator.of(this)
-        .pushNamedAndRemoveUntil(routeName, predicate, arguments: arguments);
+  void pop() {
+    Navigator.pop(this);
   }
-
-  void pop() => Navigator.of(this).pop();
-
-
 }
 
- extension StringExtension on String? {
+
+extension StringExtension on String? {
     bool isNullOrEmpty() => this == null || this == "";
   }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ColorsManger {
+class AppColors {
   static const Color yellow = Color(0xFFF9E000);
   static const Color lightBlack = Color(0xFF05162C);
   static const Color lightBlue = Color(0xFF145DB8);
@@ -9,4 +9,12 @@ class ColorsManger {
   static const Color darkBlue = Color(0xFF05162C);
   static const Color textColor = Color(0xFF6D7379);
   static const Color red = Color(0xFFFC4B4E);
+  static const lightGray = Color.fromARGB(255, 14, 24, 33);
+  static const gray = Color(0xff99A2AB);
+  static const darkGray = Color(0xff6D7379);
+  static const buttonCancelColor = Color(0xffBBC1C7);
+  static const blue = Color(0xff145DB8);
+  static const lighterBlack = Color(0xff05162C);
+  static const Color primary = Color(0xFF145DB8);
+  static const Color white = Colors.white;
 }

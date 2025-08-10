@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/widgets/logout_modal.dart';
 
 class LogoutContainer extends StatelessWidget {
@@ -15,7 +15,7 @@ class LogoutContainer extends StatelessWidget {
       height: 45.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ColorsManger.lightGrey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(8),
       ),
       child: InkWell(

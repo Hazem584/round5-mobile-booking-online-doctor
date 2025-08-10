@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/extensions.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
+import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
+import 'package:online_booking_with_doctor/core/helpers/extensions.dart';
+import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
 class ProfileContainer extends StatelessWidget {
   const ProfileContainer({super.key});
@@ -17,7 +17,7 @@ class ProfileContainer extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: ColorsManger.lightGrey,
+        color: AppColors.lightGrey,
         borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
