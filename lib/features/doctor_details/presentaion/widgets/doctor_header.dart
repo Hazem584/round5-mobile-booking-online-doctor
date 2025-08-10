@@ -20,7 +20,7 @@ class DoctorHeader extends StatelessWidget {
             Text("Pulmonologist", style: TextStyles.black14w400),
             Row(
               children: [
-                Image.asset("assets/icons/Location.png", height: 18, width: 18),
+                Image.asset(Assets.assetsIconsLocation, height: 18, width: 18),
                 Text(
                   "129, El-Nasr Street, New Cairo",
                   style: TextStyles.grey14w400,

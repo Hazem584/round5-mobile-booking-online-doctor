@@ -1,11 +1,10 @@
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+
 import 'elevate_button.dart';
 import 'outline_button.dart';
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-
-
-
 
 class BookingCard extends StatelessWidget {
   final String status;
@@ -51,7 +50,8 @@ class BookingCard extends StatelessWidget {
         statusColor = Colors.grey;
     }
 
-    return Card(color: ColorsManger.white,
+    return Card(
+      color: ColorsManger.white,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
 
@@ -62,7 +62,11 @@ class BookingCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset("assets/icons/calendar-02.png", height: 20, width: 20),
+                Image.asset(
+                  "assets/icons/calendar-02.png",
+                  height: 20,
+                  width: 20,
+                ),
                 const SizedBox(width: 6),
                 Expanded(
                   child: Text(
@@ -71,14 +75,20 @@ class BookingCard extends StatelessWidget {
                     style: TextStyles.black14w500,
                   ),
                 ),
-                Text(status, style: TextStyles.black14w500.copyWith(color: statusColor)),
+                Text(
+                  status,
+                  style: TextStyles.black14w500.copyWith(color: statusColor),
+                ),
               ],
             ),
             const Divider(height: 16),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/1.png")),
+                const CircleAvatar(
+                  radius: 25,
+                  backgroundImage: AssetImage(Assets.assetsIconsGirl2),
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -89,7 +99,11 @@ class BookingCard extends StatelessWidget {
                       const SizedBox(height: 4),
                       Row(
                         children: [
-                          const Icon(Icons.location_on_outlined, size: 14, color: Colors.grey),
+                          const Icon(
+                            Icons.location_on_outlined,
+                            size: 14,
+                            color: Colors.grey,
+                          ),
                           const SizedBox(width: 4),
                           Expanded(
                             child: Text(

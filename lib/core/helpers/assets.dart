@@ -102,6 +102,10 @@ class Assets {
   /// assets/icons/General-Practitioner.svg
   static const String assetsIconsGeneralPractitioner = "assets/icons/General-Practitioner.svg";
 
+  /// Assets for assetsIconsGirl2
+  /// assets/icons/girl2.png
+  static const String assetsIconsGirl2 = "assets/icons/girl2.png";
+
   /// Assets for assetsIconsHalfstar
   /// assets/icons/halfstar.png
   static const String assetsIconsHalfstar = "assets/icons/halfstar.png";
@@ -186,6 +190,10 @@ class Assets {
   /// assets/icons/star.png
   static const String assetsIconsStar = "assets/icons/star.png";
 
+  /// Assets for assetsIconsStarDark
+  /// assets/icons/star_dark.png
+  static const String assetsIconsStarDark = "assets/icons/star_dark.png";
+
   /// Assets for assetsIconsTime
   /// assets/icons/time.svg
   static const String assetsIconsTime = "assets/icons/time.svg";
@@ -269,6 +277,10 @@ class Assets {
   /// Assets for assetsImagesGirl
   /// assets/images/girl.png
   static const String assetsImagesGirl = "assets/images/girl.png";
+
+  /// Assets for assetsImagesGirl2
+  /// assets/images/girl2.png
+  static const String assetsImagesGirl2 = "assets/images/girl2.png";
 
   /// Assets for assetsImagesHappyPatient1
   /// assets/images/happy-patient1.png

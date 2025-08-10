@@ -6,20 +6,19 @@ import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
 import 'package:online_booking_with_doctor/features/payment/presentation/widgets/card_type.dart';
 
-
 class PaymentMethodView extends StatelessWidget {
+  static const routeName = "/paymentMethodView";
   const PaymentMethodView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: "Payment Method"),
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBar(title: "Payment Method"),
-          verticalSpace(30),
-
+          verticalSpace(50),
           Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Text(
@@ -51,9 +50,10 @@ class PaymentMethodView extends StatelessWidget {
           verticalSpace(20),
 
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 24),
             child: Text("Mobile wallets", style: TextStyles.font20BlackRegular),
           ),
+          verticalSpace(20),
 
           CardType(
             text: "Apple pay",

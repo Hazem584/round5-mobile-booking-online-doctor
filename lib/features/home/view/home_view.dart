@@ -21,22 +21,22 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int _currentIndex = 0;
 
-  void _onTabSelected(int index){
-      _currentIndex = index;
-      setState(() {});
+  void _onTabSelected(int index) {
+    _currentIndex = index;
+    setState(() {});
   }
 
   final List<Widget> _pages = [HoneViewBody(), BookScreen(), ProfileView()];
-  final List<PreferredSizeWidget> _appBars = [CustomHomeAppBar(), AppBar(), AppBar()];
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DoctorCubit(getIt<DoctorRepo>()),
       child: Scaffold(
-        appBar: _appBars[_currentIndex],
         body: _pages[_currentIndex],
-        bottomNavigationBar: CustomBottomNavigationBar(currentIndex: _currentIndex, onTabSelected: _onTabSelected),
+        bottomNavigationBar: CustomBottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTabSelected: _onTabSelected,
+        ),
       ),
     );
   }

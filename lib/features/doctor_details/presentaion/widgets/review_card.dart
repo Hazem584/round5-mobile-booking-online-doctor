@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
-
-
 
 
 class ReviewCard extends StatelessWidget {
@@ -20,7 +18,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage("assets/images/girl2.png"),
+                backgroundImage: AssetImage(Assets.assetsImagesGirl),
               ),
               const SizedBox(width: 19),
               Column(

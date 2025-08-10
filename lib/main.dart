@@ -40,17 +40,8 @@ class DocDocApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: "Montserrat",
               scaffoldBackgroundColor: Colors.white,
-              appBarTheme: const AppBarTheme(
-                backgroundColor: Colors.white,
-                titleTextStyle: TextStyle(
-                  fontFamily: 'Georgia',
-                  fontSize: 24,
-                  color: Colors.black,
-                ),
-              ),
             ),
-            initialRoute:
-                HomeView.routeName,
+            initialRoute: HomeView.routeName,
             onGenerateRoute: AppRouter.generateRoute,
           );
         },

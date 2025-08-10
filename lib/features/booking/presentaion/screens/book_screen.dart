@@ -3,24 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/widgets/bottom_navi_bar.dart';
 
-
-
-
-
 class BookScreen extends StatelessWidget {
   const BookScreen({super.key});
- static const String routeName = '/bookingScreen';
+  static const String routeName = '/bookingScreen';
   @override
   Widget build(BuildContext context) {
-    final List<String> days = ['Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu'];
+    final List<String> days = [
+      'Thu',
+      'Fri',
+      'Sat',
+      'Sun',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+    ];
     final List<String> dates = ['11', '12', '13', '14', '15', '16', '17', '18'];
 
     return Scaffold(
       appBar: AppBar(
         title: Text('My Booking', style: TextStyles.black16w700),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
       ),
       body: Column(
         children: [
@@ -48,7 +51,9 @@ class BookScreen extends StatelessWidget {
                     onSelected: (_) {},
                     showCheckmark: false,
                     // selectedColor: AppColors.primary,
-                    labelStyle: selected ? TextStyles.white12w500 : TextStyles.black12w500,
+                    labelStyle: selected
+                        ? TextStyles.white12w500
+                        : TextStyles.black12w500,
                     backgroundColor: Colors.grey[200],
                   ),
                 );
@@ -67,10 +72,6 @@ class BookScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: MainBottomNavBar(
-        currentIndex: 1,
-        onTap: (index) {},
       ),
     );
   }

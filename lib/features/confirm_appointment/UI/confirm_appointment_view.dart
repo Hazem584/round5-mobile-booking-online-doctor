@@ -7,6 +7,6 @@ class ConfirmAppointmentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ConfirmAppointmentViewBody());
+    return ConfirmAppointmentViewBody();
   }
 }

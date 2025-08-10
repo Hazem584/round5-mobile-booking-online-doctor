@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 
@@ -19,8 +20,8 @@ class ReviewSummary extends StatelessWidget {
               child: Row(
                 children: [
                   for (var i = 0; i < 4; i++)
-                    Image.asset("assets/icons/star.png", height: 20, width: 20),
-                  Image.asset("assets/icons/halfstar.png", height: 20, width: 20),
+                    Image.asset(Assets.assetsIconsStar, height: 20, width: 20),
+                  Image.asset(Assets.assetsIconsHalfstar, height: 20, width: 20),
                 ],
               ),
             ),

@@ -65,7 +65,7 @@ class AppRouter {
 
       case Routes.faqsView:
         return MaterialPageRoute(builder: (_) => FaqsView());
-      case Routes.paymentMethodView:
+      case Routes.paymentMethod:
         return MaterialPageRoute(builder: (_) => PaymentMethodView());
 
       case Routes.addNewCardView:
