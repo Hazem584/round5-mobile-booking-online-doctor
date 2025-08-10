@@ -10,6 +10,10 @@ import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart
 import 'package:online_booking_with_doctor/features/profile/UI/profile_edit_view_body.dart';
 import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
 
+import '../../feature/appoinment/appoinment_screen.dart';
+import '../../feature/booking/presentaion/screens/book_screen.dart';
+import '../../feature/doctor_details/presentaion/screen/doctor_details.dart';
+
 class AppRoutes {
   Route? generatetRoute(RouteSettings settings) {
     // this arguments to be passed in any screen like this (arguments as ClassName)
@@ -34,7 +38,19 @@ class AppRoutes {
             child: NotificationsView(),
           ),
         );
-      
+      case  DoctorDetailsPage.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const DoctorDetailsPage(),
+        );
+
+      case BookScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const BookScreen(),
+        );
+      case AppointmentPage.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const AppointmentPage(),
+        );
       case Routes.favorite:
         return MaterialPageRoute(builder: (_) => const FavoriteView());
       
