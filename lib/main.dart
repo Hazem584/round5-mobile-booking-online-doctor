@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
-import 'package:mobile_booking_online_doctor/feature/navbar/view/navbar_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
+import 'package:online_booking_with_doctor/core/routes/app_routes.dart';
+import 'package:online_booking_with_doctor/features/docdoc_app.dart';
 
-void main() {
-  runApp(const DocApp());
-}
-
-class DocApp extends StatelessWidget {
-  const DocApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const BottomNavBar(),
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-      ),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
+  setupNotificationsDependencies();
+  runApp(DocDocApp(appRouter: AppRoutes()));
 }
