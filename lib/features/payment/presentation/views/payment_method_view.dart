@@ -16,14 +16,14 @@ class PaymentMethodView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomAppBar(title: "Payment method"),
+          CustomAppBar(title: "Payment Method"),
           verticalSpace(30),
 
           Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Text(
               "Credit / Debit Card",
-              style: TextStyles.font18BlackRegular,
+              style: TextStyles.font20BlackRegular,
             ),
           ),
           verticalSpace(20),
@@ -34,7 +34,7 @@ class PaymentMethodView extends StatelessWidget {
             rightIcon: Icon(
               Icons.arrow_forward_ios,
               color: AppColors.darkGray,
-              size: 20.sp,
+              size: 24.sp,
             ),
           ),
           verticalSpace(20),
@@ -44,27 +44,35 @@ class PaymentMethodView extends StatelessWidget {
             rightIcon: Icon(
               Icons.arrow_forward_ios,
               color: AppColors.darkGray,
-              size: 20.sp,
+              size: 24.sp,
             ),
           ),
           verticalSpace(20),
 
           Padding(
             padding: const EdgeInsets.only(left: 20),
-            child: Text("Mobile wallets", style: TextStyles.font18BlackRegular),
+            child: Text("Mobile wallets", style: TextStyles.font20BlackRegular),
           ),
 
           CardType(
             text: "Apple pay",
             leftSvg: "assets/svgs/apple_pay.svg",
-            rightIcon: Icon(Icons.circle_outlined, color: AppColors.darkGray),
+            rightIcon: Icon(
+              Icons.circle_outlined,
+              color: AppColors.darkGray,
+              size: 24.sp,
+            ),
           ),
           verticalSpace(20),
 
           CardType(
             text: "PayPal",
             leftSvg: "assets/svgs/pay_pal.svg",
-            rightIcon: Icon(Icons.circle_outlined, color: AppColors.darkGray),
+            rightIcon: Icon(
+              Icons.circle_outlined,
+              color: AppColors.darkGray,
+              size: 24.sp,
+            ),
           ),
         ],
       ),

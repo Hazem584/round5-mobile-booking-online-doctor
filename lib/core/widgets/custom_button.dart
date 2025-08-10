@@ -3,8 +3,9 @@ import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text});
+  const CustomButton({super.key, required this.text, this.onPressed});
   final String text;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -14,7 +15,7 @@ class CustomButton extends StatelessWidget {
         fixedSize: Size(double.infinity, 30),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      child: Center(child: Text(text, style: TextStyles.font14WhiteMedium)),
+      child: Center(child: Text(text, style: TextStyles.font16WhiteMedium)),
     );
   }
 }

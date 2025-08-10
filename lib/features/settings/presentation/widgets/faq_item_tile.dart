@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
 class FaqItemTile extends StatelessWidget {
@@ -35,15 +36,10 @@ class FaqItemTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(
-                    question,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: Text(question, style: TextStyles.font24BlackRegular),
                 ),
                 Icon(
+                  size: 24,
                   isExpanded ? Icons.remove : Icons.add,
                   color: Colors.black,
                 ),
@@ -54,10 +50,7 @@ class FaqItemTile extends StatelessWidget {
             const SizedBox(height: 12),
             const Divider(),
             const SizedBox(height: 8),
-            Text(
-              answer,
-              style: const TextStyle(color: Colors.grey, fontSize: 14),
-            ),
+            Text(answer, style: TextStyles.font16DarkGrayRegular),
           ],
         ],
       ),

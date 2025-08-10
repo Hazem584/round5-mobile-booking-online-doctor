@@ -1,4 +1,8 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 
 class CreditCardWidget extends StatelessWidget {
   const CreditCardWidget({super.key});
@@ -6,7 +10,8 @@ class CreditCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 270.h,
+      width: double.infinity,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -21,25 +26,20 @@ class CreditCardWidget extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text(
-                "Spenny",
-                style: TextStyle(color: Colors.white, fontSize: 18),
-              ),
-              Text("VISA", style: TextStyle(color: Colors.white, fontSize: 18)),
+            children: [
+              SvgPicture.asset("assets/svgs/spenny_logo.svg"),
+              SvgPicture.asset("assets/svgs/visa_logo.svg"),
             ],
           ),
-          const Spacer(),
-          const Text(
-            "6789 4567 5432 8903",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          const SizedBox(height: 8),
+          verticalSpace(30.h),
+          Text("6789 4567 5432 8903", style: TextStyles.font32WhiteBold),
+          verticalSpace(30.h),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Text("Seif Mohamed", style: TextStyle(color: Colors.white)),
-              Text("12/22", style: TextStyle(color: Colors.white)),
+            children: [
+              Text("Seif Mohamed", style: TextStyles.font20WhiteMedium),
+              Text("12/22", style: TextStyles.font20WhiteMedium),
             ],
           ),
         ],

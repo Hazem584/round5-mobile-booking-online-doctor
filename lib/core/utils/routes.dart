@@ -6,4 +6,5 @@ class Routes {
   static const addNewCardView = "/addNewCardView";
   static const privacyPolicyView = "/privacyPolicyView";
   static const addCardView = "/addCardview";
+
 }

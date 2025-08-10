@@ -4,41 +4,61 @@ import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/utils/font_weight_helper.dart';
 
 class TextStyles {
-  static TextStyle font18BlackRegular = TextStyle(
-    fontSize: 18.sp,
+  static TextStyle font24BlackRegular = TextStyle(
+    fontSize: 24.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
     color: Colors.black,
   );
-  static TextStyle font22BlackRegular = TextStyle(
-    fontSize: 22.sp,
+  static TextStyle font16BlackRegular = TextStyle(
+    fontSize: 16.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
     color: Colors.black,
   );
-  static TextStyle font12BlackRegular = TextStyle(
-    fontSize: 12.sp,
+  static TextStyle font20BlackRegular = TextStyle(
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.fromString("regular"),
     color: Colors.black,
   );
-  static TextStyle font12WhiteRegular = TextStyle(
-    fontSize: 12.sp,
-    fontWeight: FontWeightHelper.fromString("regular"),
+  //
+  static TextStyle font16DarkGrayMedium = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.fromString("medium"),
+    color: AppColors.darkGray,
+  );
+  static TextStyle font20WhiteMedium = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.fromString("medium"),
     color: Colors.white,
+  );
+  static TextStyle font32WhiteBold = TextStyle(
+    fontSize: 32.sp,
+    fontWeight: FontWeightHelper.fromString("bold"),
+    color: Colors.white,
+  );
+
+  static TextStyle font12BlackMedium = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.fromString("medium"),
+    color: Colors.black,
+  );
+
+  static TextStyle font14BlackMedium = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.fromString("medium"),
+    color: Colors.black,
   );
   static TextStyle font14WhiteMedium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.fromString("medium"),
     color: Colors.white,
   );
-  static TextStyle font14BlackMedium = TextStyle(
-    fontSize: 14.sp,
-    fontWeight: FontWeightHelper.fromString("medium"),
-    color: Colors.black,
-  );
-  static TextStyle font16blackSemiBold = TextStyle(
+
+  static TextStyle font16WhiteMedium = TextStyle(
     fontSize: 16.sp,
-    fontWeight: FontWeightHelper.fromString("semiBold"),
-    color: Colors.black,
+    fontWeight: FontWeightHelper.fromString("medium"),
+    color: Colors.white,
   );
+
   static TextStyle font14DarkGrayRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.fromString("regular"),

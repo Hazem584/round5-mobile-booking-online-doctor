@@ -6,5 +6,5 @@ abstract class AppColors {
   static const darkGray = Color(0xff6D7379);
   static const buttonCancelColor = Color(0xffBBC1C7);
   static const blue = Color(0xff145DB8);
-
+  static const lighterBlack = Color(0xff05162C);
 }

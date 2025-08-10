@@ -6,14 +6,17 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, size: 20),
-        onPressed: () => Navigator.of(context).pop(),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8),
+      child: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios, size: 24),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text(title, style: TextStyles.font24BlackRegular),
+        centerTitle: true,
       ),
-      title: Text(title, style: TextStyles.font22BlackRegular),
-      centerTitle: true,
     );
   }
 }

@@ -30,7 +30,7 @@ class DeleteAccount extends StatelessWidget {
                 SvgPicture.asset("assets/svgs/user_profile.svg", height: 24.h),
 
                 horizontalSpace(5.w),
-                Text("Delete account"),
+                Text("Delete account", style: TextStyles.font16BlackRegular),
                 Spacer(),
               ],
             ),
@@ -75,7 +75,7 @@ class DeleteAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text('Cancel', style: TextStyles.font12BlackRegular),
+              child: Text('Cancel', style: TextStyles.font14BlackMedium),
             ),
             ElevatedButton(
               onPressed: () {
@@ -89,7 +89,7 @@ class DeleteAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: Text('Yes,delete', style: TextStyles.font12WhiteRegular),
+              child: Text('Yes,delete', style: TextStyles.font14WhiteMedium),
             ),
           ],
         );

@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_booking_online_doctor/core/utils/routes.dart';
+import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 import 'package:mobile_booking_online_doctor/core/utils/app_colors.dart';
 
@@ -11,9 +12,7 @@ class PasswordManagement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => 
-        Navigator.pushNamed(context, Routes.passwordManagementView)
-,
+      onTap: () => Navigator.pushNamed(context, Routes.passwordManagementView),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Container(
@@ -32,7 +31,10 @@ class PasswordManagement extends StatelessWidget {
                   height: 24.h,
                 ),
                 horizontalSpace(5.w),
-                Text("Password management"),
+                Text(
+                  "Password management",
+                  style: TextStyles.font16BlackRegular,
+                ),
                 Spacer(),
                 Icon(Icons.arrow_forward_ios, color: AppColors.gray, size: 18),
               ],

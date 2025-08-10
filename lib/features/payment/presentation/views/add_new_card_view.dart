@@ -73,7 +73,7 @@ class AddNewCardView extends StatelessWidget {
   Widget _buildLabel(String text) {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
-      child: Text(text, style: TextStyles.font16blackSemiBold),
+      child: Text(text, style: TextStyles.font12BlackMedium),
     );
   }
 }

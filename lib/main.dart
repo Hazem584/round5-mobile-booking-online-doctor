@@ -17,9 +17,9 @@ class DocApp extends StatelessWidget {
       designSize: const Size(375, 812),
       child: MaterialApp(
         onGenerateRoute: AppRouter.generateRoute,
-        initialRoute: Routes.settingsView,
+        initialRoute: Routes.addNewCardView,
         debugShowCheckedModeBanner: false,
-        // theme: ThemeData(fontFamily: "Montserrat"),
+        theme: ThemeData(fontFamily: "Montserrat"),
       ),
     );
   }

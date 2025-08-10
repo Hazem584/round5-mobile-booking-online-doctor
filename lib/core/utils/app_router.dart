@@ -6,7 +6,8 @@ import 'package:mobile_booking_online_doctor/features/settings/presentation/view
 import 'package:mobile_booking_online_doctor/features/payment/presentation/views/add_new_card_view.dart';
 import 'package:mobile_booking_online_doctor/features/payment/presentation/views/payment_method_view.dart';
 import 'package:mobile_booking_online_doctor/features/settings/presentation/views/privacy_policy_view.dart';
-import 'package:mobile_booking_online_doctor/features/settings/presentation/views/password_management.dart';
+import 'package:mobile_booking_online_doctor/features/settings/presentation/views/password_management_view.dart';
+
 
 class AppRouter {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
@@ -23,6 +24,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => FaqsView());
       case Routes.paymentMethodView:
         return MaterialPageRoute(builder: (_) => PaymentMethodView());
+
       case Routes.addNewCardView:
         return MaterialPageRoute(builder: (_) => AddNewCardView());
       case Routes.privacyPolicyView:

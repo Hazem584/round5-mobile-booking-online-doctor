@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/utils/styles.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/spacing.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_button.dart';
 import 'package:mobile_booking_online_doctor/core/widgets/custom_app_bar.dart';
@@ -28,11 +29,13 @@ class _PasswordManagementViewState extends State<PasswordManagementView> {
           CustomAppBar(title: "Password management"),
           Padding(
             padding: const EdgeInsets.only(left: 14),
-            child: Text("Current password"),
+            child: Text(
+              "Current password",
+              style: TextStyles.font16BlackRegular,
+            ),
           ),
           verticalSpace(20.h),
           CustomTextFormField(
-            hintText: "********",
             obscureText: !_showCurrentPassword,
             suffixIcon: GestureDetector(
               onTap: () {
@@ -53,11 +56,10 @@ class _PasswordManagementViewState extends State<PasswordManagementView> {
           verticalSpace(20.h),
           Padding(
             padding: const EdgeInsets.only(left: 14),
-            child: Text("New password"),
+            child: Text("New password", style: TextStyles.font16BlackRegular),
           ),
           verticalSpace(20.h),
           CustomTextFormField(
-            hintText: "********",
             obscureText: !_showNewPassword,
             suffixIcon: GestureDetector(
               onTap: () {
@@ -69,8 +71,8 @@ class _PasswordManagementViewState extends State<PasswordManagementView> {
                 _showNewPassword
                     ? "assets/svgs/open_eye.svg"
                     : "assets/svgs/closed_eye.svg",
-                width: 12.h,
-                height: 12.h,
+                width: 24.h,
+                height: 24.h,
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -78,11 +80,13 @@ class _PasswordManagementViewState extends State<PasswordManagementView> {
           verticalSpace(20.h),
           Padding(
             padding: const EdgeInsets.only(left: 14),
-            child: Text("Confirm New password"),
+            child: Text(
+              "Confirm New password",
+              style: TextStyles.font16BlackRegular,
+            ),
           ),
           verticalSpace(20.h),
           CustomTextFormField(
-            hintText: "********",
             obscureText: !_showConfirmPassword,
             suffixIcon: GestureDetector(
               onTap: () {
