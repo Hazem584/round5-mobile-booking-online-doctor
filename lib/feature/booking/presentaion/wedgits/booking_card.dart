@@ -48,10 +48,10 @@ class BookingCard extends StatelessWidget {
         statusColor = Colors.grey;
     }
 
-    return Card(
+    return Card(color: AppColors.white,
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
+
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
