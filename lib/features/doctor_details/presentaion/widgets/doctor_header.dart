@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
-
 
 class DoctorHeader extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class DoctorHeader extends StatelessWidget {
       children: [
         const CircleAvatar(
           radius: 50,
-          backgroundImage: AssetImage("assets/Frame 1000001055.png"),
+          backgroundImage: AssetImage(Assets.assetsImagesDoctor3),
         ),
         const SizedBox(width: 19),
         Column(
@@ -26,9 +26,9 @@ class DoctorHeader extends StatelessWidget {
                   style: TextStyles.grey14w400,
                 ),
               ],
-            )
+            ),
           ],
-        )
+        ),
       ],
     );
   }

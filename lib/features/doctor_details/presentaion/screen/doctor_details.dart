@@ -1,3 +1,5 @@
+import 'package:online_booking_with_doctor/features/confirm_appointment/UI/confirm_appointment_view.dart';
+
 import '../widgets/review_card.dart';
 import 'package:flutter/material.dart';
 import '../widgets/doc_state_row.dart';
@@ -5,7 +7,6 @@ import '../widgets/doctor_header.dart';
 import '../widgets/price_section.dart';
 import '../widgets/review_header.dart';
 import '../widgets/review_summry.dart';
-import '../../../appoinment/appoinment_screen.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
 
@@ -62,7 +63,7 @@ class DoctorDetailsPage extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context,AppointmentPage.routeName);
+                Navigator.pushNamed(context, ConfirmAppointmentView.routeName);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,

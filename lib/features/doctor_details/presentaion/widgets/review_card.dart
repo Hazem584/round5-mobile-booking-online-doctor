@@ -20,7 +20,7 @@ class ReviewCard extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 25,
-                backgroundImage: AssetImage("assets/image (7).png"),
+                backgroundImage: AssetImage("assets/images/girl2.png"),
               ),
               const SizedBox(width: 19),
               Column(

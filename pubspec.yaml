@@ -56,8 +56,6 @@ flutter:
   assets:
   - assets/images/
   - assets/icons/
-
-
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -72,28 +70,28 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
 fonts:
-    - family: Montserrat
-      fonts:
-        - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
-          weight: 400
+- family: Montserrat
+  fonts:
+  - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+    weight: 800
+  - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+    weight: 700
+  - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+    weight: 600
+  - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+    weight: 500
+  - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+    weight: 400
 
-    - family: Georgia
-      fonts:
-       - asset: assets/fonts/georgia/georgia-bold.ttf
-         weight: 700
-       - asset: assets/fonts/georgia/georgia-regular.ttf
-         weight: 400
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+- family: Georgia
+  fonts:
+  - asset: assets/fonts/georgia/georgia-bold.ttf
+    weight: 700
+  - asset: assets/fonts/georgia/georgia-regular.ttf
+    weight: 400
+#
+# For details regarding fonts from package dependencies,
+# see https://flutter.dev/to/font-from-package
 flutter_assets:
   assets_path: assets/
   output_path: lib/core/helpers/

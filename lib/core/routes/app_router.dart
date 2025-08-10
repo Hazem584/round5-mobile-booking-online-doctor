@@ -7,7 +7,6 @@ import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart';
 import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
 import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
-import 'package:online_booking_with_doctor/features/appoinment/appoinment_screen.dart';
 import 'package:online_booking_with_doctor/features/profile/UI/profile_edit_view_body.dart';
 import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
 import 'package:online_booking_with_doctor/features/search/presentaion/view/search_view.dart';
@@ -52,8 +51,6 @@ class AppRouter {
 
       case BookScreen.routeName:
         return MaterialPageRoute(builder: (_) => const BookScreen());
-      case AppointmentPage.routeName:
-        return MaterialPageRoute(builder: (_) => const AppointmentPage());
       case Routes.favorite:
         return MaterialPageRoute(builder: (_) => const FavoriteView());
 
