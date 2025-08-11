@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 import 'package:mobile_booking_online_doctor/features/auth/main_auth/view/widgets/auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/main_auth/view/widgets/auth_elevated_button.dart';
 
@@ -71,9 +73,9 @@ class MainAuthScreen extends StatelessWidget {
               AuthElevatedButton(
                 buttonTitle: "Sign in with your Phone Number",
                 primaryButton: true,
-                onPressed: () => Navigator.of(
-                  context,
-                ).pushReplacementNamed('/login_with_phone'),
+                onPressed: () {
+                  context.pushNamed(Routes.login_with_phone);
+                },
               ),
 
               const SizedBox(height: TextStyles.spaceBtwItems / 2),
@@ -92,8 +94,9 @@ class MainAuthScreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {},
                     child: GestureDetector(
-                      onTap: () =>
-                          Navigator.of(context).pushReplacementNamed('/signup'),
+                      onTap: () {
+                        context.pushNamed(Routes.signup);
+                      },
                       child: const Text(
                         "Sign up",
                         style: TextStyle(color: ColorsManger.primaryColor),

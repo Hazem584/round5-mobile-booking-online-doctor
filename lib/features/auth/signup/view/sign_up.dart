@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/custom_checkbox.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_elevated_button.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/social_media_container.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/app_colors.dart';
@@ -165,6 +167,9 @@ class CreateAccountScreen extends StatelessWidget {
                   SignupAuthElevatedButton(
                     buttonTitle: "Signup",
                     primaryButton: true,
+                    onPressed: () {
+                      Navigator.pushNamed(context, HomeView.routeName);
+                    },
                   ),
 
                   const SizedBox(height: TextStyles.spaceBtwItems),
@@ -199,7 +204,7 @@ class CreateAccountScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.of(context).pushReplacementNamed('/login');
+                          Navigator.pushNamed(context, Routes.login);
                         },
                         child: const Text(
                           'Sign in',

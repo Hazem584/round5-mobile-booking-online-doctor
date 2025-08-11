@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/widgets/doctor_card.dart';
 import 'package:mobile_booking_online_doctor/features/home/view/widgets/specialties_listview.dart';
 
 import '../../../../core/theming/app_colors.dart';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
+import 'package:mobile_booking_online_doctor/features/auth/splash/splash_screen.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/routes/app_router.dart';
@@ -42,7 +44,7 @@ class DocDocApp extends StatelessWidget {
               fontFamily: "Montserrat",
               scaffoldBackgroundColor: Colors.white,
             ),
-            initialRoute: HomeView.routeName,
+            initialRoute: Routes.splash,
             onGenerateRoute: AppRouter.generateRoute,
           );
         },

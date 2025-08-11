@@ -95,25 +95,25 @@ class AppRouter {
       case DoctorsSpecialtyView.routeName:
         final args = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));
-      case '/':
+      case Routes.splash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
-      case '/onboarding':
+      case Routes.onboarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
-      case '/main_auth':
+      case Routes.main_auth:
         return MaterialPageRoute(builder: (_) => const MainAuthScreen());
-      case '/signup':
+      case Routes.signup:
         return MaterialPageRoute(builder: (_) => const CreateAccountScreen());
-      case '/login':
+      case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
-      case '/login_with_phone':
+      case Routes.login_with_phone:
         return MaterialPageRoute(builder: (_) => const LoginScreenWithPhone());
-      case '/otp_phone':
+      case Routes.otp_phone:
         return MaterialPageRoute(builder: (_) => const OTPPhoneVerificationScreen());
-      case '/otp_email':
+      case Routes.otp_email:
         return MaterialPageRoute(builder: (_) => const OTPEmailVerificationScreen());
-      case '/forget_password':
+      case Routes.forget_password:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());case '/forget_password':
-      case '/current_location':
+      case Routes.current_location:
         return MaterialPageRoute(builder: (_) => ConfirmLocationScreen());
 
       default:

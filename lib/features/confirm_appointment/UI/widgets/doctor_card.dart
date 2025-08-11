@@ -5,9 +5,8 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
 
-
-class DoctorCard extends StatelessWidget {
-  const DoctorCard({super.key});
+class DoctorCardAppointment extends StatelessWidget {
+  const DoctorCardAppointment({super.key});
 
   @override
   Widget build(BuildContext context) {
