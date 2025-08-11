@@ -23,11 +23,11 @@ class FaqItemTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: ColorsManger.lightGray,
+        color: ColorsManger.lightGrey,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 2)),
-        ],
+        // boxShadow: const [
+        //   BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 2)),
+        // ],
       ),
       child: Column(
         children: [
@@ -37,7 +37,7 @@ class FaqItemTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
-                  child: Text(question, style: TextStyles.font24BlackRegular),
+                  child: Text(question, style: TextStyles.font24BlackRegular.copyWith(fontFamily: 'Georgia')),
                 ),
                 Icon(
                   size: 24,
@@ -51,7 +51,7 @@ class FaqItemTile extends StatelessWidget {
             const SizedBox(height: 12),
             const Divider(),
             const SizedBox(height: 8),
-            Text(answer, style: TextStyles.font16DarkGrayRegular),
+            Text(answer, style: TextStyles.font16DarkGrayRegular.copyWith(fontFamily: 'Georgia')),
           ],
         ],
       ),

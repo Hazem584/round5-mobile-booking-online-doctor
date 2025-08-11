@@ -22,7 +22,7 @@ class DeleteAccount extends StatelessWidget {
           width: double.infinity,
           height: 50.h,
           decoration: BoxDecoration(
-            color: ColorsManger.lightGray,
+            color: ColorsManger.lightGrey,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Padding(

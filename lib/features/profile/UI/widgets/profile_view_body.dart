@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/extensions.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/routes/routes.dart';
 import 'package:online_booking_with_doctor/core/widgets/custom_profile_container.dart';
@@ -55,25 +54,33 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
             verticalSpace(24),
             CustomProfileContainer(
               title: "Favorite",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.favorite);
+              },
               imagePath: Assets.assetsImagesFavorite,
             ),
             verticalSpace(24),
             CustomProfileContainer(
               title: "Settings",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.settingsView);
+              },
               imagePath: Assets.assetsImagesSettings,
             ),
             verticalSpace(24),
             CustomProfileContainer(
               title: "FAQs",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.faqsView);
+              },
               imagePath: Assets.assetsImagesMessages,
             ),
             verticalSpace(24),
             CustomProfileContainer(
               title: "Privacy Policy",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, Routes.privacyPolicyView);
+              },
               imagePath: Assets.assetsImagesSecurity,
             ),
             verticalSpace(24),

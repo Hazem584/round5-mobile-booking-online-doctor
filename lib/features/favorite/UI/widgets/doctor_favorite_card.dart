@@ -49,7 +49,7 @@ class DoctorFavoriteCard extends StatelessWidget {
                   verticalSpace(4),
                   Text(
                     '${doctor.specialty} | ${doctor.hospital}',
-                    style: TextStyles.font14lightGrayNormal,
+                    style: TextStyles.font12lightGrayNormal,
                   ),
                   verticalSpace(5),
                   Row(
@@ -62,7 +62,7 @@ class DoctorFavoriteCard extends StatelessWidget {
                       horizontalSpace(4),
                       Text(
                         doctor.rating.toString(),
-                        style: TextStyles.font14lightGrayNormal,
+                        style: TextStyles.font12lightGrayNormal,
                       ),
                       horizontalSpace(12),
                       const Icon(
@@ -73,7 +73,7 @@ class DoctorFavoriteCard extends StatelessWidget {
                       horizontalSpace(4),
                       Text(
                         doctor.workingHours,
-                        style: TextStyles.font14LightBlackNormal,
+                        style: TextStyles.font14LightBlackNormal.copyWith(fontSize: 12),
                       ),
                     ],
                   ),

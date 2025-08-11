@@ -16,7 +16,7 @@ class PrivacyPolicyView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text("• ", style: TextStyle(fontSize: 18)),
-          Expanded(child: Text(text, style: TextStyles.font16DarkGrayMedium)),
+          Expanded(child: Text(text, style: TextStyles.font16DarkGrayMedium.copyWith(fontFamily: 'Georgia'))),
         ],
       ),
     );
@@ -26,6 +26,7 @@ class PrivacyPolicyView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: CustomAppBar(title: "Privacy policy"),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -33,34 +34,33 @@ class PrivacyPolicyView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomAppBar(title: "Privacy policy"),
                 verticalSpace(16),
                 Row(
                   children: [
                     Text(
                       "Last updated: ",
-                      style: TextStyles.font20BlackRegular,
+                      style: TextStyles.font20BlackRegular.copyWith(fontFamily: 'Georgia'),
                     ),
-                    Text("8/5/2025", style: TextStyles.font16DarkGrayRegular),
+                    Text("8/5/2025", style: TextStyles.font16DarkGrayRegular.copyWith(fontFamily: 'Georgia')),
                   ],
                 ),
                 verticalSpace(20),
                 Text(
                   "Welcome to Cure. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our doctor appointment booking app.",
-                  style: TextStyles.font16DarkGrayMedium,
+                  style: TextStyles.font16DarkGrayMedium.copyWith(fontFamily: 'Georgia'),
                 ),
                 verticalSpace(20),
                 Text(
                   "Terms & Conditions",
-                  style: TextStyles.font24BlackRegular,
+                  style: TextStyles.font24BlackRegular.copyWith(fontFamily: 'Georgia'),
                 ),
                 verticalSpace(10),
                 Text(
                   "By registering, accessing, or using this app, you confirm that you are at least 18 years old (or have parental/guardian consent if younger) and agree to be bound by these Terms and our Privacy Policy.",
-                  style: TextStyles.font16DarkGrayMedium,
+                  style: TextStyles.font16DarkGrayMedium.copyWith(fontFamily: 'Georgia'),
                 ),
                 verticalSpace(20),
-                Text("You agree to:", style: TextStyles.font16DarkGrayMedium),
+                Text("You agree to:", style: TextStyles.font16DarkGrayMedium.copyWith(fontFamily: 'Georgia')),
                 verticalSpace(10),
                 buildBullet("Use the app only for lawful purposes."),
                 buildBullet(
@@ -68,7 +68,7 @@ class PrivacyPolicyView extends StatelessWidget {
                 ),
                 buildBullet("Not impersonate others or create fake accounts."),
                 verticalSpace(20),
-                Text("You may not:", style: TextStyles.font16DarkGrayMedium),
+                Text("You may not:", style: TextStyles.font16DarkGrayMedium.copyWith(fontFamily: 'Georgia')),
                 verticalSpace(10),
                 buildBullet(
                   "Disrupt or interfere with the app’s functionality.",
@@ -78,7 +78,7 @@ class PrivacyPolicyView extends StatelessWidget {
                 verticalSpace(20),
                 Text(
                   "Your data is handled in accordance with our Privacy Policy. You are responsible for keeping your login credentials secure.",
-                  style: TextStyle(color: ColorsManger.darkGray, height: 1.6),
+                  style: TextStyle(color: ColorsManger.darkGray, height: 1.6).copyWith(fontFamily: 'Georgia'),
                 ),
                 verticalSpace(20),
               ],

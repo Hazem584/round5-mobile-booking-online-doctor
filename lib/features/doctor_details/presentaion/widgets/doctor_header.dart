@@ -13,21 +13,26 @@ class DoctorHeader extends StatelessWidget {
           backgroundImage: AssetImage(Assets.assetsImagesDoctor3),
         ),
         const SizedBox(width: 19),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Dr. Jessica Turner", style: TextStyles.black20w700),
-            Text("Pulmonologist", style: TextStyles.black14w400),
-            Row(
-              children: [
-                Image.asset(Assets.assetsIconsLocation, height: 18, width: 18),
-                Text(
-                  "129, El-Nasr Street, New Cairo",
-                  style: TextStyles.grey14w400,
-                ),
-              ],
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Dr. Jessica Turner", style: TextStyles.black20w700),
+              Text("Pulmonologist", style: TextStyles.black14w400),
+              Row(
+                crossAxisAlignment:CrossAxisAlignment.start,
+                children: [
+                  Image.asset(Assets.assetsIconsLocation, height: 18, width: 18),
+                  Expanded(
+                    child: Text(
+                      "129, El-Nasr Street, New Cairo",
+                      style: TextStyles.grey14w400,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );

@@ -77,7 +77,7 @@ class HospitalFavoriteCard extends StatelessWidget {
                       Text(
                         hospital.rating.toString(),
                         style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -90,7 +90,7 @@ class HospitalFavoriteCard extends StatelessWidget {
                       horizontalSpace(4),
                       Text(
                         hospital.workingHours,
-                        style: TextStyles.font14LightBlackNormal,
+                        style: TextStyles.font14LightBlackNormal.copyWith(fontSize: 11),
                       ),
                     ],
                   ),
