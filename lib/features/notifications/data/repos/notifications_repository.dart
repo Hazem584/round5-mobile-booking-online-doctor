@@ -1,7 +1,8 @@
 // optimized_mock_notifications_repository.dart - Updated to ensure correct read status
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
+
+import '../model/notification_model.dart';
 
 class MockNotificationsRepository {
   final Dio _dio;

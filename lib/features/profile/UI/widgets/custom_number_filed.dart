@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/theming/app_colors.dart';
 
 class CustomNumberFiled extends StatelessWidget {
   const CustomNumberFiled({

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/specialties_listview.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/doctors_specialty_view.dart';
+
+import '../../../../../core/widgets/custom_appbar.dart';
+import '../../../../home/view/widgets/specialties_listview.dart';
+import '../doctors_specialty_view.dart';
 
 class SpecialtiesViewBody extends StatelessWidget {
    SpecialtiesViewBody({super.key});

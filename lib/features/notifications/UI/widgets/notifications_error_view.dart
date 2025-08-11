@@ -2,7 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
+
+import '../../logic/cubit/notifications_cubit.dart';
 
 class NotificationsErrorView extends StatelessWidget {
   final String message;

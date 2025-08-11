@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/favorite_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/favorite/UI/widgets/favorite_view_body.dart';
 
 class FavoriteView extends StatelessWidget {
   const FavoriteView({super.key});

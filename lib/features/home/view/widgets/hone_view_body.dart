@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:online_booking_with_doctor/features/doctors/presentation/view/doctors_near_u_view.dart';
-import 'package:online_booking_with_doctor/features/home/view/bloc/doctor_cubit.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/custom_home_app_bar.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/doctor_card.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/specialties_listview.dart';
-import 'package:online_booking_with_doctor/features/search/presentaion/view/search_view.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/specialties_view.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/widgets/specialties_listview.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../../core/widgets/custom_list_of_doctors.dart';
+import '../../../confirm_appointment/UI/widgets/doctor_card.dart';
+import '../../../doctors/presentation/view/doctors_near_u_view.dart';
+import '../../../search/presentaion/view/search_view.dart';
+import '../../../specialties/presentation/view/specialties_view.dart';
+import '../bloc/doctor_cubit.dart';
+import 'custom_home_app_bar.dart';
+import 'custom_search_text_fiield.dart';
 
 class HoneViewBody extends StatelessWidget {
   HoneViewBody({super.key});

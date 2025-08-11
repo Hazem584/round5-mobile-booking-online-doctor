@@ -1,7 +1,6 @@
+import '../../../../core/theming/styles.dart';
 import '../widgets/booking_card.dart';
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/widgets/bottom_navi_bar.dart';
 
 class BookScreen extends StatelessWidget {
   const BookScreen({super.key});
@@ -50,7 +49,7 @@ class BookScreen extends StatelessWidget {
                     selected: selected,
                     onSelected: (_) {},
                     showCheckmark: false,
-                    // selectedColor: AppColors.primary,
+                    // selectedColor: ColorsManger.primary,
                     labelStyle: selected
                         ? TextStyles.white12w500
                         : TextStyles.black12w500,

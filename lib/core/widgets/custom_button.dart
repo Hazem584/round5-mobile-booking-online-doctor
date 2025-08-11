@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
+import '../theming/app_colors.dart';
+import '../theming/styles.dart';
 
 
 class CustomButton extends StatelessWidget {

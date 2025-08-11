@@ -1,10 +1,10 @@
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
 import 'elevate_button.dart';
 import 'outline_button.dart';
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
 class BookingCard extends StatelessWidget {
   final String status;

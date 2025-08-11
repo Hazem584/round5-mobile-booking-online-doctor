@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/widgets/app_text_button.dart';
-import 'package:online_booking_with_doctor/features/reviews/UI/widgets/review_input-container.dart';
-import 'package:online_booking_with_doctor/features/reviews/UI/widgets/review_popup.dart';
+import 'package:mobile_booking_online_doctor/features/reviews/UI/widgets/review_input-container.dart';
+import 'package:mobile_booking_online_doctor/features/reviews/UI/widgets/review_popup.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../../core/widgets/app_text_button.dart';
 
 class ReviewsViewBody extends StatefulWidget {
   const ReviewsViewBody({super.key});

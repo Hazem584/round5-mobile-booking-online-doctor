@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
-import 'package:online_booking_with_doctor/features/doctors/presentation/view/doctors_near_u_view.dart';
-import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart';
-import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/profile_edit_view_body.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
-import 'package:online_booking_with_doctor/features/search/presentaion/view/search_view.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/views/faqs_view.dart';
-import 'package:online_booking_with_doctor/features/booking/presentaion/screens/book_screen.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/views/add_card_view.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/views/settings_view.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/views/add_new_card_view.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/views/payment_method_view.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/views/privacy_policy_view.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/confirm_appointment_view.dart';
-import 'package:online_booking_with_doctor/features/doctor_details/presentaion/screen/doctor_details.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/views/password_management_view.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/doctors_specialty_view.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/specialties_view.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
+import '../../features/auth/forget_password/view/forget_password_screen.dart';
+import '../../features/auth/login/view/login.dart';
+import '../../features/auth/login/view/login_with_phone.dart';
+import '../../features/auth/main_auth/view/main_auth_screen.dart';
+import '../../features/auth/onboarding/view/screens/onboarding_screen.dart';
+import '../../features/auth/otp/view/otp_screen_email.dart';
+import '../../features/auth/otp/view/otp_screen_phone.dart';
+import '../../features/auth/signup/view/sign_up.dart';
+import '../../features/auth/splash/splash_screen.dart';
+import '../../features/booking/presentaion/screens/book_screen.dart';
+import '../../features/confirm_appointment/UI/confirm_appointment_view.dart';
+import '../../features/current_location/view/current_location.dart';
+import '../../features/doctor_details/presentaion/screen/doctor_details.dart';
+import '../../features/doctors/presentation/view/doctors_near_u_view.dart';
+import '../../features/favorite/UI/favorite_view.dart';
+import '../../features/home/view/home_view.dart';
+import '../../features/notifications/UI/notifications_view.dart';
+import '../../features/notifications/logic/cubit/notifications_cubit.dart';
+import '../../features/payment/presentation/views/add_card_view.dart';
+import '../../features/payment/presentation/views/add_new_card_view.dart';
+import '../../features/payment/presentation/views/payment_method_view.dart';
+import '../../features/profile/UI/profile_edit_view_body.dart';
+import '../../features/profile/UI/profile_view.dart';
+import '../../features/reviews/UI/reviews_view.dart';
+import '../../features/search/presentaion/view/search_view.dart';
+import '../../features/settings/presentation/views/faqs_view.dart';
+import '../../features/settings/presentation/views/password_management_view.dart';
+import '../../features/settings/presentation/views/privacy_policy_view.dart';
+import '../../features/settings/presentation/views/settings_view.dart';
+import '../../features/specialties/presentation/view/doctors_specialty_view.dart';
+import '../../features/specialties/presentation/view/specialties_view.dart';
+import '../di/dependency_injection.dart';
 
 class AppRouter {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
@@ -85,6 +95,26 @@ class AppRouter {
       case DoctorsSpecialtyView.routeName:
         final args = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));
+      case '/':
+        return MaterialPageRoute(builder: (_) => SplashScreen());
+      case '/onboarding':
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+      case '/main_auth':
+        return MaterialPageRoute(builder: (_) => const MainAuthScreen());
+      case '/signup':
+        return MaterialPageRoute(builder: (_) => const CreateAccountScreen());
+      case '/login':
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case '/login_with_phone':
+        return MaterialPageRoute(builder: (_) => const LoginScreenWithPhone());
+      case '/otp_phone':
+        return MaterialPageRoute(builder: (_) => const OTPPhoneVerificationScreen());
+      case '/otp_email':
+        return MaterialPageRoute(builder: (_) => const OTPEmailVerificationScreen());
+      case '/forget_password':
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());case '/forget_password':
+      case '/current_location':
+        return MaterialPageRoute(builder: (_) => ConfirmLocationScreen());
 
       default:
         return MaterialPageRoute(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
 
 class EmptyNotificationsView extends StatelessWidget {
   const EmptyNotificationsView({super.key});

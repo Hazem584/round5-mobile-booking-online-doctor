@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_appbar.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_list_of_doctors.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/custom_search_text_fiield.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/specialties_listview.dart';
-import 'package:online_booking_with_doctor/features/search/presentaion/cubit/search_doctors_cubit.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/doctors_specialty_view.dart';
+
+import '../../../../../core/theming/app_colors.dart';
+import '../../../../../core/theming/styles.dart';
+import '../../../../../core/widgets/custom_appbar.dart';
+import '../../../../../core/widgets/custom_list_of_doctors.dart';
+import '../../../../home/view/widgets/custom_search_text_fiield.dart';
+import '../../../../home/view/widgets/specialties_listview.dart';
+import '../../../../specialties/presentation/view/doctors_specialty_view.dart';
+import '../../cubit/search_doctors_cubit.dart';
 
 class SearchViewBody extends StatelessWidget {
    SearchViewBody({super.key});

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:online_booking_with_doctor/features/home/data/models/doctor_model.dart';
+import '../models/doctor_model.dart';
 import 'doctor_remote_data_source.dart';
 
 class DoctorsRemoteDataSourceImpl implements DoctorRemoteDataSource{

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/buildI_icon_button.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
 
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../favorite/UI/favorite_view.dart';
+import '../../../notifications/UI/notifications_view.dart';
+import 'buildI_icon_button.dart';
 class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomHomeAppBar({
     super.key,

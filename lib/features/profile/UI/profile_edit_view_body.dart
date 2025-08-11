@@ -1,15 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/extensions.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/address_text_widget.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/custom_input_filed.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/custom_number_filed.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/edit_profile_button.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/profile_image_widget.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/birthday_input_widget.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/address_text_widget.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/birthday_input_widget.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/custom_input_filed.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/custom_number_filed.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/edit_profile_button.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/profile_image_widget.dart';
+
+import '../../../core/helpers/spacing.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/theming/styles.dart';
 
 class ProfileEditViewBody extends StatefulWidget {
   static String routeName = '/profileEdit';

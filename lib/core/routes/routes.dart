@@ -1,9 +1,9 @@
-import 'package:online_booking_with_doctor/features/payment/presentation/views/payment_method_view.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart';
-import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/favorite_view.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/notifications_view.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/confirm_appointment_view.dart';
+
+import '../../features/confirm_appointment/UI/confirm_appointment_view.dart';
+import '../../features/favorite/UI/favorite_view.dart';
+import '../../features/notifications/UI/notifications_view.dart';
+import '../../features/profile/UI/profile_view.dart';
+import '../../features/reviews/UI/reviews_view.dart';
 
 class Routes {
   static const String reviews = ReviewsView.routeName;

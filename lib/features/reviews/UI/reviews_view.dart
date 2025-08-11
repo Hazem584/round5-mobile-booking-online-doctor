@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/reviews/UI/widgets/reviews_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/reviews/UI/widgets/reviews_view_body.dart';
+
+import '../../../core/theming/styles.dart';
 
 class ReviewsView extends StatelessWidget {
   const ReviewsView({super.key});

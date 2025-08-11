@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
 class ReviewPopup extends StatelessWidget {
   final VoidCallback? onDone;
   const ReviewPopup({super.key, this.onDone});

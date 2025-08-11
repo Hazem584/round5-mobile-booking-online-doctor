@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/routes/app_router.dart';
-import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
-import 'package:online_booking_with_doctor/core/service/bloc_observer.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-import 'package:online_booking_with_doctor/features/home/view/home_view.dart';
+
+import 'core/di/dependency_injection.dart';
+import 'core/routes/app_router.dart';
+import 'core/service/bloc_observer.dart';
+import 'features/home/view/home_view.dart';
+import 'features/notifications/logic/cubit/notifications_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/widgets/faq_item.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/widgets/faq_item_tile.dart';
 
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../widgets/faq_item.dart';
+import '../widgets/faq_item_tile.dart';
 
 class FaqsView extends StatefulWidget {
   const FaqsView({super.key});

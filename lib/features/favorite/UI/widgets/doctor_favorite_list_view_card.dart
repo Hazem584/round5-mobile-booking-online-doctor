@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/doctor_favorite_card.dart';
-import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
+
+import '../../data/models/doctor_and_hospital_model.dart';
+import 'doctor_favorite_card.dart';
 
 class DoctorsListWidget extends StatelessWidget {
   final List<Doctor> favoriteDoctors;

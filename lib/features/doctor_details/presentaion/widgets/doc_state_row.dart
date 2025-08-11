@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
 
+import '../../../../core/helpers/assets.dart';
 import 'doctor_state.dart';
 
 class DoctorStatsRow extends StatelessWidget {

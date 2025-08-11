@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/empty_favorite_view.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/favorite_content_widget.dart';
-import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/theming/styles.dart';
+import '../../data/models/doctor_and_hospital_model.dart';
+import 'empty_favorite_view.dart';
+import 'favorite_content_widget.dart';
 
 class FavoriteViewBody extends StatefulWidget {
   const FavoriteViewBody({super.key});

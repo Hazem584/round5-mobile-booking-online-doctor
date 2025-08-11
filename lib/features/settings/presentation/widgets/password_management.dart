@@ -1,12 +1,11 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 
-
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
 
 class PasswordManagement extends StatelessWidget {
   const PasswordManagement({super.key});

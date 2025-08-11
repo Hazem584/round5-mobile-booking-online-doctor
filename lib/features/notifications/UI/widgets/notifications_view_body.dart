@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/notification_item_widget.dart';
+
+import '../../data/model/notification_model.dart';
+import 'notification_item_widget.dart';
 
 class NotificationsList extends StatelessWidget {
   final List<NotificationModel> notifications;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/widgets/card_type.dart' show CardType;
 
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import 'card_type.dart';
 
 class CardViewBody extends StatelessWidget {
   const CardViewBody({super.key});

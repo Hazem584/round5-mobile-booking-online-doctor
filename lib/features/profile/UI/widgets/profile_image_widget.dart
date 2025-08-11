@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+
+import '../../../../core/helpers/assets.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   const ProfileImageWidget({super.key});

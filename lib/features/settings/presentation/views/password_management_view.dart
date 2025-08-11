@@ -1,12 +1,12 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_button.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_text_form_field.dart';
 
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
 
 class PasswordManagementView extends StatefulWidget {
   const PasswordManagementView({super.key});

@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/build_appbar.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/empty_notifications_view.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/notifications_error_view.dart';
-import 'package:online_booking_with_doctor/features/notifications/UI/widgets/notifications_view_body.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_state.dart';
+import 'package:mobile_booking_online_doctor/features/notifications/UI/widgets/build_appbar.dart';
+import 'package:mobile_booking_online_doctor/features/notifications/UI/widgets/empty_notifications_view.dart';
+import 'package:mobile_booking_online_doctor/features/notifications/UI/widgets/notifications_error_view.dart';
+import 'package:mobile_booking_online_doctor/features/notifications/UI/widgets/notifications_view_body.dart';
+
+import '../logic/cubit/notifications_cubit.dart';
+import '../logic/cubit/notifications_state.dart';
 
 class NotificationsView extends StatefulWidget {
   static const String routeName = '/notifications';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
 
 class FixedBottomButton extends StatelessWidget {
   final String price;

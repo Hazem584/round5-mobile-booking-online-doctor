@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+
+import '../../../../core/theming/app_colors.dart';
 
 Widget buildIconButton({required Widget icon, required VoidCallback onTap}) {
   return GestureDetector(

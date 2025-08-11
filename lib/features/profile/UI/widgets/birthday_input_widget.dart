@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/drop_down_arrow.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import 'drop_down_arrow.dart';
 
 class BirthdayInputWidget extends StatefulWidget {
   final String initialDay;

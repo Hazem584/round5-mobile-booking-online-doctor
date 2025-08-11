@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/features/home/view/widgets/bottom_bar_icon_item.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import 'bottom_bar_icon_item.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   const CustomBottomNavigationBar(

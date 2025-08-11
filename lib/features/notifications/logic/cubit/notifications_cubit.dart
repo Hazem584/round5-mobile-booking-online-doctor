@@ -1,9 +1,10 @@
 // Fixed notifications_cubit.dart (Performance Optimized)
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
-import 'package:online_booking_with_doctor/features/notifications/data/repos/notifications_repository.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_state.dart';
+
+import '../../data/model/notification_model.dart';
+import '../../data/repos/notifications_repository.dart';
+import 'notifications_state.dart';
 
 class NotificationsCubit extends Cubit<NotificationsState> {
   final MockNotificationsRepository _repository;

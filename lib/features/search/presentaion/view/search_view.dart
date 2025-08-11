@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
-import 'package:online_booking_with_doctor/features/home/domain/repo/doctor_repo.dart';
-import 'package:online_booking_with_doctor/features/search/presentaion/cubit/search_doctors_cubit.dart';
-import 'package:online_booking_with_doctor/features/search/presentaion/view/widgets/search_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/search/presentaion/view/widgets/search_view_body.dart';
+
+import '../../../../core/di/dependency_injection.dart';
+import '../../../home/domain/repo/doctor_repo.dart';
+import '../cubit/search_doctors_cubit.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

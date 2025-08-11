@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/widgets/delete_account.dart';
-import 'package:online_booking_with_doctor/features/settings/presentation/widgets/password_management.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../widgets/delete_account.dart';
+import '../widgets/password_management.dart';
 
 
 class SettingsView extends StatelessWidget {

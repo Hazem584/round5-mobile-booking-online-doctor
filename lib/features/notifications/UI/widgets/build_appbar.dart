@@ -2,8 +2,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_state.dart';
+
+import '../../logic/cubit/notifications_cubit.dart';
+import '../../logic/cubit/notifications_state.dart';
 
 class NotificationsAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback? onClearAll;

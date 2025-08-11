@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_booking_with_doctor/core/di/dependency_injection.dart';
-import 'package:online_booking_with_doctor/features/home/domain/repo/doctor_repo.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/cubit/doctors_specialty_cubit.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/widget/doctors_specialty_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/specialties/presentation/view/widget/doctors_specialty_view_body.dart';
 
+import '../../../../core/di/dependency_injection.dart';
+import '../../../home/domain/repo/doctor_repo.dart';
+import '../cubit/doctors_specialty_cubit.dart';
 
 class DoctorsSpecialtyView extends StatelessWidget {
   const DoctorsSpecialtyView({super.key, required this.specialty});

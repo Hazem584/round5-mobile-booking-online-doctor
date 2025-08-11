@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/profile_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
   static const String routeName = '/profile';

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_profile_container.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/custom_notifications_container.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/logout_container.dart';
-import 'package:online_booking_with_doctor/features/profile/UI/widgets/profile_container.dart';
+import 'package:mobile_booking_online_doctor/features/profile/UI/widgets/profile_container.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/widgets/custom_profile_container.dart';
+import 'custom_notifications_container.dart';
+import 'logout_container.dart';
 
 class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});

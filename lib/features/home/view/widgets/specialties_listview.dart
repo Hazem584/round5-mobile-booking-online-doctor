@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/specialties/presentation/view/doctors_specialty_view.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../specialties/presentation/view/doctors_specialty_view.dart';
 
 class SpecialtiesListView extends StatelessWidget {
   const SpecialtiesListView({

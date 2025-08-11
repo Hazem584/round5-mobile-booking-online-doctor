@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../../../core/theming/styles.dart';
 
 class DropDownArrow extends StatelessWidget {
   const DropDownArrow({

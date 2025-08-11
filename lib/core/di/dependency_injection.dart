@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
-import 'package:online_booking_with_doctor/features/home/data/datasource/doctor_remote_data_source.dart';
-import 'package:online_booking_with_doctor/features/home/data/datasource/doctor_remote_data_source_impl.dart';
-import 'package:online_booking_with_doctor/features/home/data/repo/doctor_repo_impl.dart';
-import 'package:online_booking_with_doctor/features/home/domain/repo/doctor_repo.dart';
-import 'package:online_booking_with_doctor/features/notifications/data/repos/notifications_repository.dart';
-import 'package:online_booking_with_doctor/features/notifications/logic/cubit/notifications_cubit.dart';
+
+import '../../features/home/data/datasource/doctor_remote_data_source.dart';
+import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
+import '../../features/home/data/repo/doctor_repo_impl.dart';
+import '../../features/home/domain/repo/doctor_repo.dart';
+import '../../features/notifications/data/repos/notifications_repository.dart';
+import '../../features/notifications/logic/cubit/notifications_cubit.dart';
+
 final getIt = GetIt.instance;
 
 /// Main setup function that initializes all dependencies

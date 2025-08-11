@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/routes/routes.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_button.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/widgets/card_view_body.dart';
+
+import '../../../../core/routes/routes.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../widgets/card_view_body.dart';
 
 class AddCardView extends StatelessWidget {
   const AddCardView({super.key});

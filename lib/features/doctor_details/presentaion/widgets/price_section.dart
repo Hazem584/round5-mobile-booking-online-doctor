@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
 
-
-
+import '../../../../core/theming/styles.dart';
 
 class PriceSection extends StatelessWidget {
   @override

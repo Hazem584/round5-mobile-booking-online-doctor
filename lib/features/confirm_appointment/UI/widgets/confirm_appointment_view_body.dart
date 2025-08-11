@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/button_widget.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/calender_widget.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/date_dropdown.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/doctor_card.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/time_slots_widget.dart';
+import 'package:mobile_booking_online_doctor/features/confirm_appointment/UI/widgets/time_slots_widget.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../home/view/widgets/doctor_card.dart';
+import 'button_widget.dart';
+import 'calender_widget.dart';
+import 'date_dropdown.dart';
 
 class ConfirmAppointmentViewBody extends StatefulWidget {
   const ConfirmAppointmentViewBody({super.key});

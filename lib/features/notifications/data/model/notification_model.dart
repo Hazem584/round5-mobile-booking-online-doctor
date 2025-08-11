@@ -1,7 +1,8 @@
 // notification_model.dart - Updated to ensure correct read status
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
+
+import '../../../../core/helpers/assets.dart';
 
 class NotificationModel {
   final int id;

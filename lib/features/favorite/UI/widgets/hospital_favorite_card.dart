@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/helpers/assets.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
+
+import '../../../../core/helpers/assets.dart';
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import '../../data/models/doctor_and_hospital_model.dart';
 
 class HospitalFavoriteCard extends StatelessWidget {
   final Hospital hospital;

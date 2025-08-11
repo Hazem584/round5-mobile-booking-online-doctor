@@ -1,4 +1,5 @@
-import 'package:online_booking_with_doctor/features/notifications/data/model/notification_model.dart';
+
+import '../../data/model/notification_model.dart';
 
 abstract class NotificationsState {}
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
-import 'package:online_booking_with_doctor/features/favorite/data/models/doctor_and_hospital_model.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/doctor_favorite_list_view_card.dart';
-import 'package:online_booking_with_doctor/features/favorite/UI/widgets/hospital_favorite_list_view_card.dart';
+
+import '../../../../core/theming/app_colors.dart';
+import '../../data/models/doctor_and_hospital_model.dart';
+import 'doctor_favorite_list_view_card.dart';
+import 'hospital_favorite_list_view_card.dart';
 
 class FavoritesContentWidget extends StatefulWidget {
   final List<Doctor> favoriteDoctors;

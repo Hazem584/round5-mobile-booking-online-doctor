@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/core/theming/styles.dart';
-import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_button.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
-import 'package:online_booking_with_doctor/core/widgets/custom_text_form_field.dart';
-import 'package:online_booking_with_doctor/features/payment/presentation/widgets/credit_card_widget.dart';
+
+import '../../../../core/helpers/spacing.dart';
+import '../../../../core/theming/styles.dart';
+import '../../../../core/widgets/custom_app_bar.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_text_form_field.dart';
+import '../widgets/credit_card_widget.dart';
 
 
 class AddNewCardView extends StatelessWidget {

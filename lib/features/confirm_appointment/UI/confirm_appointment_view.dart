@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_booking_with_doctor/features/confirm_appointment/UI/widgets/confirm_appointment_view_body.dart';
+import 'package:mobile_booking_online_doctor/features/confirm_appointment/UI/widgets/confirm_appointment_view_body.dart';
 
 class ConfirmAppointmentView extends StatelessWidget {
   const ConfirmAppointmentView({super.key});
