@@ -29,14 +29,22 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bottom_picker: ^4.0.1
-  cupertino_icons: ^1.0.8
   dio: ^5.9.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^9.1.1
-  flutter_screenutil: ^5.9.3
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
   flutter_svg: ^2.2.0
+  http: ^1.4.0
+  dartz: ^0.10.1
   get_it: ^8.2.0
+  flutter_bloc: ^9.1.1
+  dotted_border: ^3.1.0
+
+  flutter_screenutil: ^5.9.3
+
   google_fonts: ^6.3.0
 
 dev_dependencies:
@@ -47,21 +55,46 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - assets/images/
+    - assets/
+    - assets/images/
+    - assets/icons/
+    - assets/svgs/
+  #   - images/a_dot_ham.jpeg
 
-  fonts:
-  - family: Georgio
-    fonts:
-    - asset: assets/fonts/GeorgioTypefaceRegular-R92eA.otf
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+fonts:
   - family: Montserrat
     fonts:
-    - asset: assets/fonts/Montserrat-Regular.ttf
-    - asset: assets/fonts/Montserrat-Bold.ttf
-      weight: 700
-    - asset: assets/fonts/Montserrat-Medium.ttf
-      weight: 500
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+      - asset: assets/fonts/montserrat/Montserrat-ExtraBold.ttf
+        weight: 800
+      - asset: assets/fonts/montserrat/Montserrat-Bold.ttf
+        weight: 700
+      - asset: assets/fonts/montserrat/Montserrat-SemiBold.ttf
+        weight: 600
+      - asset: assets/fonts/montserrat/Montserrat-Medium.ttf
+        weight: 500
+      - asset: assets/fonts/montserrat/Montserrat-Regular.ttf
+        weight: 400
+
+  - family: Georgia
+    fonts:
+      - asset: assets/fonts/georgia/georgia-bold.ttf
+        weight: 700
+      - asset: assets/fonts/georgia/georgia-regular.ttf
+        weight: 400
+#
+# For details regarding fonts from package dependencies,
+# see https://flutter.dev/to/font-from-package
 flutter_assets:
   assets_path: assets/
   output_path: lib/core/helpers/

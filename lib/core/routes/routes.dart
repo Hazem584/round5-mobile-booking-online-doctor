@@ -5,6 +5,8 @@ import 'package:online_booking_with_doctor/features/profile/UI/profile_view.dart
 
 import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart';
 
+import '../../feature/payment/presentaion/screen/payment_screen.dart';
+
 class Routes {
   static const String reviews = ReviewsView.routeName;
   static const String profile = ProfileView.routeName;
@@ -12,4 +14,5 @@ class Routes {
   static const String notifications = NotificationsView.routeName;
   static const String favorite = FavoriteView.routeName;
   static const String confirmAppointment = ConfirmAppointmentView.routeName;
+  static const String payment = PaymentScreen.routeName;
 }

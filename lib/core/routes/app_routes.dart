@@ -13,6 +13,7 @@ import 'package:online_booking_with_doctor/features/reviews/UI/reviews_view.dart
 import '../../feature/appoinment/appoinment_screen.dart';
 import '../../feature/booking/presentaion/screens/book_screen.dart';
 import '../../feature/doctor_details/presentaion/screen/doctor_details.dart';
+import '../../feature/payment/presentaion/screen/payment_screen.dart';
 
 class AppRoutes {
   Route? generatetRoute(RouteSettings settings) {
@@ -30,7 +31,7 @@ class AppRoutes {
       
       case Routes.profileEditViewRouteName:
         return MaterialPageRoute(builder: (_) => ProfileEditViewBody());
-      
+
       case Routes.notifications:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -50,6 +51,10 @@ class AppRoutes {
       case AppointmentPage.routeName:
         return MaterialPageRoute(
           builder: (_) => const AppointmentPage(),
+        );
+      case PaymentScreen.routeName:
+        return MaterialPageRoute(
+          builder: (_) => const PaymentScreen(),
         );
       case Routes.favorite:
         return MaterialPageRoute(builder: (_) => const FavoriteView());

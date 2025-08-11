@@ -23,6 +23,12 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
+
+  static TextStyle black16w500 = GoogleFonts.montserrat(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle black20w700 = GoogleFonts.montserrat(
     color: Colors.black,
     fontSize: 20,

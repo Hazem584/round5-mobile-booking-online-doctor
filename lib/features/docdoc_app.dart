@@ -36,7 +36,7 @@ class DocDocApp extends StatelessWidget {
               fontFamily: "Montserrat",
               scaffoldBackgroundColor: Colors.white,
             ),
-            initialRoute: Routes.notifications,
+            initialRoute: Routes.payment,
             onGenerateRoute: appRouter.generatetRoute,
           );
         },
