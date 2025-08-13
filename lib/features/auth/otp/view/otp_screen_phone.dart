@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
-import 'package:mobile_booking_online_doctor/core/routes/app_router.dart';
-import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
 
@@ -18,32 +15,52 @@ class OTPPhoneVerificationScreen extends StatefulWidget {
 }
 
 class _OTPPhoneVerificationScreen extends State<OTPPhoneVerificationScreen> {
-  TextEditingController otpController = TextEditingController();
+  late TextEditingController otpController;
   int _secondsRemaining = 60;
-  late Timer _timer;
+  Timer? _timer; 
+  bool _isDisposed = false;
 
   @override
   void initState() {
     super.initState();
+    otpController = TextEditingController(); 
     startTimer();
   }
 
   void startTimer() {
+    _timer?.cancel();
+
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_secondsRemaining > 0) {
-        setState(() {
-          _secondsRemaining--;
-        });
+      if (!_isDisposed && mounted) {
+        if (_secondsRemaining > 0) {
+          setState(() {
+            _secondsRemaining--;
+          });
+        } else {
+          timer.cancel();
+          _timer = null;
+        }
       } else {
         timer.cancel();
+        _timer = null;
       }
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _isDisposed = true;
+
+    if (_timer != null && _timer!.isActive) {
+      _timer!.cancel();
+    }
+    _timer = null;
+
+    if (otpController.hasListeners) {
+      otpController.clear(); 
+    }
     otpController.dispose();
+
     super.dispose();
   }
 
@@ -73,7 +90,6 @@ class _OTPPhoneVerificationScreen extends State<OTPPhoneVerificationScreen> {
             ),
             const SizedBox(height: TextStyles.spaceBtwSections),
 
-            // OTP Input
             PinCodeTextField(
               appContext: context,
               length: 4,
@@ -98,8 +114,6 @@ class _OTPPhoneVerificationScreen extends State<OTPPhoneVerificationScreen> {
             ),
 
             const SizedBox(height: TextStyles.spaceBtwItems),
-
-            // Resend Timer
             _secondsRemaining > 0
                 ? Text.rich(
                     TextSpan(
@@ -124,10 +138,12 @@ class _OTPPhoneVerificationScreen extends State<OTPPhoneVerificationScreen> {
                   )
                 : TextButton(
                     onPressed: () {
-                      setState(() {
-                        _secondsRemaining = 60;
-                        startTimer();
-                      });
+                      if (mounted && !_isDisposed) {
+                        setState(() {
+                          _secondsRemaining = 60;
+                          startTimer();
+                        });
+                      }
                     },
                     child: const Text(
                       "Resend Code",
@@ -137,14 +153,20 @@ class _OTPPhoneVerificationScreen extends State<OTPPhoneVerificationScreen> {
 
             const SizedBox(height: TextStyles.spaceBtwSections),
 
-            // Verify Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  context.pushNamed(HomeView.routeName);
-                  // تحقق من الكود هنا
-                  print("OTP Entered: ${otpController.text}");
+                  // Safely navigate only if mounted and not disposed
+                  if (mounted && !_isDisposed) {
+                    print("OTP Entered: ${otpController.text}");
+
+                    _timer?.cancel();
+                    _timer = null;
+
+                    // Navigate
+                    context.pushNamed(HomeView.routeName);
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorsManger.primaryColor,
