@@ -2,20 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 
-import '../../features/auth/signup/data/repository/signup_repository.dart';
-import '../../features/auth/signup/logic/signup_cubit.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
 import '../../features/home/data/repo/doctor_repo_impl.dart';
 import '../../features/home/domain/repo/doctor_repo.dart';
 import '../../features/notifications/data/repos/notifications_repository.dart';
 import '../../features/notifications/logic/cubit/notifications_cubit.dart';
-import '../../features/profile/data/datasources/profile_remote_data_source.dart';
-import '../../features/profile/data/datasources/profile_remote_data_source_impl.dart';
-import '../../features/profile/data/repos/profile_repo_impl.dart';
-import '../../features/profile/domain/repos/profile_repo.dart';
-import '../../features/profile/logic/cubit/profile_cubit.dart';
-import '../network/api_service.dart';
 
 final getIt = GetIt.instance;
 

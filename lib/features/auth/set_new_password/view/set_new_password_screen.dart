@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/app_colors.dart';
@@ -128,7 +130,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                 buttonTitle: 'Update Password',
                 primaryButton: true,
                 onPressed: () =>
-                    Navigator.of(context).pushReplacementNamed("/login"),
+                    context.pushNamed(Routes.login)
               ),
             ],
           ),

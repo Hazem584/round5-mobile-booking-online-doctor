@@ -115,7 +115,7 @@ class AppRouter {
         );
       case Routes.otp_email:
         return MaterialPageRoute(
-          builder: (_) => const OTPEmailVerificationScreen(email: '', token: '',),
+          builder: (_) => const OTPEmailVerificationScreen(email: AutofillHints.email, token: '',),
         );
       case Routes.forget_password:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());

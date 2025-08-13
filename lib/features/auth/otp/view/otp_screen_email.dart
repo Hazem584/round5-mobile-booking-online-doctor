@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/theming/app_colors.dart';
@@ -23,8 +26,7 @@ class OTPEmailVerificationScreen extends StatefulWidget {
       _OTPEmailVerificationScreenState();
 }
 
-class _OTPEmailVerificationScreenState
-    extends State<OTPEmailVerificationScreen> {
+class _OTPEmailVerificationScreenState extends State<OTPEmailVerificationScreen> {
   TextEditingController otpController = TextEditingController();
   int _secondsRemaining = 60;
   late Timer _timer;
@@ -84,13 +86,12 @@ class _OTPEmailVerificationScreenState
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: TextStyles.spaceBtwSections * 2),
 
             // OTP Input
             PinCodeTextField(
               appContext: context,
-              length: 6, // OTP غالباً بيكون 6 أرقام
+              length: 4,
               controller: otpController,
               keyboardType: TextInputType.number,
               animationType: AnimationType.fade,
@@ -110,7 +111,6 @@ class _OTPEmailVerificationScreenState
               enableActiveFill: true,
               onChanged: (value) {},
             ),
-
             const SizedBox(height: TextStyles.spaceBtwItems),
 
             // Resend Timer
@@ -124,7 +124,7 @@ class _OTPEmailVerificationScreenState
                   ),
                   TextSpan(
                     text: '$_secondsRemaining',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: ColorsManger.primaryColor,
                       fontWeight: FontWeight.bold,
                     ),
@@ -152,14 +152,13 @@ class _OTPEmailVerificationScreenState
 
             const SizedBox(height: TextStyles.spaceBtwSections),
 
-            // Verify Button
+            // BlocConsumer + Verify Button
             BlocConsumer<OtpCubit, OtpState>(
               listener: (context, state) {
                 if (state is OtpSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.message)),
                   );
-                  // لو تم التحقق، ممكن تنقل لصفحة Reset Password
                   Navigator.pushNamed(context, '/reset_password');
                 } else if (state is OtpError) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -194,8 +193,7 @@ class _OTPEmailVerificationScreenState
                     ),
                     child: const Text(
                       "Verify",
-                      style: TextStyle(
-                          fontSize: 16, color: ColorsManger.light),
+                      style: TextStyle(fontSize: 16, color: ColorsManger.light),
                     ),
                   ),
                 );

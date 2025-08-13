@@ -1,16 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/validators/valiators.dart';
+import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/custom_checkbox.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_elevated_button.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/social_media_container.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 
 import '../../../../core/helpers/assets.dart';
-import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
-import '../../../../core/validators/valiators.dart';
 import '../logic/signup_cubit.dart';
 import '../logic/signup_state.dart';
 
@@ -109,8 +109,11 @@ class CreateAccountScreen extends StatelessWidget {
                           label: Assets.hintPassword,
                           icon: Icons.vpn_key,
                         ),
+                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields / 2),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
 
                       // Phone
                       TextFormField(
@@ -122,12 +125,23 @@ class CreateAccountScreen extends StatelessWidget {
                           icon: Icons.phone,
                         ),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields / 2),
+
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
 
                       // Remember me
                       CustomCheckbox(),
                       const SizedBox(height: TextStyles.spaceBtwSections),
 
+                  // Sign Up Button
+                  SignupAuthElevatedButton(
+                    buttonTitle: "Signup",
+                    primaryButton: true,
+                    onPressed: () {
+                      Navigator.pushNamed(context, HomeView.routeName);
+                    },
+                  ),
                       // Sign Up Button
                       state is SignupLoading
                           ? const Center(child: CircularProgressIndicator())
@@ -144,12 +158,12 @@ class CreateAccountScreen extends StatelessWidget {
                         },
                       ),
 
-                      const SizedBox(height: TextStyles.spaceBtwItems),
+                  const SizedBox(height: TextStyles.spaceBtwItems),
 
-                      // Divider
-                      SignupAuthDivider(),
+                  // Divider
+                  SignupAuthDivider(),
 
-                      const SizedBox(height: TextStyles.spaceBtwItems),
+                  const SizedBox(height: TextStyles.spaceBtwItems),
 
                       // Social Media Buttons
                       Row(
@@ -174,7 +188,8 @@ class CreateAccountScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, Routes.login);
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/login');
                             },
                             child: const Text(
                               'Sign in',
@@ -186,16 +201,55 @@ class CreateAccountScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: TextStyles.spaceBtwSections),
                     ],
                   ),
                 ),
               ),
             );
           },
+                  // Social Media Buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // Facebook
+                      SocialMediaContainer(image: Assets.facebookIcon),
+                      const SizedBox(width: TextStyles.spaceBtwItems),
+                      // Google
+                      SocialMediaContainer(image: Assets.googleIcon),
+                      const SizedBox(width: TextStyles.spaceBtwItems),
+                      // Apple
+                      SocialMediaContainer(image: Assets.appleIcon),
+                    ],
+                  ),
+                  const SizedBox(height: TextStyles.spaceBtwItems),
+                  // Already have an account
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Already have an account? ",
+                        style: TextStyle(color: ColorsManger.darkGrey),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, Routes.login);
+                        },
+                        child: const Text(
+                          'Sign in',
+                          style: TextStyle(
+                            color: ColorsManger.primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
-    );
   }
 
   InputDecoration _inputDecoration({required String label, required IconData icon}) {

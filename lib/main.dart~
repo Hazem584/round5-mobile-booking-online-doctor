@@ -38,13 +38,19 @@ import 'features/notifications/logic/cubit/notifications_cubit.dart';
     // Setup dependency injection
     await setupGetIt();
 
-    ApiClient.I.init(
-      baseUrl: 'https://round5-online-booking-with-doctor-api.digital-vision-solutions.com/api',
-      tokenProvider: StaticTokenProvider('YOUR_TOKEN_HERE'),
-    );
-
     runApp(const DocDocApp());
   }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await ScreenUtil.ensureScreenSize();
+  Bloc.observer = BlocObserverService();
+  await setupGetIt();
+  ApiClient.I.init(
+    baseUrl: 'https://round5-online-booking-with-doctor-api.digital-vision-solutions.com/api',
+    tokenProvider: StaticTokenProvider('YOUR_TOKEN_HERE'),
+  );
+  runApp(const DocDocApp());
+}
 
   class DocDocApp extends StatelessWidget {
     const DocDocApp({super.key});
@@ -133,3 +139,4 @@ import 'features/notifications/logic/cubit/notifications_cubit.dart';
         ),
       );
     }
+  }

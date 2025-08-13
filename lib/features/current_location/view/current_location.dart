@@ -3,10 +3,21 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class ConfirmLocationScreen extends StatefulWidget {
-  const ConfirmLocationScreen({super.key});
+  final String token;
+
+  const ConfirmLocationScreen({
+    super.key,
+    required this.token,
+  });
 
   @override
   State<ConfirmLocationScreen> createState() => _ConfirmLocationScreenState();
+
+  // Get the token from the route arguments
+  static ConfirmLocationScreen fromRoute(RouteSettings settings) {
+    final args = settings.arguments as Map<String, dynamic>;
+    return ConfirmLocationScreen(token: args['token'] as String);
+  }
 }
 
 class _ConfirmLocationScreenState extends State<ConfirmLocationScreen> {
