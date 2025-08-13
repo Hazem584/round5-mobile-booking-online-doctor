@@ -1,10 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/home/domain/repo/specialties_repo.dart';
 
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
 import '../../features/home/data/repo/doctor_repo_impl.dart';
+import '../../features/home/data/repo/specialties_repo_impl.dart';
 import '../../features/home/domain/repo/doctor_repo.dart';
 import '../../features/notifications/data/repos/notifications_repository.dart';
 import '../../features/notifications/logic/cubit/notifications_cubit.dart';
@@ -23,6 +27,7 @@ Future<void> setupGetIt() async {
 
     // Setup feature-specific dependencies
     await _setupDoctorDependencies();
+    await _setupSpecialtyDependencies();
     await _setupNotificationsDependencies();
 
     // Verify all dependencies are healthy
@@ -138,6 +143,38 @@ Future<void> _setupDoctorDependencies() async {
   } catch (e) {
     if (kDebugMode) {
       print('❌ Error setting up doctor dependencies: $e');
+    }
+  }
+}
+
+/// Setup doctor-related dependencies
+Future<void> _setupSpecialtyDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up specialty dependencies...');
+    }
+
+    // Uncomment and modify these lines based on your actual classes
+
+    if (!getIt.isRegistered<SpecialtyRemoteDataSource>()) {
+      getIt.registerLazySingleton<SpecialtyRemoteDataSource>(
+            () => SpecialtyRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<SpecialtiesRepo>()) {
+      getIt.registerLazySingleton<SpecialtiesRepo>(
+            () => SpecialtiesRepoImpl(specialtyRemoteDataSource: getIt<SpecialtyRemoteDataSource>()),
+      );
+    }
+
+
+    if (kDebugMode) {
+      print('✅ Specialty dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up Specialty dependencies: $e');
     }
   }
 }

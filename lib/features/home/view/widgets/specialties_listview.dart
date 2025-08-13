@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
@@ -11,7 +12,7 @@ class SpecialtiesListView extends StatelessWidget {
     required this.specialties,
   });
 
-  final List<Map> specialties;
+  final List<SpecialtyEntity> specialties;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class SpecialtiesListView extends StatelessWidget {
         itemBuilder: (context, i){
           return GestureDetector(
             onTap: (){
-              Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i]['specialty'],);
+              Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].name,);
             },
             child: CustomSpecialtyCard(specialties: specialties[i])
           );
@@ -39,7 +40,7 @@ class CustomSpecialtyCard extends StatelessWidget {
     required this.specialties,
   });
 
-  final Map specialties;
+  final SpecialtyEntity specialties;
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +58,9 @@ class CustomSpecialtyCard extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(specialties['icon']),
+            SvgPicture.asset(specialties.icon),
             SizedBox(width: 8,),
-            Text(specialties['specialty'],style: TextStyles.regular14,),
+            Text(specialties.name,style: TextStyles.regular14,),
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
@@ -11,21 +11,9 @@ import '../../../../specialties/presentation/view/doctors_specialty_view.dart';
 import '../../cubit/search_doctors_cubit.dart';
 
 class SearchViewBody extends StatelessWidget {
-   SearchViewBody({super.key});
+  SearchViewBody({super.key, required this.specialties});
 
-  List<Map> specialties = [
-    {'icon': 'assets/icons/Dentist.svg', 'specialty': 'Dentist'},
-    {'icon': 'assets/icons/Cardiologist.svg', 'specialty': 'Cardiologist'},
-    {'icon': 'assets/icons/General-Practitioner.svg', 'specialty': 'General Practitioner',},
-    {'icon': 'assets/icons/ENT.svg', 'specialty': 'ENT'},
-    {'icon': 'assets/icons/Orthopedic.svg', 'specialty': 'Orthopedic'},
-    {'icon': 'assets/icons/Neurologist.svg', 'specialty': 'Neurologist'},
-    {'icon': 'assets/icons/Pulmonologist.svg', 'specialty': 'Pulmonologist'},
-    {'icon': 'assets/icons/Ophthalmologist.svg', 'specialty': 'Ophthalmologist',},
-    {'icon': 'assets/icons/Psychiatrist.svg', 'specialty': 'Psychiatrist'},
-    {'icon': 'assets/icons/Endocrinologist.svg', 'specialty': 'Endocrinologist',},
-    {'icon': 'assets/icons/Gastroenterologist.svg', 'specialty': 'Gastroenterologist',},
-  ];
+   final List<SpecialtyEntity> specialties;
 
    List<String> history = [
      'Psychiatrist', 'Robert Johnson', 'Helwan', 'Heart doctor',
@@ -41,9 +29,7 @@ class SearchViewBody extends StatelessWidget {
             children: [
               CustomSearchTextFiled(
                 onChange: (value){
-                  if (value.toString().trim().isNotEmpty) {
-                    context.read<SearchDoctorsCubit>().searchDoctors(value.toString().trim());
-                  }
+                  context.read<SearchDoctorsCubit>().searchDoctors(value.toString().trim());
                 },
               ),
               const SizedBox(height: 16,),
@@ -70,7 +56,7 @@ class SearchViewBody extends StatelessWidget {
                               specialties.length,
                               (i) => GestureDetector(
                                 onTap: (){
-                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i]['specialty'],);
+                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].name,);
                                 },
                                 child: CustomSpecialtyCard(specialties: specialties[i])
                               )

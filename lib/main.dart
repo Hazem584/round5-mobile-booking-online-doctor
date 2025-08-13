@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
-import 'package:mobile_booking_online_doctor/features/auth/splash/splash_screen.dart';
-
 import 'core/di/dependency_injection.dart';
 import 'core/routes/app_router.dart';
+import 'core/routes/routes.dart';
 import 'core/service/bloc_observer.dart';
-import 'features/home/view/home_view.dart';
 import 'features/notifications/logic/cubit/notifications_cubit.dart';
 
 void main() async {

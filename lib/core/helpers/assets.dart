@@ -99,8 +99,8 @@ class Assets {
   static const String assetsIconsGastroenterologist = "assets/icons/Gastroenterologist.svg";
 
   /// Assets for assetsIconsGeneralPractitioner
-  /// assets/icons/General-Practitioner.svg
-  static const String assetsIconsGeneralPractitioner = "assets/icons/General-Practitioner.svg";
+  /// assets/icons/General Practitioner.svg
+  static const String assetsIconsGeneralPractitioner = "assets/icons/General Practitioner.svg";
 
   /// Assets for assetsIconsGirl2
   /// assets/icons/girl2.png
