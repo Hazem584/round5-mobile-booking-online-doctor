@@ -4,6 +4,9 @@ import 'package:dio/dio.dart';
 
 import '../../features/auth/signup/data/repository/signup_repository.dart';
 import '../../features/auth/signup/logic/signup_cubit.dart';
+import '../../features/auth/login/data/repositories/login_repository.dart';
+import '../../features/auth/login/data/repositories/phone_login_repository.dart';
+import '../../features/auth/login/logic/cubit/login_cubit.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
 import '../../features/home/data/repo/doctor_repo_impl.dart';
@@ -26,10 +29,9 @@ Future<void> setupGetIt() async {
     }
 
     await _setupCoreDependencies();
-
     await _setupDoctorDependencies();
     await _setupNotificationsDependencies();
-    await _setupSignupDependencies();
+    await _setupAuthDependencies();
     await _setupProfileDependencies();
 
     if (_checkDependenciesHealth()) {
@@ -51,6 +53,7 @@ Future<void> setupGetIt() async {
 
 Future<void> _setupCoreDependencies() async {
   try {
+    // Register Dio first
     if (!getIt.isRegistered<Dio>()) {
       getIt.registerLazySingleton<Dio>(() {
         final dio = Dio();
@@ -59,6 +62,7 @@ Future<void> _setupCoreDependencies() async {
         dio.options.sendTimeout = const Duration(seconds: 10);
         dio.options.baseUrl =
             'http://round5-online-booking-with-doctor-api.huma-volve.com/api/';
+
         if (kDebugMode) {
           dio.interceptors.add(
             LogInterceptor(
@@ -73,6 +77,7 @@ Future<void> _setupCoreDependencies() async {
             ),
           );
         }
+
         dio.interceptors.add(
           InterceptorsWrapper(
             onRequest: (options, handler) {
@@ -103,9 +108,93 @@ Future<void> _setupCoreDependencies() async {
         return dio;
       });
     }
+
+    // Register ApiService
+    if (!getIt.isRegistered<ApiService>()) {
+      getIt.registerLazySingleton<ApiService>(() => ApiService());
+      if (kDebugMode) {
+        print('✅ ApiService registered successfully');
+      }
+    }
   } catch (e) {
     if (kDebugMode) {
       print('❌ Error setting up core dependencies: $e');
+    }
+  }
+}
+
+Future<void> _setupAuthDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up auth dependencies...');
+    }
+
+    // Register Login Repository
+    if (!getIt.isRegistered<LoginRepository>()) {
+      getIt.registerLazySingleton<LoginRepository>(() => LoginRepository());
+      if (kDebugMode) {
+        print('✅ LoginRepository registered');
+      }
+    }
+
+    // Register Phone Login Repository
+    if (!getIt.isRegistered<PhoneLoginRepository>()) {
+      getIt.registerLazySingleton<PhoneLoginRepository>(
+        () => PhoneLoginRepository(apiService: getIt<ApiService>()),
+      );
+      if (kDebugMode) {
+        print('✅ PhoneLoginRepository registered');
+      }
+    }
+
+    // Register Login Cubits
+    if (!getIt.isRegistered<LoginCubit>()) {
+      getIt.registerFactory<LoginCubit>(
+        () => LoginCubit(getIt<LoginRepository>()),
+      );
+      if (kDebugMode) {
+        print('✅ LoginCubit registered');
+      }
+    }
+
+    if (!getIt.isRegistered<LoginWithPhoneCubit>()) {
+      getIt.registerFactory<LoginWithPhoneCubit>(
+        () => LoginWithPhoneCubit(getIt<PhoneLoginRepository>()),
+      );
+      if (kDebugMode) {
+        print('✅ LoginWithPhoneCubit registered');
+      }
+    }
+
+    // Register Signup Repository
+    if (!getIt.isRegistered<SignupRepository>()) {
+      getIt.registerLazySingleton<SignupRepository>(
+        () => SignupRepository(
+          dio: getIt<Dio>(),
+          apiService: getIt<ApiService>(),
+        ),
+      );
+      if (kDebugMode) {
+        print('✅ SignupRepository registered');
+      }
+    }
+
+    // Register Signup Cubit
+    if (!getIt.isRegistered<SignupCubit>()) {
+      getIt.registerFactory<SignupCubit>(
+        () => SignupCubit(getIt<SignupRepository>()),
+      );
+      if (kDebugMode) {
+        print('✅ SignupCubit registered');
+      }
+    }
+
+    if (kDebugMode) {
+      print('✅ Auth dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up auth dependencies: $e');
     }
   }
 }
@@ -146,7 +235,6 @@ Future<void> _setupNotificationsDependencies() async {
       print('🔧 Setting up notifications dependencies...');
     }
 
-    // Register Mock Repository with error handling
     if (!getIt.isRegistered<MockNotificationsRepository>()) {
       getIt.registerLazySingleton<MockNotificationsRepository>(() {
         try {
@@ -288,6 +376,10 @@ Future<void> _setupFallbackDependencies() async {
 
     _clearRegistrations();
 
+    if (!getIt.isRegistered<ApiService>()) {
+      getIt.registerLazySingleton<ApiService>(() => ApiService());
+    }
+
     if (!getIt.isRegistered<MockNotificationsRepository>()) {
       getIt.registerLazySingleton<MockNotificationsRepository>(
         () => MockNotificationsRepository(),
@@ -316,6 +408,21 @@ Future<void> _setupFallbackDependencies() async {
       );
     }
 
+    if (!getIt.isRegistered<SignupRepository>()) {
+      getIt.registerLazySingleton<SignupRepository>(
+        () => SignupRepository(
+          dio: getIt<Dio>(),
+          apiService: getIt<ApiService>(),
+        ),
+      );
+    }
+
+    if (!getIt.isRegistered<SignupCubit>()) {
+      getIt.registerFactory<SignupCubit>(
+        () => SignupCubit(getIt<SignupRepository>()),
+      );
+    }
+
     if (kDebugMode) {
       print('✅ Fallback dependencies setup complete');
     }
@@ -329,11 +436,18 @@ Future<void> _setupFallbackDependencies() async {
 void _clearRegistrations() {
   try {
     final registrationsToRemove = [
+      ApiService,
       MockNotificationsRepository,
       NotificationsCubit,
       ProfileRemoteDataSource,
       ProfileRepo,
       ProfileCubit,
+      SignupRepository,
+      SignupCubit,
+      LoginRepository,
+      PhoneLoginRepository,
+      LoginCubit,
+      LoginWithPhoneCubit,
     ];
 
     for (final type in registrationsToRemove) {
@@ -354,6 +468,7 @@ void _clearRegistrations() {
 bool _checkDependenciesHealth() {
   try {
     final hasDio = getIt.isRegistered<Dio>();
+    final hasApiService = getIt.isRegistered<ApiService>();
     final hasNotificationRepository = getIt
         .isRegistered<MockNotificationsRepository>();
     final hasNotificationCubit = getIt.isRegistered<NotificationsCubit>();
@@ -362,10 +477,13 @@ bool _checkDependenciesHealth() {
     final hasProfileDataSource = getIt.isRegistered<ProfileRemoteDataSource>();
     final hasProfileRepo = getIt.isRegistered<ProfileRepo>();
     final hasProfileCubit = getIt.isRegistered<ProfileCubit>();
+    final hasSignupRepo = getIt.isRegistered<SignupRepository>();
+    final hasSignupCubit = getIt.isRegistered<SignupCubit>();
 
     if (kDebugMode) {
       print('🩺 Dependencies health check:');
       print('   Dio: ${hasDio ? "✅" : "❌"}');
+      print('   ApiService: ${hasApiService ? "✅" : "❌"}');
       print(
         '   Notification Repository: ${hasNotificationRepository ? "✅" : "❌"}',
       );
@@ -375,16 +493,20 @@ bool _checkDependenciesHealth() {
       print('   Profile DataSource: ${hasProfileDataSource ? "✅" : "❌"}');
       print('   Profile Repository: ${hasProfileRepo ? "✅" : "❌"}');
       print('   Profile Cubit: ${hasProfileCubit ? "✅" : "❌"}');
+      print('   Signup Repository: ${hasSignupRepo ? "✅" : "❌"}');
+      print('   Signup Cubit: ${hasSignupCubit ? "✅" : "❌"}');
     }
 
-    // At minimum, we need the critical systems to work
     final criticalDependencies =
         hasDio &&
+        hasApiService &&
         hasNotificationRepository &&
         hasNotificationCubit &&
         hasProfileDataSource &&
         hasProfileRepo &&
-        hasProfileCubit;
+        hasProfileCubit &&
+        hasSignupRepo &&
+        hasSignupCubit;
 
     if (kDebugMode) {
       print(
@@ -423,6 +545,7 @@ Future<void> resetAllDependencies() async {
 Map<String, bool> getDependencyInfo() {
   return {
     'Dio': getIt.isRegistered<Dio>(),
+    'ApiService': getIt.isRegistered<ApiService>(),
     'NotificationRepository': getIt.isRegistered<MockNotificationsRepository>(),
     'NotificationCubit': getIt.isRegistered<NotificationsCubit>(),
     'DoctorRepo': getIt.isRegistered<DoctorRepo>(),
@@ -430,42 +553,14 @@ Map<String, bool> getDependencyInfo() {
     'ProfileDataSource': getIt.isRegistered<ProfileRemoteDataSource>(),
     'ProfileRepo': getIt.isRegistered<ProfileRepo>(),
     'ProfileCubit': getIt.isRegistered<ProfileCubit>(),
+    'SignupRepository': getIt.isRegistered<SignupRepository>(),
+    'SignupCubit': getIt.isRegistered<SignupCubit>(),
+    'LoginRepository': getIt.isRegistered<LoginRepository>(),
+    'PhoneLoginRepository': getIt.isRegistered<PhoneLoginRepository>(),
+    'LoginCubit': getIt.isRegistered<LoginCubit>(),
+    'LoginWithPhoneCubit': getIt.isRegistered<LoginWithPhoneCubit>(),
   };
 }
-
-/// Setup signup dependencies
-Future<void> _setupSignupDependencies() async {
-  try {
-    if (kDebugMode) {
-      print('🔧 Setting up signup dependencies...');
-    }
-
-    // Register repository
-    if (!getIt.isRegistered<SignupRepository>()) {
-      getIt.registerLazySingleton<SignupRepository>(
-            () => SignupRepository(dio: getIt<Dio>(), apiService:  getIt<ApiService>(),),
-      );
-    }
-
-    // Register cubit
-    if (!getIt.isRegistered<SignupCubit>()) {
-      getIt.registerFactory<SignupCubit>(
-            () => SignupCubit(getIt<SignupRepository>()),
-      );
-    }
-
-    if (kDebugMode) {
-      print('✅ Signup dependencies setup complete');
-    }
-  } catch (e) {
-    if (kDebugMode) {
-      print('❌ Error setting up signup dependencies: $e');
-    }
-  }
-}
-
-
-
 
 Future<bool> testAllDependencies() async {
   try {
@@ -473,10 +568,24 @@ Future<bool> testAllDependencies() async {
       print('🧪 Testing all dependencies...');
     }
 
-    // Test Dio
     final dio = getIt<Dio>();
     if (kDebugMode) {
       print('✅ Dio instance created: ${dio.options.baseUrl}');
+    }
+
+    final apiService = getIt<ApiService>();
+    if (kDebugMode) {
+      print('✅ ApiService instance created');
+    }
+
+    final signupRepo = getIt<SignupRepository>();
+    if (kDebugMode) {
+      print('✅ SignupRepository instance created');
+    }
+
+    final signupCubit = getIt<SignupCubit>();
+    if (kDebugMode) {
+      print('✅ SignupCubit instance created');
     }
 
     final notificationRepo = getIt<MockNotificationsRepository>();

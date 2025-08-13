@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/signin_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/signin_social_media_container.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/helpers/assets.dart';
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (mounted) {
       // Pass the token to ConfirmLocationScreen
       Navigator.of(context).pushReplacementNamed(
-        Routes.current_location,
+        HomeView.routeName,
         arguments: {'token': token},
       );
     }

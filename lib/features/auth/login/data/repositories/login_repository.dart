@@ -3,7 +3,8 @@ import '../../../../../../core/network/api_service.dart';
 import '../model/login_model.dart';
 
 class LoginRepository {
-  static const String baseUrl = "https://round5-online-booking-with-doctor-api.digital-vision-solutions.com/api/";
+  static const String baseUrl =
+      "http://round5-online-booking-with-doctor-api.huma-volve.com/api/";
 
   final ApiService _apiService = ApiService();
 
@@ -13,10 +14,7 @@ class LoginRepository {
   }) async {
     final response = await _apiService.post(
       url: "$baseUrl/login",
-      body: {
-        "email": email,
-        "password": password,
-      },
+      body: {"email": email, "password": password},
     );
 
     final loginModel = LoginModel.fromJson(response);
