@@ -2,12 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 
+import '../../features/auth/signup/data/repository/signup_repository.dart';
+import '../../features/auth/signup/logic/signup_cubit.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
 import '../../features/home/data/repo/doctor_repo_impl.dart';
 import '../../features/home/domain/repo/doctor_repo.dart';
 import '../../features/notifications/data/repos/notifications_repository.dart';
 import '../../features/notifications/logic/cubit/notifications_cubit.dart';
+import '../network/api_service.dart';
 
 final getIt = GetIt.instance;
 
@@ -24,6 +27,7 @@ Future<void> setupGetIt() async {
     // Setup feature-specific dependencies
     await _setupDoctorDependencies();
     await _setupNotificationsDependencies();
+    await _setupSignupDependencies();
 
     // Verify all dependencies are healthy
     if (_checkDependenciesHealth()) {
@@ -338,3 +342,37 @@ Map<String, bool> getDependencyInfo() {
     // 'DoctorDataSource': getIt.isRegistered<DoctorRemoteDataSource>(),
   };
 }
+
+/// Setup signup dependencies
+Future<void> _setupSignupDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up signup dependencies...');
+    }
+
+    // Register repository
+    if (!getIt.isRegistered<SignupRepository>()) {
+      getIt.registerLazySingleton<SignupRepository>(
+            () => SignupRepository(dio: getIt<Dio>(), apiService:  getIt<ApiService>(),),
+      );
+    }
+
+    // Register cubit
+    if (!getIt.isRegistered<SignupCubit>()) {
+      getIt.registerFactory<SignupCubit>(
+            () => SignupCubit(getIt<SignupRepository>()),
+      );
+    }
+
+    if (kDebugMode) {
+      print('✅ Signup dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up signup dependencies: $e');
+    }
+  }
+}
+
+
+

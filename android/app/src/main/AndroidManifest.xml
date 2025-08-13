@@ -6,7 +6,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:label="mobile_booking_online_doctor"
+        android:label="Cure"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

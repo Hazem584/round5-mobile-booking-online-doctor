@@ -1,19 +1,30 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../../otp/logic/cubit/otp_cubit.dart';
+import '../../otp/logic/cubit/otp_state.dart';
 
 class OTPEmailVerificationScreen extends StatefulWidget {
-  const OTPEmailVerificationScreen({super.key});
+  final String email;
+  final String token;
+
+  const OTPEmailVerificationScreen({
+    super.key,
+    required this.email,
+    required this.token,
+  });
 
   @override
   State<OTPEmailVerificationScreen> createState() =>
-      _OTPVerificationScreenState();
+      _OTPEmailVerificationScreenState();
 }
 
-class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
+class _OTPEmailVerificationScreenState
+    extends State<OTPEmailVerificationScreen> {
   TextEditingController otpController = TextEditingController();
   int _secondsRemaining = 60;
   late Timer _timer;
@@ -25,7 +36,7 @@ class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
   }
 
   void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining > 0) {
         setState(() {
           _secondsRemaining--;
@@ -54,7 +65,7 @@ class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(TextStyles.defaultSpace),
@@ -63,7 +74,7 @@ class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
           children: [
             const SizedBox(height: TextStyles.spaceBtwSections),
             const Text(
-              "Code has been send to your email",
+              "Code has been sent to your email",
               style: TextStyle(fontSize: 16),
               textAlign: TextAlign.center,
             ),
@@ -79,7 +90,7 @@ class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
             // OTP Input
             PinCodeTextField(
               appContext: context,
-              length: 4,
+              length: 6, // OTP غالباً بيكون 6 أرقام
               controller: otpController,
               keyboardType: TextInputType.number,
               animationType: AnimationType.fade,
@@ -105,65 +116,90 @@ class _OTPVerificationScreenState extends State<OTPEmailVerificationScreen> {
             // Resend Timer
             _secondsRemaining > 0
                 ? Text.rich(
-                    TextSpan(
-                      children: [
-                        const TextSpan(
-                          text: 'Resend code in ',
-                          style: TextStyle(color: ColorsManger.darkGrey),
-                        ),
-                        TextSpan(
-                          text: '$_secondsRemaining',
-                          style: TextStyle(
-                            color: ColorsManger.primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const TextSpan(
-                          text: ' s',
-                          style: TextStyle(color: ColorsManger.darkGrey),
-                        ),
-                      ],
-                    ),
-                  )
-                : TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _secondsRemaining = 60;
-                        startTimer();
-                      });
-                    },
-                    child: const Text(
-                      "Resend Code",
-                      style: TextStyle(color: Colors.black),
+              TextSpan(
+                children: [
+                  const TextSpan(
+                    text: 'Resend code in ',
+                    style: TextStyle(color: ColorsManger.darkGrey),
+                  ),
+                  TextSpan(
+                    text: '$_secondsRemaining',
+                    style: const TextStyle(
+                      color: ColorsManger.primaryColor,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const TextSpan(
+                    text: ' s',
+                    style: TextStyle(color: ColorsManger.darkGrey),
+                  ),
+                ],
+              ),
+            )
+                : TextButton(
+              onPressed: () {
+                setState(() {
+                  _secondsRemaining = 60;
+                  startTimer();
+                });
+                // هنا ممكن تستدعي API إعادة الإرسال
+              },
+              child: const Text(
+                "Resend Code",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
 
             const SizedBox(height: TextStyles.spaceBtwSections),
 
             // Verify Button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  // تحقق من الكود هنا
-                  print("OTP Entered: ${otpController.text}");
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorsManger.primaryColor,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: TextStyles.defaultSpace - 2,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      TextStyles.borderRadiusMd,
+            BlocConsumer<OtpCubit, OtpState>(
+              listener: (context, state) {
+                if (state is OtpSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.message)),
+                  );
+                  // لو تم التحقق، ممكن تنقل لصفحة Reset Password
+                  Navigator.pushNamed(context, '/reset_password');
+                } else if (state is OtpError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.error)),
+                  );
+                }
+              },
+              builder: (context, state) {
+                if (state is OtpLoading) {
+                  return const CircularProgressIndicator();
+                }
+                return SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      context.read<OtpCubit>().verifyOtp(
+                        widget.email,
+                        otpController.text.trim(),
+                        widget.token,
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorsManger.primaryColor,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: TextStyles.defaultSpace - 2,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          TextStyles.borderRadiusMd,
+                        ),
+                      ),
+                    ),
+                    child: const Text(
+                      "Verify",
+                      style: TextStyle(
+                          fontSize: 16, color: ColorsManger.light),
                     ),
                   ),
-                ),
-                child: const Text(
-                  "Verify",
-                  style: TextStyle(fontSize: 16, color: ColorsManger.light),
-                ),
-              ),
+                );
+              },
             ),
           ],
         ),

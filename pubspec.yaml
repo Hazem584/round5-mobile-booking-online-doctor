@@ -54,6 +54,14 @@ dependencies:
   google_fonts: ^6.3.0
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/heart.png"
+
+
   flutter_test:
     sdk: flutter
 

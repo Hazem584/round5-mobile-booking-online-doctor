@@ -1,0 +1,15 @@
+import '../../data/otp_remote_data_source.dart';
+import '../model/otp_model.dart';
+
+class OtpRepository {
+  final OtpRemoteDataSource _remote;
+  OtpRepository(this._remote);
+
+  Future<VerifyOtpResponse> verifyOtp({
+    required String email,
+    required String otp,
+  }) async {
+    final res = await _remote.verifyOtp(email: email, otp: otp);
+    return VerifyOtpResponse.fromJson(Map<String, dynamic>.from(res.data));
+  }
+}

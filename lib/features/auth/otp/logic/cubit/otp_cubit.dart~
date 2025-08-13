@@ -1,0 +1,26 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../data/repository/otp_repository.dart';
+import 'otp_state.dart';
+
+class OtpCubit extends Cubit<OtpState> {
+  final OtpRepository _repo;
+  OtpCubit(this._repo) : super(const OtpInitial());
+
+  Future<void> verifyOtp({required String email, required String otp}) async {
+    if (otp.isEmpty) {
+      emit(const OtpFailure(message: 'OTP مطلوب'));
+      return;
+    }
+    emit(const OtpLoading());
+    try {
+      final r = await _repo.verifyOtp(email: email, otp: otp);
+      if (r.success) {
+        emit(OtpSuccess(message: r.message ?? 'تم التحقق بنجاح', data: r.data));
+      } else {
+        emit(OtpFailure(message: r.message ?? 'فشل التحقق'));
+      }
+    } catch (e) {
+      emit(OtpFailure(message: e.toString()));
+    }
+  }
+}

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:mobile_booking_online_doctor/core/validators/valiators.dart';
 import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/signin_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/signin_auth_elevated_button.dart';
 import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/signin_custom_checkbox.dart';
@@ -7,9 +10,24 @@ import 'package:mobile_booking_online_doctor/features/auth/login/view/widgets/si
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../logic/cubit/login_cubit.dart';
+import '../logic/cubit/login_state.dart';
 
-class LoginScreenWithPhone extends StatelessWidget {
+class LoginScreenWithPhone extends StatefulWidget {
   const LoginScreenWithPhone({super.key});
+
+  @override
+  State<LoginScreenWithPhone> createState() => _LoginScreenWithPhoneState();
+}
+
+class _LoginScreenWithPhoneState extends State<LoginScreenWithPhone> {
+  final TextEditingController phoneController = TextEditingController();
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +38,33 @@ class LoginScreenWithPhone extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            // Handle back button press
-
-          },
+          onPressed: () {},
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: TextStyles.defaultSpace),
-              child: Column(
+      body: BlocListener<LoginWithPhoneCubit, LoginState>( // ✅ Cubit الجديد
+        listener: (context, state) async {
+          if (state is LoginSuccess) {
+            String phoneNumber = state.loginModel.data.user.phone;
+            print("📱 Phone Number from API: $phoneNumber");
+
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.setString("phone", phoneNumber);
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Phone: $phoneNumber")),
+            );
+          } else if (state is LoginFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error)),
+            );
+          }
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Form(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: TextStyles.defaultSpace),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: TextStyles.spaceBtwSections * 2),
@@ -43,84 +76,94 @@ class LoginScreenWithPhone extends StatelessWidget {
                         width: 60,
                       ),
                     ),
-          
                     const SizedBox(height: TextStyles.spaceBtwItems),
-          
-                    Align(
+                    const Align(
                       alignment: Alignment.center,
-                      child: const Text(
+                      child: Text(
                         Assets.signInTitle,
-                        style: TextStyle(fontSize: 32,fontFamily: "Georgia"),
+                        style: TextStyle(fontSize: 32, fontFamily: "Georgia"),
                       ),
                     ),
-          
                     const SizedBox(height: TextStyles.spaceBtwSections * 2),
-          
-                    //  phone number
+
+                    // حقل رقم الموبايل
                     IntlPhoneField(
+                      controller: phoneController,
+                      validator: (value) => Validators.validatePhone(value?.number),
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Color(0xFFF5F6F7),
+                        fillColor: const Color(0xFFF5F6F7),
                         labelText: Assets.hintPhone,
-                        labelStyle: TextStyle(color: ColorsManger.dark),
+                        labelStyle: const TextStyle(color: ColorsManger.dark),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
-                          borderSide: BorderSide(color: Color(0xFFF5F6F7)),
+                          borderSide: const BorderSide(color: Color(0xFFF5F6F7)),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
-                          borderSide: BorderSide(color: Color(0xFFF5F6F7)),
+                          borderSide: const BorderSide(color: Color(0xFFF5F6F7)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
-                          borderSide: BorderSide(color: Color(0xFFF5F6F7)),
+                          borderSide: const BorderSide(color: Color(0xFFF5F6F7)),
                         ),
                       ),
                       initialCountryCode: 'EG',
                       dropdownIconPosition: IconPosition.trailing,
-                      style: TextStyle(color: ColorsManger.dark),
-                      onChanged: (phone) {
-                        print(phone.completeNumber);
+                      style: const TextStyle(color: ColorsManger.dark),
+                      onChanged: (phone) async {
+                        print("📲 Typed Phone: ${phone.completeNumber}");
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString("phone", phone.completeNumber);
                       },
                     ),
-          
-                    const SizedBox(height: TextStyles.spaceBtwItems /2),
-          
-                    // Remember me
+
+                    const SizedBox(height: TextStyles.spaceBtwItems / 2),
                     SigninCustomCheckbox(),
-          
                     const SizedBox(height: TextStyles.spaceBtwSections * 2),
-          
-                    // Sign in Button
-                    SigninAuthElevatedButton(buttonTitle: "Sign in", primaryButton: true,onPressed: () => Navigator.of(context).pushReplacementNamed("/otp_phone"),),
-          
+
+                    // زر تسجيل الدخول
+                    SigninAuthElevatedButton(
+                      buttonTitle: "Sign in",
+                      primaryButton: true,
+                      onPressed: () {
+                        if (phoneController.text.isNotEmpty) {
+                          context.read<LoginWithPhoneCubit>().loginUser( // ✅ Cubit الجديد
+                            phoneController.text,
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text("Please enter your phone number")),
+                          );
+                        }
+                      },
+                    ),
+
                     const SizedBox(height: TextStyles.spaceBtwItems),
-          
-                    // Divider
                     SigninAuthDivider(),
-          
                     const SizedBox(height: TextStyles.spaceBtwItems),
-          
-                    // Social Media Buttons
+
+                    // أزرار السوشيال ميديا
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // Facebook
                         SigninSocialMediaContainer(image: Assets.facebookIcon),
-                        const SizedBox(width: TextStyles.spaceBtwItems,),
-                        // Google
+                        const SizedBox(width: TextStyles.spaceBtwItems),
                         SigninSocialMediaContainer(image: Assets.googleIcon),
-                        const SizedBox(width: TextStyles.spaceBtwItems,),
-                        // Apple
+                        const SizedBox(width: TextStyles.spaceBtwItems),
                         SigninSocialMediaContainer(image: Assets.appleIcon),
                       ],
                     ),
                     const SizedBox(height: TextStyles.spaceBtwItems),
-                    // Already have an account
+
+                    // رابط إنشاء حساب
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Already have an account? ",style: TextStyle(color: ColorsManger.darkGrey),),
+                        const Text(
+                          "Already have an account? ",
+                          style: TextStyle(color: ColorsManger.darkGrey),
+                        ),
                         GestureDetector(
                           onTap: () => Navigator.of(context).pushReplacementNamed("/signup"),
                           child: const Text(
@@ -133,7 +176,8 @@ class LoginScreenWithPhone extends StatelessWidget {
                         )
                       ],
                     ),
-                  ]
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
+
   final Dio _dio = Dio(
     BaseOptions(
       headers: {
@@ -11,7 +12,6 @@ class ApiService {
     ),
   );
 
-  // GET request
   Future<dynamic> get({required String url}) async {
     try {
       final response = await _dio.get(url);
@@ -21,7 +21,6 @@ class ApiService {
     }
   }
 
-  // POST request
   Future<dynamic> post({
     required String url,
     Map<String, dynamic>? body,
@@ -34,6 +33,3 @@ class ApiService {
     }
   }
 }
-
-
-

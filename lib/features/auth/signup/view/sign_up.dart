@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/validators/valiators.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/custom_checkbox.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_elevated_button.dart';
@@ -7,9 +9,16 @@ import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/s
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
+import '../logic/signup_cubit.dart';
+import '../logic/signup_state.dart';
 
 class CreateAccountScreen extends StatelessWidget {
-  const CreateAccountScreen({super.key});
+  CreateAccountScreen({super.key});
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -21,201 +30,193 @@ class CreateAccountScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            // Handle back button press
+            Navigator.pop(context);
           },
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: TextStyles.defaultSpace,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: TextStyles.spaceBtwSections),
-                  Center(
-                    child: Image.asset(
-                      Assets.splashHeart,
-                      color: ColorsManger.primaryColor,
-                      height: 60,
-                      width: 60,
-                    ),
+        child: BlocConsumer<SignupCubit, SignupState>(
+          listener: (context, state) {
+            if (state is SignupSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.response.message)),
+              );
+            } else if (state is SignupError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.error)),
+              );
+            }
+          },
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Form(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: TextStyles.defaultSpace,
                   ),
-
-                  const SizedBox(height: TextStyles.spaceBtwItems),
-
-                  Align(
-                    alignment: Alignment.center,
-                    child: const Text(
-                      Assets.signupTitle,
-                      style: TextStyle(fontSize: 32, fontFamily: "Georgia"),
-                    ),
-                  ),
-
-                  const SizedBox(height: TextStyles.spaceBtwSections * 2),
-
-                  // Full Name
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF5F6F7),
-                      prefixIcon: Icon(
-                        Icons.person,
-                        color: ColorsManger.darkGrey,
-                      ),
-                      labelText: Assets.hintName,
-                      labelStyle: TextStyle(color: ColorsManger.dark),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: TextStyles.spaceBetweenInputFields),
-
-                  // Email
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF5F6F7),
-                      prefixIcon: Icon(
-                        Icons.email,
-                        color: ColorsManger.darkGrey,
-                      ),
-                      labelText: Assets.hintEmail,
-                      labelStyle: TextStyle(color: ColorsManger.dark),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: TextStyles.spaceBetweenInputFields),
-
-                  // Password
-                  TextFormField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xFFF5F6F7),
-                      prefixIcon: Icon(
-                        Icons.vpn_key,
-                        color: ColorsManger.darkGrey,
-                      ),
-                      labelText: Assets.hintPassword,
-                      labelStyle: TextStyle(color: ColorsManger.dark),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(
-                          TextStyles.borderRadiusLg,
-                        ),
-                        borderSide: BorderSide(color: Color(0xFFF5F6F7)),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: TextStyles.spaceBetweenInputFields / 2,
-                  ),
-                  // Remember me
-                  CustomCheckbox(),
-
-                  const SizedBox(height: TextStyles.spaceBtwSections),
-
-                  // Sign Up Button
-                  SignupAuthElevatedButton(
-                    buttonTitle: "Signup",
-                    primaryButton: true,
-                  ),
-
-                  const SizedBox(height: TextStyles.spaceBtwItems),
-
-                  // Divider
-                  SignupAuthDivider(),
-
-                  const SizedBox(height: TextStyles.spaceBtwItems),
-
-                  // Social Media Buttons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Facebook
-                      SocialMediaContainer(image: Assets.facebookIcon),
-                      const SizedBox(width: TextStyles.spaceBtwItems),
-                      // Google
-                      SocialMediaContainer(image: Assets.googleIcon),
-                      const SizedBox(width: TextStyles.spaceBtwItems),
-                      // Apple
-                      SocialMediaContainer(image: Assets.appleIcon),
-                    ],
-                  ),
-                  const SizedBox(height: TextStyles.spaceBtwItems),
-                  // Already have an account
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Already have an account? ",
-                        style: TextStyle(color: ColorsManger.darkGrey),
+                      const SizedBox(height: TextStyles.spaceBtwSections),
+                      Center(
+                        child: Image.asset(
+                          Assets.splashHeart,
+                          color: ColorsManger.primaryColor,
+                          height: 60,
+                          width: 60,
+                        ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushReplacementNamed('/login');
-                        },
+                      const SizedBox(height: TextStyles.spaceBtwItems),
+                      Align(
+                        alignment: Alignment.center,
                         child: const Text(
-                          'Sign in',
-                          style: TextStyle(
-                            color: ColorsManger.primaryColor,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          Assets.signupTitle,
+                          style: TextStyle(fontSize: 32, fontFamily: "Georgia"),
                         ),
+                      ),
+                      const SizedBox(height: TextStyles.spaceBtwSections * 2),
+
+                      // Full Name
+                      TextFormField(
+                        validator: Validators.validateName,
+                        controller: nameController,
+                        decoration: _inputDecoration(
+                          label: Assets.hintName,
+                          icon: Icons.person,
+                        ),
+                      ),
+                      const SizedBox(height: TextStyles.spaceBetweenInputFields),
+
+                      // Email
+                      TextFormField(
+                        validator: Validators.validateEmail,
+                        controller: emailController,
+                        decoration: _inputDecoration(
+                          label: Assets.hintEmail,
+                          icon: Icons.email,
+                        ),
+                      ),
+                      const SizedBox(height: TextStyles.spaceBetweenInputFields),
+
+                      // Password
+                      TextFormField(
+                        validator: Validators.validatePassword,
+                        controller: passwordController,
+                        obscureText: true,
+                        decoration: _inputDecoration(
+                          label: Assets.hintPassword,
+                          icon: Icons.vpn_key,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
+
+                      // Phone
+                      TextFormField(
+                        validator: Validators.validatePhone,
+                        controller: phoneController,
+                        keyboardType: TextInputType.phone,
+                        decoration: _inputDecoration(
+                          label: "Phone",
+                          icon: Icons.phone,
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
+
+                      // Remember me
+                      CustomCheckbox(),
+                      const SizedBox(height: TextStyles.spaceBtwSections),
+
+                      // Sign Up Button
+                      state is SignupLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : SignupAuthElevatedButton(
+                        buttonTitle: "Signup",
+                        primaryButton: true,
+                        onPressed: () {
+                          context.read<SignupCubit>().signup(
+                            name: nameController.text.trim(),
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                            phone: phoneController.text.trim(),
+                          );
+                        },
+                      ),
+
+                      const SizedBox(height: TextStyles.spaceBtwItems),
+
+                      // Divider
+                      SignupAuthDivider(),
+                      const SizedBox(height: TextStyles.spaceBtwItems),
+
+                      // Social Media Buttons
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SocialMediaContainer(image: Assets.facebookIcon),
+                          const SizedBox(width: TextStyles.spaceBtwItems),
+                          SocialMediaContainer(image: Assets.googleIcon),
+                          const SizedBox(width: TextStyles.spaceBtwItems),
+                          SocialMediaContainer(image: Assets.appleIcon),
+                        ],
+                      ),
+                      const SizedBox(height: TextStyles.spaceBtwItems),
+
+                      // Already have an account
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Already have an account? ",
+                            style: TextStyle(color: ColorsManger.darkGrey),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context)
+                                  .pushReplacementNamed('/login');
+                            },
+                            child: const Text(
+                              'Sign in',
+                              style: TextStyle(
+                                color: ColorsManger.primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
+      ),
+    );
+  }
+
+  InputDecoration _inputDecoration({required String label, required IconData icon}) {
+    return InputDecoration(
+      filled: true,
+      fillColor: const Color(0xFFF5F6F7),
+      prefixIcon: Icon(icon, color: ColorsManger.darkGrey),
+      labelText: label,
+      labelStyle: const TextStyle(color: ColorsManger.dark),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
+        borderSide: const BorderSide(color: Color(0xFFF5F6F7)),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(TextStyles.borderRadiusLg),
+        borderSide: const BorderSide(color: Color(0xFFF5F6F7)),
       ),
     );
   }

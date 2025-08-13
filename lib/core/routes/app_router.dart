@@ -102,17 +102,17 @@ class AppRouter {
       case '/main_auth':
         return MaterialPageRoute(builder: (_) => const MainAuthScreen());
       case '/signup':
-        return MaterialPageRoute(builder: (_) => const CreateAccountScreen());
+        return MaterialPageRoute(builder: (_) => CreateAccountScreen());
       case '/login':
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/login_with_phone':
         return MaterialPageRoute(builder: (_) => const LoginScreenWithPhone());
       case '/otp_phone':
         return MaterialPageRoute(builder: (_) => const OTPPhoneVerificationScreen());
       case '/otp_email':
-        return MaterialPageRoute(builder: (_) => const OTPEmailVerificationScreen());
+ //       return MaterialPageRoute(builder: (_) => const OTPEmailVerificationScreen());
       case '/forget_password':
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());case '/forget_password':
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case '/current_location':
         return MaterialPageRoute(builder: (_) => ConfirmLocationScreen());
 

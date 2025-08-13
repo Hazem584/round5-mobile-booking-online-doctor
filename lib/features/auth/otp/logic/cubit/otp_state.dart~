@@ -1,0 +1,23 @@
+abstract class OtpState {
+  const OtpState();
+}
+
+class OtpInitial extends OtpState {
+  const OtpInitial();
+}
+
+class OtpLoading extends OtpState {
+  const OtpLoading();
+}
+
+class OtpSuccess extends OtpState {
+  final String message;
+  final Map<String, dynamic>? data;
+  const OtpSuccess({required this.message, this.data});
+}
+
+class OtpFailure extends OtpState {
+  final String message;
+  final int? statusCode;
+  const OtpFailure({required this.message, this.statusCode});
+}
