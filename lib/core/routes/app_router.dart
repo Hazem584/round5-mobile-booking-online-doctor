@@ -22,7 +22,7 @@ import '../../features/notifications/logic/cubit/notifications_cubit.dart';
 import '../../features/payment/presentation/views/add_card_view.dart';
 import '../../features/payment/presentation/views/add_new_card_view.dart';
 import '../../features/payment/presentation/views/payment_method_view.dart';
-import '../../features/profile/UI/profile_edit_view_body.dart';
+import '../../features/profile/UI/profile_edit_view.dart'; // Add this import
 import '../../features/profile/UI/profile_view.dart';
 import '../../features/reviews/UI/reviews_view.dart';
 import '../../features/search/presentaion/view/search_view.dart';
@@ -36,7 +36,6 @@ import '../di/dependency_injection.dart';
 
 class AppRouter {
   static MaterialPageRoute generateRoute(RouteSettings settings) {
-  
     final arguments = settings.arguments;
 
     switch (settings.name) {
@@ -47,7 +46,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ProfileView());
 
       case Routes.profileEditViewRouteName:
-        return MaterialPageRoute(builder: (_) => ProfileEditViewBody());
+        // Use the new ProfileEditView instead of creating BlocProvider here
+        return MaterialPageRoute(builder: (_) => const ProfileEditView());
 
       case Routes.notifications:
         return MaterialPageRoute(
@@ -94,7 +94,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const DoctorsNearUView());
       case DoctorsSpecialtyView.routeName:
         final args = settings.arguments as String;
-        return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));
+        return MaterialPageRoute(
+          builder: (_) => DoctorsSpecialtyView(specialty: args),
+        );
       case Routes.splash:
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case Routes.onboarding:
@@ -108,11 +110,15 @@ class AppRouter {
       case Routes.login_with_phone:
         return MaterialPageRoute(builder: (_) => const LoginScreenWithPhone());
       case Routes.otp_phone:
-        return MaterialPageRoute(builder: (_) => const OTPPhoneVerificationScreen());
+        return MaterialPageRoute(
+          builder: (_) => const OTPPhoneVerificationScreen(),
+        );
       case Routes.otp_email:
-        return MaterialPageRoute(builder: (_) => const OTPEmailVerificationScreen());
+        return MaterialPageRoute(
+          builder: (_) => const OTPEmailVerificationScreen(),
+        );
       case Routes.forget_password:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());case '/forget_password':
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       case Routes.current_location:
         return MaterialPageRoute(builder: (_) => ConfirmLocationScreen());
 

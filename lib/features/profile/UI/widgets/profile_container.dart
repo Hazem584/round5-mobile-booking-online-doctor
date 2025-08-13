@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
+import 'package:mobile_booking_online_doctor/features/profile/domain/entities/profile_model.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/helpers/spacing.dart';
@@ -8,8 +9,15 @@ import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
 
-class ProfileContainer extends StatelessWidget {
+class ProfileContainer extends StatefulWidget {
   const ProfileContainer({super.key});
+
+  @override
+  State<ProfileContainer> createState() => _ProfileContainerState();
+}
+
+class _ProfileContainerState extends State<ProfileContainer> {
+  ProfileModel? profileData;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +49,10 @@ class ProfileContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Seif Mohamed', style: TextStyles.font18LightBlackNormal),
+                Text(
+                  profileData?.name ?? "User Name",
+                  style: TextStyles.font18LightBlackNormal,
+                ),
                 verticalSpace(4),
                 Row(
                   children: [

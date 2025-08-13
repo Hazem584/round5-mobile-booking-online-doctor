@@ -1,6 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:mobile_booking_online_doctor/features/profile/data/datasources/profile_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/profile/data/datasources/profile_remote_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:mobile_booking_online_doctor/features/profile/domain/repos/profile_repo.dart';
+import 'package:mobile_booking_online_doctor/features/profile/logic/cubit/profile_cubit.dart';
 
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
@@ -11,21 +16,18 @@ import '../../features/notifications/logic/cubit/notifications_cubit.dart';
 
 final getIt = GetIt.instance;
 
-/// Main setup function that initializes all dependencies
 Future<void> setupGetIt() async {
   try {
     if (kDebugMode) {
       print('🔧 Setting up all dependencies...');
     }
 
-    // Setup core dependencies first
     await _setupCoreDependencies();
 
-    // Setup feature-specific dependencies
     await _setupDoctorDependencies();
     await _setupNotificationsDependencies();
+    await _setupProfileDependencies();
 
-    // Verify all dependencies are healthy
     if (_checkDependenciesHealth()) {
       if (kDebugMode) {
         print('✅ All dependencies setup complete and healthy');
@@ -43,22 +45,16 @@ Future<void> setupGetIt() async {
   }
 }
 
-/// Setup core dependencies (Dio, etc.)
 Future<void> _setupCoreDependencies() async {
   try {
-    // Register Dio instance (if not already registered)
     if (!getIt.isRegistered<Dio>()) {
       getIt.registerLazySingleton<Dio>(() {
         final dio = Dio();
-
-        // Configure Dio for performance and reliability
         dio.options.connectTimeout = const Duration(seconds: 10);
         dio.options.receiveTimeout = const Duration(seconds: 10);
         dio.options.sendTimeout = const Duration(seconds: 10);
         dio.options.baseUrl =
-            'https://your-api-base-url.com/api/'; // Add your base URL
-
-        // Add logging interceptor only in debug mode
+            'http://round5-online-booking-with-doctor-api.huma-volve.com/api/';
         if (kDebugMode) {
           dio.interceptors.add(
             LogInterceptor(
@@ -73,21 +69,19 @@ Future<void> _setupCoreDependencies() async {
             ),
           );
         }
-
-        // Add error handling interceptor
         dio.interceptors.add(
           InterceptorsWrapper(
             onRequest: (options, handler) {
-              // Add your token here if available
-              // final token = getTokenFromSecureStorage();
-              // if (token != null) {
-              //   options.headers['Authorization'] = 'Bearer $token';
-              // }
               options.headers['Content-Type'] = 'application/json';
               options.headers['Accept'] = 'application/json';
               handler.next(options);
             },
             onResponse: (response, handler) {
+              if (kDebugMode) {
+                print(
+                  '✅ API Response: ${response.statusCode} ${response.requestOptions.path}',
+                );
+              }
               handler.next(response);
             },
             onError: (error, handler) {
@@ -98,7 +92,9 @@ Future<void> _setupCoreDependencies() async {
         );
 
         if (kDebugMode) {
-          print('✅ Dio configured successfully');
+          print(
+            '✅ Dio configured successfully with base URL: ${dio.options.baseUrl}',
+          );
         }
         return dio;
       });
@@ -110,15 +106,12 @@ Future<void> _setupCoreDependencies() async {
   }
 }
 
-/// Setup doctor-related dependencies
 Future<void> _setupDoctorDependencies() async {
   try {
     if (kDebugMode) {
       print('🔧 Setting up doctor dependencies...');
     }
 
-    // Uncomment and modify these lines based on your actual classes
-    
     if (!getIt.isRegistered<DoctorRemoteDataSource>()) {
       getIt.registerLazySingleton<DoctorRemoteDataSource>(
         () => DoctorsRemoteDataSourceImpl(),
@@ -127,10 +120,11 @@ Future<void> _setupDoctorDependencies() async {
 
     if (!getIt.isRegistered<DoctorRepo>()) {
       getIt.registerLazySingleton<DoctorRepo>(
-        () => DoctorRepoImpl(doctorRemoteDataSource: getIt<DoctorRemoteDataSource>()),
+        () => DoctorRepoImpl(
+          doctorRemoteDataSource: getIt<DoctorRemoteDataSource>(),
+        ),
       );
     }
-    
 
     if (kDebugMode) {
       print('✅ Doctor dependencies setup complete');
@@ -142,7 +136,6 @@ Future<void> _setupDoctorDependencies() async {
   }
 }
 
-/// Setup notifications dependencies
 Future<void> _setupNotificationsDependencies() async {
   try {
     if (kDebugMode) {
@@ -155,20 +148,21 @@ Future<void> _setupNotificationsDependencies() async {
         try {
           final repository = MockNotificationsRepository(dio: getIt<Dio>());
           if (kDebugMode) {
-            print('✅ MockNotificationsRepository registered');
+            print(
+              '✅ MockNotificationsRepository registered with shared Dio instance',
+            );
           }
           return repository;
         } catch (e) {
           if (kDebugMode) {
-            print('❌ Error creating MockNotificationsRepository: $e');
+            print('❌ Error creating MockNotificationsRepository with DI: $e');
+            print('🔄 Creating fallback repository without DI');
           }
-          // Fallback: create repository without DI
           return MockNotificationsRepository();
         }
       });
     }
 
-    // Register Cubit with error handling
     if (!getIt.isRegistered<NotificationsCubit>()) {
       getIt.registerFactory<NotificationsCubit>(() {
         try {
@@ -181,9 +175,9 @@ Future<void> _setupNotificationsDependencies() async {
           return cubit;
         } catch (e) {
           if (kDebugMode) {
-            print('❌ Error creating NotificationsCubit: $e');
+            print('❌ Error creating NotificationsCubit with DI: $e');
+            print('🔄 Creating fallback cubit');
           }
-          // Fallback: create cubit with new repository
           return NotificationsCubit(MockNotificationsRepository());
         }
       });
@@ -199,7 +193,53 @@ Future<void> _setupNotificationsDependencies() async {
   }
 }
 
-/// Handle Dio errors consistently
+Future<void> _setupProfileDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up profile dependencies...');
+    }
+
+    if (!getIt.isRegistered<ProfileRemoteDataSource>()) {
+      getIt.registerLazySingleton<ProfileRemoteDataSource>(
+        () => ProfileRemoteDataSourceImpl(dio: getIt<Dio>()),
+      );
+      if (kDebugMode) {
+        print('✅ ProfileRemoteDataSource registered');
+      }
+    }
+
+    if (!getIt.isRegistered<ProfileRepo>()) {
+      getIt.registerLazySingleton<ProfileRepo>(
+        () => ProfileRepoImpl(
+          profileRemoteDataSource: getIt<ProfileRemoteDataSource>(),
+        ),
+      );
+      if (kDebugMode) {
+        print('✅ ProfileRepo registered');
+      }
+    }
+
+    if (!getIt.isRegistered<ProfileCubit>()) {
+      getIt.registerFactory<ProfileCubit>(() {
+        final cubit = ProfileCubit(getIt<ProfileRepo>());
+        cubit.getProfileData();
+        return cubit;
+      });
+      if (kDebugMode) {
+        print('✅ ProfileCubit registered');
+      }
+    }
+
+    if (kDebugMode) {
+      print('✅ Profile dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up profile dependencies: $e');
+    }
+  }
+}
+
 void _handleDioError(DioException error) {
   if (kDebugMode) {
     switch (error.response?.statusCode) {
@@ -210,33 +250,40 @@ void _handleDioError(DioException error) {
         print('🚫 Forbidden access');
         break;
       case 404:
-        print('🔍 Endpoint not found');
+        print('🔍 Endpoint not found: ${error.requestOptions.path}');
         break;
       case 500:
         print('🔥 Server error');
         break;
+      case 502:
+        print('🌐 Bad Gateway');
+        break;
+      case 503:
+        print('⚠️ Service Unavailable');
+        break;
       default:
         if (error.type == DioExceptionType.connectionTimeout ||
             error.type == DioExceptionType.receiveTimeout) {
-          print('⏰ Request timeout');
+          print('⏰ Request timeout for ${error.requestOptions.path}');
+        } else if (error.type == DioExceptionType.connectionError) {
+          print('🌐 Connection error: ${error.message}');
         } else {
-          print('🌐 Network error: ${error.message}');
+          print(
+            '🌐 Network error (${error.response?.statusCode}): ${error.message}',
+          );
         }
     }
   }
 }
 
-/// Emergency fallback setup
 Future<void> _setupFallbackDependencies() async {
   try {
     if (kDebugMode) {
       print('🔧 Setting up fallback dependencies...');
     }
 
-    // Clear any existing problematic registrations
     _clearRegistrations();
 
-    // Register simple fallback instances
     if (!getIt.isRegistered<MockNotificationsRepository>()) {
       getIt.registerLazySingleton<MockNotificationsRepository>(
         () => MockNotificationsRepository(),
@@ -246,6 +293,22 @@ Future<void> _setupFallbackDependencies() async {
     if (!getIt.isRegistered<NotificationsCubit>()) {
       getIt.registerFactory<NotificationsCubit>(
         () => NotificationsCubit(getIt<MockNotificationsRepository>()),
+      );
+    }
+
+    if (!getIt.isRegistered<ProfileRemoteDataSource>()) {
+      getIt.registerLazySingleton<ProfileRemoteDataSource>(
+        () => ProfileRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<ProfileRepo>()) {
+      getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepoImpl());
+    }
+
+    if (!getIt.isRegistered<ProfileCubit>()) {
+      getIt.registerFactory<ProfileCubit>(
+        () => ProfileCubit(getIt<ProfileRepo>()),
       );
     }
 
@@ -259,18 +322,22 @@ Future<void> _setupFallbackDependencies() async {
   }
 }
 
-/// Clear existing registrations safely
 void _clearRegistrations() {
   try {
     final registrationsToRemove = [
       MockNotificationsRepository,
       NotificationsCubit,
-      // Add other types as needed
+      ProfileRemoteDataSource,
+      ProfileRepo,
+      ProfileCubit,
     ];
 
     for (final type in registrationsToRemove) {
       if (getIt.isRegistered(instance: type)) {
         getIt.unregister(instance: type);
+        if (kDebugMode) {
+          print('🧹 Cleared registration for $type');
+        }
       }
     }
   } catch (e) {
@@ -280,26 +347,48 @@ void _clearRegistrations() {
   }
 }
 
-/// Check if all dependencies are properly registered
 bool _checkDependenciesHealth() {
   try {
+    final hasDio = getIt.isRegistered<Dio>();
     final hasNotificationRepository = getIt
         .isRegistered<MockNotificationsRepository>();
     final hasNotificationCubit = getIt.isRegistered<NotificationsCubit>();
-    // final hasDoctorRepo = getIt.isRegistered<DoctorRepo>();
-    // final hasDoctorDataSource = getIt.isRegistered<DoctorRemoteDataSource>();
+    final hasDoctorRepo = getIt.isRegistered<DoctorRepo>();
+    final hasDoctorDataSource = getIt.isRegistered<DoctorRemoteDataSource>();
+    final hasProfileDataSource = getIt.isRegistered<ProfileRemoteDataSource>();
+    final hasProfileRepo = getIt.isRegistered<ProfileRepo>();
+    final hasProfileCubit = getIt.isRegistered<ProfileCubit>();
 
     if (kDebugMode) {
       print('🩺 Dependencies health check:');
+      print('   Dio: ${hasDio ? "✅" : "❌"}');
       print(
         '   Notification Repository: ${hasNotificationRepository ? "✅" : "❌"}',
       );
       print('   Notification Cubit: ${hasNotificationCubit ? "✅" : "❌"}');
-      // print('   Doctor Repository: ${hasDoctorRepo ? "✅" : "❌"}');
-      // print('   Doctor DataSource: ${hasDoctorDataSource ? "✅" : "❌"}');
+      print('   Doctor Repository: ${hasDoctorRepo ? "✅" : "❌"}');
+      print('   Doctor DataSource: ${hasDoctorDataSource ? "✅" : "❌"}');
+      print('   Profile DataSource: ${hasProfileDataSource ? "✅" : "❌"}');
+      print('   Profile Repository: ${hasProfileRepo ? "✅" : "❌"}');
+      print('   Profile Cubit: ${hasProfileCubit ? "✅" : "❌"}');
     }
 
-    return hasNotificationRepository && hasNotificationCubit;
+    // At minimum, we need the critical systems to work
+    final criticalDependencies =
+        hasDio &&
+        hasNotificationRepository &&
+        hasNotificationCubit &&
+        hasProfileDataSource &&
+        hasProfileRepo &&
+        hasProfileCubit;
+
+    if (kDebugMode) {
+      print(
+        '🎯 Critical dependencies healthy: ${criticalDependencies ? "✅" : "❌"}',
+      );
+    }
+
+    return criticalDependencies;
   } catch (e) {
     if (kDebugMode) {
       print('❌ Error checking dependencies health: $e');
@@ -308,7 +397,6 @@ bool _checkDependenciesHealth() {
   }
 }
 
-/// Helper function to reset all dependencies (for testing)
 Future<void> resetAllDependencies() async {
   try {
     if (kDebugMode) {
@@ -328,13 +416,82 @@ Future<void> resetAllDependencies() async {
   }
 }
 
-/// Get dependency info for debugging
 Map<String, bool> getDependencyInfo() {
   return {
     'Dio': getIt.isRegistered<Dio>(),
     'NotificationRepository': getIt.isRegistered<MockNotificationsRepository>(),
     'NotificationCubit': getIt.isRegistered<NotificationsCubit>(),
-    // 'DoctorRepo': getIt.isRegistered<DoctorRepo>(),
-    // 'DoctorDataSource': getIt.isRegistered<DoctorRemoteDataSource>(),
+    'DoctorRepo': getIt.isRegistered<DoctorRepo>(),
+    'DoctorDataSource': getIt.isRegistered<DoctorRemoteDataSource>(),
+    'ProfileDataSource': getIt.isRegistered<ProfileRemoteDataSource>(),
+    'ProfileRepo': getIt.isRegistered<ProfileRepo>(),
+    'ProfileCubit': getIt.isRegistered<ProfileCubit>(),
   };
+}
+
+Future<bool> testAllDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🧪 Testing all dependencies...');
+    }
+
+    // Test Dio
+    final dio = getIt<Dio>();
+    if (kDebugMode) {
+      print('✅ Dio instance created: ${dio.options.baseUrl}');
+    }
+
+    final notificationRepo = getIt<MockNotificationsRepository>();
+    if (kDebugMode) {
+      print('✅ NotificationRepository instance created');
+    }
+
+    final notificationCubit = getIt<NotificationsCubit>();
+    if (kDebugMode) {
+      print('✅ NotificationsCubit instance created');
+    }
+
+    try {
+      final profileDataSource = getIt<ProfileRemoteDataSource>();
+      if (kDebugMode) {
+        print('✅ ProfileRemoteDataSource instance created');
+      }
+
+      final profileRepo = getIt<ProfileRepo>();
+      if (kDebugMode) {
+        print('✅ ProfileRepo instance created');
+      }
+
+      final profileCubit = getIt<ProfileCubit>();
+      if (kDebugMode) {
+        print('✅ ProfileCubit instance created');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('⚠️ Profile dependencies not available: $e');
+      }
+    }
+
+    try {
+      final doctorRepo = getIt<DoctorRepo>();
+      if (kDebugMode) {
+        print('✅ DoctorRepo instance created');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('⚠️ DoctorRepo not available: $e');
+      }
+    }
+
+    if (kDebugMode) {
+      print('✅ All available dependencies tested successfully');
+    }
+
+    return true;
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Dependency test failed: $e');
+    }
+    return false;
+  }
 }

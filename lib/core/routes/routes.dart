@@ -21,7 +21,7 @@ class Routes {
   static const privacyPolicyView = "/privacyPolicyView";
   static const addCardView = "/addCardview";
   static const splash = '/';
-  static const login = '/login';
+  static const String login = '/login';
   static const onboarding = '/onboarding';
   static const main_auth= '/main_auth';
   static const login_with_phone = '/login_with_phone';
