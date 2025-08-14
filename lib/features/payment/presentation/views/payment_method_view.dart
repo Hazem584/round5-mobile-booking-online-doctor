@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_booking_with_doctor/core/routes/routes.dart';
 import 'package:online_booking_with_doctor/core/theming/styles.dart';
 import 'package:online_booking_with_doctor/core/helpers/spacing.dart';
 import 'package:online_booking_with_doctor/core/theming/app_colors.dart';
 import 'package:online_booking_with_doctor/core/widgets/custom_app_bar.dart';
 import 'package:online_booking_with_doctor/features/payment/presentation/widgets/card_type.dart';
-
 
 class PaymentMethodView extends StatelessWidget {
   const PaymentMethodView({super.key});
@@ -30,6 +30,9 @@ class PaymentMethodView extends StatelessWidget {
           verticalSpace(20),
 
           CardType(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.addCardView);
+            },
             text: "VISA",
             leftSvg: "assets/svgs/visa.svg",
             rightIcon: Icon(
