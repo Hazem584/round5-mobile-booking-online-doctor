@@ -4,7 +4,6 @@ import '../../../../../core/helpers/assets.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../logic/controller/onboarding_controller.dart';
-import '../widgets/onboarding_dot_navigation.dart';
 import '../widgets/onboarding_next_button.dart';
 import '../widgets/onboarding_page.dart';
 import '../widgets/onboarding_skip.dart';

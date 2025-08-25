@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/features/auth/login/data/model/login_model.dart';
 import '../../data/repositories/login_repository.dart';
 import '../../data/repositories/phone_login_repository.dart';
 import 'login_state.dart';

@@ -1,5 +1,3 @@
-import 'package:mobile_booking_online_doctor/features/auth/splash/splash_screen.dart';
-
 import '../../features/confirm_appointment/UI/confirm_appointment_view.dart';
 import '../../features/favorite/UI/favorite_view.dart';
 import '../../features/notifications/UI/notifications_view.dart';

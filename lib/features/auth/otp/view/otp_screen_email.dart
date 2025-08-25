@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
-import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
-import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/theming/app_colors.dart';

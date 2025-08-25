@@ -14,7 +14,7 @@ class DoctorsRemoteDataSourceImpl implements DoctorRemoteDataSource{
       }else{
         throw Exception('Failed to load the Doctors');
       }
-    } on Exception catch (e) {
+    } on Exception {
       throw Exception('Response Failed');
     }
   }

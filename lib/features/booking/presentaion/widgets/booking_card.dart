@@ -120,7 +120,7 @@ class BookingCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            if (actionRow != null) actionRow!,
+            if (actionRow != null) actionRow,
           ],
         ),
       ),

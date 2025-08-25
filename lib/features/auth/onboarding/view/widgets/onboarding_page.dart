@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../../core/theming/styles.dart';
 import 'onboarding_dot_navigation.dart';
-import 'onboarding_skip.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({

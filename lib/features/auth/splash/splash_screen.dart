@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/helpers/assets.dart';
 import '../../../core/theming/app_colors.dart';
-import '../onboarding/view/screens/onboarding_screen.dart';
-// غير المسار حسب مشروعك
 
 class SplashScreen extends StatefulWidget {
   @override

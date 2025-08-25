@@ -5,7 +5,6 @@ import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/helpers/assets.dart';
-import '../../../../core/routes/routes.dart';
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
 import '../../../../core/validators/valiators.dart';
