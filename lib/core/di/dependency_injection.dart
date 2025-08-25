@@ -40,7 +40,7 @@ Future<void> setupGetIt() async {
       }
     } else {
       if (kDebugMode) {
-        print('⚠️ Some dependencies may have issues');
+        print('⚠ Some dependencies may have issues');
       }
     }
   } catch (e) {
@@ -351,7 +351,7 @@ void _handleDioError(DioException error) {
         print('🌐 Bad Gateway');
         break;
       case 503:
-        print('⚠️ Service Unavailable');
+        print('⚠ Service Unavailable');
         break;
       default:
         if (error.type == DioExceptionType.connectionTimeout ||
@@ -460,7 +460,7 @@ void _clearRegistrations() {
     }
   } catch (e) {
     if (kDebugMode) {
-      print('⚠️ Error clearing registrations: $e');
+      print('⚠ Error clearing registrations: $e');
     }
   }
 }
@@ -615,7 +615,7 @@ Future<bool> testAllDependencies() async {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ Profile dependencies not available: $e');
+        print('⚠ Profile dependencies not available: $e');
       }
     }
 
@@ -626,7 +626,7 @@ Future<bool> testAllDependencies() async {
       }
     } catch (e) {
       if (kDebugMode) {
-        print('⚠️ DoctorRepo not available: $e');
+        print('⚠ DoctorRepo not available: $e');
       }
     }
 

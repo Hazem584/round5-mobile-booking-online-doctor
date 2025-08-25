@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/core/helpers/extensions.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/custom_checkbox.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_divider.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/signup_auth_elevated_button.dart';
 import 'package:mobile_booking_online_doctor/features/auth/signup/view/widgets/social_media_container.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/routes/routes.dart';
@@ -40,13 +42,13 @@ class CreateAccountScreen extends StatelessWidget {
         child: BlocConsumer<SignupCubit, SignupState>(
           listener: (context, state) {
             if (state is SignupSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.response.message)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.response.message)));
             } else if (state is SignupError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.error)));
             }
           },
           builder: (context, state) {
@@ -87,7 +89,9 @@ class CreateAccountScreen extends StatelessWidget {
                           icon: Icons.person,
                         ),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields,
+                      ),
 
                       // Email
                       TextFormField(
@@ -98,7 +102,9 @@ class CreateAccountScreen extends StatelessWidget {
                           icon: Icons.email,
                         ),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields,
+                      ),
 
                       // Password
                       TextFormField(
@@ -110,7 +116,9 @@ class CreateAccountScreen extends StatelessWidget {
                           icon: Icons.vpn_key,
                         ),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields / 2),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
 
                       // Phone
                       TextFormField(
@@ -122,7 +130,9 @@ class CreateAccountScreen extends StatelessWidget {
                           icon: Icons.phone,
                         ),
                       ),
-                      const SizedBox(height: TextStyles.spaceBetweenInputFields / 2),
+                      const SizedBox(
+                        height: TextStyles.spaceBetweenInputFields / 2,
+                      ),
 
                       // Remember me
                       CustomCheckbox(),
@@ -132,17 +142,12 @@ class CreateAccountScreen extends StatelessWidget {
                       state is SignupLoading
                           ? const Center(child: CircularProgressIndicator())
                           : SignupAuthElevatedButton(
-                        buttonTitle: "Signup",
-                        primaryButton: true,
-                        onPressed: () {
-                          context.read<SignupCubit>().signup(
-                            name: nameController.text.trim(),
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                            phone: phoneController.text.trim(),
-                          );
-                        },
-                      ),
+                              buttonTitle: "Signup",
+                              primaryButton: true,
+                              onPressed: () {
+                                context.pushNamed(HomeView.routeName);
+                              },
+                            ),
 
                       const SizedBox(height: TextStyles.spaceBtwItems),
 
@@ -198,7 +203,10 @@ class CreateAccountScreen extends StatelessWidget {
     );
   }
 
-  InputDecoration _inputDecoration({required String label, required IconData icon}) {
+  InputDecoration _inputDecoration({
+    required String label,
+    required IconData icon,
+  }) {
     return InputDecoration(
       filled: true,
       fillColor: const Color(0xFFF5F6F7),

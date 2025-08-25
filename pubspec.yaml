@@ -17,7 +17,6 @@ dependencies:
   flutter_map: ^6.1.0
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.0
-  fluttertest: ^0.0.1
   geocoding: ^2.2.0
   geolocator: ^10.1.0
   get_it: ^8.2.0

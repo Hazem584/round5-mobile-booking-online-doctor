@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/api_client/api_client.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/network/api_service.dart';
@@ -11,17 +10,9 @@ import 'core/token/token_provider.dart';
 import 'features/auth/login/data/repositories/phone_login_repository.dart';
 import 'features/auth/login/logic/cubit/login_cubit.dart';
 import 'features/auth/signup/logic/signup_cubit.dart';
-import 'features/home/view/home_view.dart';
 import 'features/notifications/logic/cubit/notifications_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
 import 'package:mobile_booking_online_doctor/core/service/auth_manager.dart';
-import 'core/di/dependency_injection.dart';
-import 'core/routes/app_router.dart';
-import 'core/service/bloc_observer.dart';
-import 'features/notifications/logic/cubit/notifications_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
