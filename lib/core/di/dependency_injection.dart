@@ -4,6 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source_impl.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/repo/specialties_repo.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/repos/search_repo_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/domain/repos/search_repo.dart';
 
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
@@ -135,7 +139,19 @@ Future<void> _setupDoctorDependencies() async {
         () => DoctorRepoImpl(doctorRemoteDataSource: getIt<DoctorRemoteDataSource>()),
       );
     }
-    
+
+    if (!getIt.isRegistered<SearchRemoteDataSource>()) {
+      getIt.registerLazySingleton<SearchRemoteDataSource>(
+            () => SearchRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<SearchRepo>()) {
+      getIt.registerLazySingleton<SearchRepo>(
+            () => SearchRepoImpl(searchRemoteDataSource: getIt<SearchRemoteDataSource>()),
+      );
+    }
+
 
     if (kDebugMode) {
       print('✅ Doctor dependencies setup complete');

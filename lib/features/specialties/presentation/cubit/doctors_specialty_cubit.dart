@@ -18,7 +18,7 @@ class DoctorsSpecialtyCubit extends Cubit<DoctorsSpecialtyState> {
         (failure) => emit(DoctorsSpecialtyError(message: failure.message)),
         (doctorsEntity){
           final filter = doctorsEntity.where((doctor){
-            final specialistMatch = doctor.specialist.toLowerCase() == query.toLowerCase();
+            final specialistMatch = doctor.specialtyNameEn.toLowerCase() == query.toLowerCase();
             return specialistMatch;
           }).toList();
           emit(DoctorsSpecialtySuccess(doctors: filter));

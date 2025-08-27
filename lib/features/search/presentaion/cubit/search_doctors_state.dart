@@ -1,18 +1,18 @@
 part of 'search_doctors_cubit.dart';
 
 @immutable
-sealed class SearchDoctorsState {}
+sealed class SearchState {}
 
-final class SearchDoctorsInitial extends SearchDoctorsState {}
-final class SearchDoctorsLoading extends SearchDoctorsState {}
-final class SearchDoctorsSuccess extends SearchDoctorsState {
+final class SearchInitial extends SearchState {}
+final class SearchLoading extends SearchState {}
+final class SearchSuccess extends SearchState {
   final List<DoctorEntity> doctors;
 
-  SearchDoctorsSuccess({required this.doctors});
+  SearchSuccess({required this.doctors});
 }
 
-final class SearchDoctorsError extends SearchDoctorsState {
+final class SearchError extends SearchState {
   final String message;
 
-  SearchDoctorsError({required this.message});
+  SearchError({required this.message});
 }

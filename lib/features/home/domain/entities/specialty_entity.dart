@@ -1,6 +1,15 @@
-class SpecialtyEntity{
+class SpecialtyEntity {
   final String icon;
-  final String name;
+  final String nameEn;
+  final String nameAr;
+  final String description;
+  final int id;
 
-  SpecialtyEntity({required this.icon, required this.name});
+  SpecialtyEntity({
+    required this.nameAr,
+    required this.description,
+    required this.id,
+    required this.icon,
+    required this.nameEn,
+  });
 }

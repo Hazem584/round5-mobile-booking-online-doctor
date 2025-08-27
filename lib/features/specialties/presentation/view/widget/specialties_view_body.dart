@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/widgets/custom_specialty_card.dart';
 
 import '../../../../../core/widgets/custom_appbar.dart';
-import '../../../../home/view/widgets/specialties_listview.dart';
 import '../doctors_specialty_view.dart';
 
 class SpecialtiesViewBody extends StatelessWidget {
@@ -35,7 +35,7 @@ class SpecialtiesViewBody extends StatelessWidget {
             specialties.length,
             (i) => GestureDetector(
               onTap: (){
-                Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].name,);
+                Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].nameEn,);
               },
               child: CustomSpecialtyCard(specialties: specialties[i])
             )

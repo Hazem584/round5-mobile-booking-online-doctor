@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
+import 'package:mobile_booking_online_doctor/features/home/view/widgets/custom_specialty_card.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
 import '../../../../../core/widgets/custom_list_of_doctors.dart';
 import '../../../../home/view/widgets/custom_search_text_fiield.dart';
-import '../../../../home/view/widgets/specialties_listview.dart';
 import '../../../../specialties/presentation/view/doctors_specialty_view.dart';
 import '../../cubit/search_doctors_cubit.dart';
 
@@ -29,13 +29,13 @@ class SearchViewBody extends StatelessWidget {
             children: [
               CustomSearchTextFiled(
                 onChange: (value){
-                  context.read<SearchDoctorsCubit>().searchDoctors(value.toString().trim());
+                  context.read<SearchCubit>().search(query: value.toString().trim());
                 },
               ),
               const SizedBox(height: 16,),
-              BlocBuilder<SearchDoctorsCubit, SearchDoctorsState>(
+              BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
-                  if (state is SearchDoctorsInitial) {
+                  if (state is SearchInitial) {
                     return SingleChildScrollView(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +56,7 @@ class SearchViewBody extends StatelessWidget {
                               specialties.length,
                               (i) => GestureDetector(
                                 onTap: (){
-                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].name,);
+                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].nameEn,);
                                 },
                                 child: CustomSpecialtyCard(specialties: specialties[i])
                               )
@@ -92,16 +92,15 @@ class SearchViewBody extends StatelessWidget {
                         ],
                       ),
                     );
-                  }else if (state is SearchDoctorsLoading){
+                  }else if (state is SearchLoading){
                     return Center(child: CircularProgressIndicator(),);
-                  }else if (state is SearchDoctorsSuccess){
+                  }else if (state is SearchSuccess){
                     return ListOfDoctors(
-                      state: state,
-                      itemCount: state.doctors.length,
+                      doctors: state.doctors,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                     );
-                  }else if (state is SearchDoctorsError){
+                  }else if (state is SearchError){
                     return Center(child: Text('Not Found'),);
                   }else {return SizedBox();}
                 },

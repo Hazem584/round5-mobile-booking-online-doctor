@@ -92,7 +92,8 @@ class AppRouter {
       case SpecialtiesView.routeName:
         return MaterialPageRoute(builder: (_) =>  SpecialtiesView(specialties: arguments as List<SpecialtyEntity>));
       case DoctorsNearUView.routeName:
-        return MaterialPageRoute(builder: (_) =>  DoctorsNearUView(specialties: arguments as List<SpecialtyEntity>));
+        final argus = settings.arguments as DoctorsNearUView;
+        return MaterialPageRoute(builder: (_) =>  argus);
       case DoctorsSpecialtyView.routeName:
         final args = settings.arguments as String;
         return MaterialPageRoute(builder: (_) => DoctorsSpecialtyView(specialty: args,));

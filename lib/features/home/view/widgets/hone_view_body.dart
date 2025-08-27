@@ -108,9 +108,14 @@ class _HoneViewBodyState extends State<HoneViewBody> {
                               Navigator.pushNamed(
                                 context,
                                 DoctorsNearUView.routeName,
-                                arguments: specialtiesState is SpecialtiesSuccess
-                                    ? specialtiesState.specialties
-                                    : [],
+                                  arguments: DoctorsNearUView(
+                                    specialties: specialtiesState is SpecialtiesSuccess
+                                      ? specialtiesState.specialties
+                                      : [],
+                                    doctors: doctorsState is DoctorSuccess
+                                      ? doctorsState.doctors
+                                      : [],
+                                  )
                               );
                             },
                             child: Text(
@@ -126,8 +131,7 @@ class _HoneViewBodyState extends State<HoneViewBody> {
                         ListOfDoctors(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          state: doctorsState,
-                          itemCount: 5,
+                          doctors: doctorsState.doctors,
                         )
                       else if (doctorsState is DoctorError)
                         Padding(
