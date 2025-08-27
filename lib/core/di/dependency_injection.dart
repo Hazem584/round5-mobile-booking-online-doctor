@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:mobile_booking_online_doctor/core/service/auth_manager.dart';
 
 import '../../features/auth/signup/data/repository/signup_repository.dart';
 import '../../features/auth/signup/logic/signup_cubit.dart';
@@ -23,11 +24,15 @@ import '../network/api_service.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupGetIt() async {
+  GetIt.instance.registerLazySingleton<ProfileCubit>(
+    () => ProfileCubit(GetIt.instance<ProfileRepo>()),
+  );
   try {
     if (kDebugMode) {
       print('🔧 Setting up all dependencies...');
     }
 
+    await _setupAuthManager();
     await _setupCoreDependencies();
     await _setupDoctorDependencies();
     await _setupNotificationsDependencies();
@@ -51,17 +56,77 @@ Future<void> setupGetIt() async {
   }
 }
 
+Future<void> _setupAuthManager() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Initializing AuthManager...');
+    }
+
+    await AuthManager.initialize();
+
+    if (kDebugMode) {
+      print('✅ AuthManager initialized successfully');
+
+      final authInfo = await AuthManager.getAuthInfo();
+      print('📊 Current auth status: $authInfo');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error initializing AuthManager: $e');
+    }
+  }
+}
+
 Future<void> _setupCoreDependencies() async {
   try {
+    if (kDebugMode) {
+      print('🔧 Setting up core dependencies...');
+    }
+
     // Register Dio first
     if (!getIt.isRegistered<Dio>()) {
       getIt.registerLazySingleton<Dio>(() {
         final dio = Dio();
-        dio.options.connectTimeout = const Duration(seconds: 10);
-        dio.options.receiveTimeout = const Duration(seconds: 10);
-        dio.options.sendTimeout = const Duration(seconds: 10);
+        dio.options.connectTimeout = const Duration(seconds: 15);
+        dio.options.receiveTimeout = const Duration(seconds: 15);
+        dio.options.sendTimeout = const Duration(seconds: 15);
         dio.options.baseUrl =
             'http://round5-online-booking-with-doctor-api.huma-volve.com/api/';
+
+        // Add automatic token interceptor
+        dio.interceptors.add(
+          InterceptorsWrapper(
+            onRequest: (options, handler) async {
+              final token = await AuthManager.getAuthToken();
+              if (token != null) {
+                options.headers['Authorization'] = 'Bearer $token';
+              }
+
+              options.headers['Content-Type'] = 'application/json';
+              options.headers['Accept'] = 'application/json';
+              handler.next(options);
+            },
+            onResponse: (response, handler) {
+              if (kDebugMode) {
+                print(
+                  '✅ API Response: ${response.statusCode} ${response.requestOptions.path}',
+                );
+              }
+              handler.next(response);
+            },
+            onError: (error, handler) async {
+              if (error.response?.statusCode == 401) {
+                if (kDebugMode) {
+                  print('🔐 Unauthorized access - clearing auth data');
+                }
+                await AuthManager.clearAuth();
+              }
+
+              _handleDioError(error);
+              handler.next(error);
+            },
+          ),
+        );
 
         if (kDebugMode) {
           dio.interceptors.add(
@@ -78,32 +143,8 @@ Future<void> _setupCoreDependencies() async {
           );
         }
 
-        dio.interceptors.add(
-          InterceptorsWrapper(
-            onRequest: (options, handler) {
-              options.headers['Content-Type'] = 'application/json';
-              options.headers['Accept'] = 'application/json';
-              handler.next(options);
-            },
-            onResponse: (response, handler) {
-              if (kDebugMode) {
-                print(
-                  '✅ API Response: ${response.statusCode} ${response.requestOptions.path}',
-                );
-              }
-              handler.next(response);
-            },
-            onError: (error, handler) {
-              _handleDioError(error);
-              handler.next(error);
-            },
-          ),
-        );
-
         if (kDebugMode) {
-          print(
-            '✅ Dio configured successfully with base URL: ${dio.options.baseUrl}',
-          );
+          print('✅ Dio configured successfully with AuthManager integration');
         }
         return dio;
       });
@@ -376,35 +417,23 @@ Future<void> _setupFallbackDependencies() async {
 
     _clearRegistrations();
 
+    // Register core dependencies first
+    if (!getIt.isRegistered<Dio>()) {
+      getIt.registerLazySingleton<Dio>(() => Dio());
+    }
+
     if (!getIt.isRegistered<ApiService>()) {
       getIt.registerLazySingleton<ApiService>(() => ApiService());
     }
 
-    if (!getIt.isRegistered<MockNotificationsRepository>()) {
-      getIt.registerLazySingleton<MockNotificationsRepository>(
-        () => MockNotificationsRepository(),
-      );
+    // Register repositories
+    if (!getIt.isRegistered<LoginRepository>()) {
+      getIt.registerLazySingleton<LoginRepository>(() => LoginRepository());
     }
 
-    if (!getIt.isRegistered<NotificationsCubit>()) {
-      getIt.registerFactory<NotificationsCubit>(
-        () => NotificationsCubit(getIt<MockNotificationsRepository>()),
-      );
-    }
-
-    if (!getIt.isRegistered<ProfileRemoteDataSource>()) {
-      getIt.registerLazySingleton<ProfileRemoteDataSource>(
-        () => ProfileRemoteDataSourceImpl(),
-      );
-    }
-
-    if (!getIt.isRegistered<ProfileRepo>()) {
-      getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepoImpl());
-    }
-
-    if (!getIt.isRegistered<ProfileCubit>()) {
-      getIt.registerFactory<ProfileCubit>(
-        () => ProfileCubit(getIt<ProfileRepo>()),
+    if (!getIt.isRegistered<PhoneLoginRepository>()) {
+      getIt.registerLazySingleton<PhoneLoginRepository>(
+        () => PhoneLoginRepository(apiService: getIt<ApiService>()),
       );
     }
 
@@ -417,9 +446,54 @@ Future<void> _setupFallbackDependencies() async {
       );
     }
 
+    if (!getIt.isRegistered<MockNotificationsRepository>()) {
+      getIt.registerLazySingleton<MockNotificationsRepository>(
+        () => MockNotificationsRepository(),
+      );
+    }
+
+    if (!getIt.isRegistered<ProfileRemoteDataSource>()) {
+      getIt.registerLazySingleton<ProfileRemoteDataSource>(
+        () => ProfileRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<ProfileRepo>()) {
+      getIt.registerLazySingleton<ProfileRepo>(
+        () => ProfileRepoImpl(
+          profileRemoteDataSource: getIt<ProfileRemoteDataSource>(),
+        ),
+      );
+    }
+
+    // Register cubits
+    if (!getIt.isRegistered<LoginCubit>()) {
+      getIt.registerFactory<LoginCubit>(
+        () => LoginCubit(getIt<LoginRepository>()),
+      );
+    }
+
+    if (!getIt.isRegistered<LoginWithPhoneCubit>()) {
+      getIt.registerFactory<LoginWithPhoneCubit>(
+        () => LoginWithPhoneCubit(getIt<PhoneLoginRepository>()),
+      );
+    }
+
     if (!getIt.isRegistered<SignupCubit>()) {
       getIt.registerFactory<SignupCubit>(
         () => SignupCubit(getIt<SignupRepository>()),
+      );
+    }
+
+    if (!getIt.isRegistered<NotificationsCubit>()) {
+      getIt.registerFactory<NotificationsCubit>(
+        () => NotificationsCubit(getIt<MockNotificationsRepository>()),
+      );
+    }
+
+    if (!getIt.isRegistered<ProfileCubit>()) {
+      getIt.registerFactory<ProfileCubit>(
+        () => ProfileCubit(getIt<ProfileRepo>()),
       );
     }
 
@@ -448,13 +522,20 @@ void _clearRegistrations() {
       PhoneLoginRepository,
       LoginCubit,
       LoginWithPhoneCubit,
+      Dio,
     ];
 
     for (final type in registrationsToRemove) {
-      if (getIt.isRegistered(instance: type)) {
-        getIt.unregister(instance: type);
+      try {
+        if (getIt.isRegistered(instance: type)) {
+          getIt.unregister(instance: type);
+          if (kDebugMode) {
+            print('🧹 Cleared registration for $type');
+          }
+        }
+      } catch (e) {
         if (kDebugMode) {
-          print('🧹 Cleared registration for $type');
+          print('⚠ Could not clear $type: $e');
         }
       }
     }
@@ -479,11 +560,19 @@ bool _checkDependenciesHealth() {
     final hasProfileCubit = getIt.isRegistered<ProfileCubit>();
     final hasSignupRepo = getIt.isRegistered<SignupRepository>();
     final hasSignupCubit = getIt.isRegistered<SignupCubit>();
+    final hasLoginRepo = getIt.isRegistered<LoginRepository>();
+    final hasPhoneLoginRepo = getIt.isRegistered<PhoneLoginRepository>();
+    final hasLoginCubit = getIt.isRegistered<LoginCubit>();
+    final hasPhoneLoginCubit = getIt.isRegistered<LoginWithPhoneCubit>();
 
     if (kDebugMode) {
       print('🩺 Dependencies health check:');
       print('   Dio: ${hasDio ? "✅" : "❌"}');
       print('   ApiService: ${hasApiService ? "✅" : "❌"}');
+      print('   Login Repository: ${hasLoginRepo ? "✅" : "❌"}');
+      print('   Phone Login Repository: ${hasPhoneLoginRepo ? "✅" : "❌"}');
+      print('   Login Cubit: ${hasLoginCubit ? "✅" : "❌"}');
+      print('   Phone Login Cubit: ${hasPhoneLoginCubit ? "✅" : "❌"}');
       print(
         '   Notification Repository: ${hasNotificationRepository ? "✅" : "❌"}',
       );
@@ -500,6 +589,10 @@ bool _checkDependenciesHealth() {
     final criticalDependencies =
         hasDio &&
         hasApiService &&
+        hasLoginRepo &&
+        hasPhoneLoginRepo &&
+        hasLoginCubit &&
+        hasPhoneLoginCubit &&
         hasNotificationRepository &&
         hasNotificationCubit &&
         hasProfileDataSource &&
@@ -546,6 +639,10 @@ Map<String, bool> getDependencyInfo() {
   return {
     'Dio': getIt.isRegistered<Dio>(),
     'ApiService': getIt.isRegistered<ApiService>(),
+    'LoginRepository': getIt.isRegistered<LoginRepository>(),
+    'PhoneLoginRepository': getIt.isRegistered<PhoneLoginRepository>(),
+    'LoginCubit': getIt.isRegistered<LoginCubit>(),
+    'LoginWithPhoneCubit': getIt.isRegistered<LoginWithPhoneCubit>(),
     'NotificationRepository': getIt.isRegistered<MockNotificationsRepository>(),
     'NotificationCubit': getIt.isRegistered<NotificationsCubit>(),
     'DoctorRepo': getIt.isRegistered<DoctorRepo>(),
@@ -555,10 +652,6 @@ Map<String, bool> getDependencyInfo() {
     'ProfileCubit': getIt.isRegistered<ProfileCubit>(),
     'SignupRepository': getIt.isRegistered<SignupRepository>(),
     'SignupCubit': getIt.isRegistered<SignupCubit>(),
-    'LoginRepository': getIt.isRegistered<LoginRepository>(),
-    'PhoneLoginRepository': getIt.isRegistered<PhoneLoginRepository>(),
-    'LoginCubit': getIt.isRegistered<LoginCubit>(),
-    'LoginWithPhoneCubit': getIt.isRegistered<LoginWithPhoneCubit>(),
   };
 }
 
@@ -576,6 +669,26 @@ Future<bool> testAllDependencies() async {
     final apiService = getIt<ApiService>();
     if (kDebugMode) {
       print('✅ ApiService instance created');
+    }
+
+    final loginRepo = getIt<LoginRepository>();
+    if (kDebugMode) {
+      print('✅ LoginRepository instance created');
+    }
+
+    final phoneLoginRepo = getIt<PhoneLoginRepository>();
+    if (kDebugMode) {
+      print('✅ PhoneLoginRepository instance created');
+    }
+
+    final loginCubit = getIt<LoginCubit>();
+    if (kDebugMode) {
+      print('✅ LoginCubit instance created');
+    }
+
+    final phoneLoginCubit = getIt<LoginWithPhoneCubit>();
+    if (kDebugMode) {
+      print('✅ LoginWithPhoneCubit instance created');
     }
 
     final signupRepo = getIt<SignupRepository>();

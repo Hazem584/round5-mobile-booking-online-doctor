@@ -28,13 +28,6 @@ void main() async {
 
   // Setup dependency injection
   await setupGetIt();
-
-  ApiClient.I.init(
-    baseUrl:
-        'https://round5-online-booking-with-doctor-api.digital-vision-solutions.com/api',
-    tokenProvider: StaticTokenProvider('YOUR_TOKEN_HERE'),
-  );
-
   runApp(const DocDocApp());
 }
 
@@ -52,6 +45,7 @@ class DocDocApp extends StatelessWidget {
           },
         ),
         BlocProvider(create: (context) => getIt<SignupCubit>()),
+        BlocProvider(create: (context) => getIt<LoginCubit>()),
         BlocProvider(
           create: (context) => LoginWithPhoneCubit(
             PhoneLoginRepository(apiService: ApiService()),
@@ -69,16 +63,11 @@ class DocDocApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: "Montserrat",
               scaffoldBackgroundColor: Colors.white,
-              // Add some additional theme properties for consistency
               primarySwatch: Colors.blue,
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             initialRoute: Routes.splash,
             onGenerateRoute: AppRouter.generateRoute,
-            // Add global navigation observers if needed
-            // navigatorObservers: [
-            //   // Add your navigation observers here
-            // ],
           );
         },
       ),

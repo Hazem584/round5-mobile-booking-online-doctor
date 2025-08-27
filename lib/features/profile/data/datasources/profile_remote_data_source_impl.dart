@@ -12,7 +12,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   Future<Map<String, dynamic>> getProfileData(String token) async {
     try {
       final response = await _dio.get(
-        'profile',
+        'https://round5-online-booking-with-doctor-api.huma-volve.com/api/me',
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',
@@ -66,7 +66,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       };
 
       final response = await _dio.post(
-        'profile',
+        'https://round5-online-booking-with-doctor-api.huma-volve.com/api/profile',
         data: body,
         options: Options(
           headers: {
@@ -113,7 +113,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       }
 
       final response = await _dio.post(
-        'logout',
+        'https://round5-online-booking-with-doctor-api.huma-volve.com/api/logout',
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',

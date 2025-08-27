@@ -14,7 +14,6 @@ class ProfileEditView extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         final cubit = getIt<ProfileCubit>();
-        // Load profile data when the screen is opened
         cubit.getProfileData();
         return cubit;
       },
