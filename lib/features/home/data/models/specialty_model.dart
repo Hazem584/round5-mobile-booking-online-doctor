@@ -22,10 +22,10 @@ class SpecialtyModel extends SpecialtyEntity {
   factory SpecialtyModel.fromJson(Map<String, dynamic> jsonData) {
     return SpecialtyModel(
       icon: 'assets/icons/${jsonData['name_en']}.svg',
-      nameEn: jsonData['name_en'],
-      nameAr: jsonData['name_ar'],
-      description: jsonData['description'],
-      id: jsonData['id'],
+      nameEn: jsonData['name_en'] ?? '',
+      nameAr: jsonData['name_ar'] ?? '',
+      description: jsonData['description'] ?? '',
+      id: jsonData['id'] ?? 0,
     );
   }
 }
