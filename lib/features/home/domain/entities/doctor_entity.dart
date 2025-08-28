@@ -23,6 +23,7 @@ class DoctorEntity {
   final String day;
   final String startTime;
   final String endTime;
+  bool isFav;
 
   DoctorEntity({
     required this.doctorProfileId,
@@ -49,5 +50,6 @@ class DoctorEntity {
     required this.location,
     required this.rating,
     required this.availableTime,
+    this.isFav = false,
   });
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../data/models/doctor_and_hospital_model.dart';
@@ -6,7 +7,7 @@ import 'doctor_favorite_list_view_card.dart';
 import 'hospital_favorite_list_view_card.dart';
 
 class FavoritesContentWidget extends StatefulWidget {
-  final List<Doctor> favoriteDoctors;
+  final List<DoctorModel> favoriteDoctors;
   final List<Hospital> favoriteHospitals;
   final Function(int) onDoctorFavoriteToggle;
   final Function(int) onHospitalFavoriteToggle;

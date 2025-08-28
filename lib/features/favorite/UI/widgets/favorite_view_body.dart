@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/core/di/dependency_injection.dart';
+import 'package:mobile_booking_online_doctor/features/favorite/data/data%20source/favorite_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/styles.dart';
@@ -15,7 +18,7 @@ class FavoriteViewBody extends StatefulWidget {
 
 class _FavoriteViewBodyState extends State<FavoriteViewBody> {
   // Sample data
-  List<Doctor> favoriteDoctors = [
+  /*List<Doctor> favoriteDoctors = [
     Doctor(
       id: '1',
       name: 'Robert Johnson',
@@ -56,8 +59,8 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
       workingHours: '9:30am - 8:00pm',
       isFavorite: true,
     ),
-  ];
-
+  ];*/
+  late List<DoctorModel> favoriteDoctors;
   List<Hospital> favoriteHospitals = [
     Hospital(
       id: '1',
@@ -89,6 +92,11 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
   ];
 
   @override
+  void initState() {
+    favoriteDoctors = getIt<FavoriteLocalDataSource>().getFavorites();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     bool hasFavorites =
         favoriteDoctors.isNotEmpty || favoriteHospitals.isNotEmpty;
@@ -118,8 +126,9 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
 
   void _handleDoctorFavoriteToggle(int index) {
     setState(() {
-      favoriteDoctors[index].isFavorite = !favoriteDoctors[index].isFavorite;
-      if (!favoriteDoctors[index].isFavorite) {
+      favoriteDoctors[index].isFav = !favoriteDoctors[index].isFav;
+      getIt<FavoriteLocalDataSource>().toggleFavorite(favoriteDoctors[index]);
+      if (!favoriteDoctors[index].isFav) {
         favoriteDoctors.removeAt(index);
       }
     });

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mobile_booking_online_doctor/core/di/dependency_injection.dart';
+import 'package:mobile_booking_online_doctor/features/favorite/data/data%20source/favorite_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
+import 'package:mobile_booking_online_doctor/features/home/domain/entities/doctor_entity.dart';
 
 import '../../../../core/theming/app_colors.dart';
 import '../../../../core/theming/styles.dart';
@@ -7,22 +11,16 @@ import '../../../../core/theming/styles.dart';
 class DoctorCardItem extends StatefulWidget {
   const DoctorCardItem({
     super.key,
-    required this.image,
-    required this.name,
-    required this.specialist,
-    required this.location,
-    required this.rating,
-    required this.time,
-  });
+    required this.doctorEntity,
 
-  final String image, name, specialist, location, rating, time;
+  });
+  final DoctorEntity doctorEntity;
 
   @override
   State<DoctorCardItem> createState() => _DoctorCardItemState();
 }
 
 class _DoctorCardItemState extends State<DoctorCardItem> {
-  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,7 +39,7 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
                 bottomLeft: Radius.circular(15),
               ),
               child: Image.network(
-                widget.image,
+                widget.doctorEntity.image,
                 width: 80,
                 height: 80,
                 fit: BoxFit.cover,
@@ -52,13 +50,13 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(widget.name, style: TextStyles.regular14.copyWith(fontFamily: 'Georgia')),
+                  Text(widget.doctorEntity.name, style: TextStyles.regular14.copyWith(fontFamily: 'Georgia')),
                   const SizedBox(height: 4.0),
                   Row(
                     children: [
-                      Text(widget.specialist, overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
+                      Text(widget.doctorEntity.specialtyNameEn, overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
                       Text(' | ', style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
-                      Expanded(child: Text(widget.location,overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor, ),)),
+                      Expanded(child: Text(widget.doctorEntity.location,overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor, ),)),
                     ],
                   ),
                   const SizedBox(height: 4.0),
@@ -66,11 +64,11 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
                     children: [
                       SvgPicture.asset('assets/icons/rating.svg'),
                       const SizedBox(width: 4.0),
-                      Text(widget.rating, style: TextStyles.medium12),
+                      Text(widget.doctorEntity.rating, style: TextStyles.medium12),
                       const SizedBox(width: 12.0),
                       SvgPicture.asset('assets/icons/time.svg'),
                       const SizedBox(width: 4.0),
-                      Text(widget.time, style: TextStyles.medium12),
+                      Text(widget.doctorEntity.availableTime, style: TextStyles.medium12),
                     ],
                   ),
                 ],
@@ -80,11 +78,12 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
               padding: const EdgeInsets.only(right: 16.0),
               child: GestureDetector(
                 onTap: (){
-                  isFavorite = !isFavorite;
+                  widget.doctorEntity.isFav =  !widget.doctorEntity.isFav;
+                  getIt<FavoriteLocalDataSource>().toggleFavorite(DoctorModel.fromDoctorEntity(widget.doctorEntity));
                   setState(() {});
                 },
                 child: SvgPicture.asset(
-                  isFavorite? 'assets/icons/Favourite-Heart-red.svg' : 'assets/icons/Favourite-Heart.svg',
+                  widget.doctorEntity.isFav? 'assets/icons/Favourite-Heart-red.svg' : 'assets/icons/Favourite-Heart.svg',
                   width: 20,
                   height: 20,
                 ),

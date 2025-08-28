@@ -22,6 +22,7 @@ void main() async {
 
   // Ensure Hive is initialized
   await Hive.initFlutter();
+  await Hive.openBox('favorites');
   await Hive.openBox<String>('search_history');
 
   // Initialize BlocObserver

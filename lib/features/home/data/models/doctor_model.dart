@@ -28,6 +28,7 @@ class DoctorModel extends DoctorEntity {
     required super.day,
     required super.startTime,
     required super.endTime,
+    super.isFav,
   });
 
   factory DoctorModel.fromDoctorEntity(DoctorEntity doctorEntity) {
@@ -56,6 +57,7 @@ class DoctorModel extends DoctorEntity {
       day: doctorEntity.day,
       startTime: doctorEntity.startTime,
       endTime: doctorEntity.endTime,
+      isFav: doctorEntity.isFav,
     );
   }
 
@@ -85,6 +87,37 @@ class DoctorModel extends DoctorEntity {
       day: jsonData['day'] ?? '',
       startTime: jsonData['start_time'] ?? '',
       endTime: jsonData['end_time'] ?? '',
+      isFav: jsonData['isFavorite'] as bool? ?? false,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'doctor_profile_id': doctorProfileId,
+      'name': name,
+      'email': email,
+      'about': about,
+      'phone': phone,
+      'specialty_id': specialtyId,
+      'experience_years': experienceYears,
+      'specialty_name_en': specialtyNameEn,
+      'specialty_description': specialtyDescription,
+      'image': image,
+      'location': location,
+      'rating': rating,
+      'availableTime': availableTime,
+      'price_per_hour': pricePerHour,
+      'user_id': userId,
+      'specialty_name_ar': specialtyNameAr,
+      'hospital_id': hospitalId,
+      'hospital_name': hospitalName,
+      'hospital_start_time': hospitalStartTime,
+      'hospital_end_time': hospitalEndTime,
+      'availability_id': availabilityId,
+      'day': day,
+      'start_time': startTime,
+      'end_time': endTime,
+      'isFavorite': isFav,
+    };
   }
 }

@@ -26,14 +26,7 @@ class ListOfDoctors extends StatelessWidget {
           onTap: (){
             Navigator.pushNamed(context, DoctorDetailsPage.routeName, arguments: i);
           },
-          child: DoctorCardItem(
-            image: doctors[i].image,
-            name: doctors[i].name,
-            specialist: doctors[i].specialtyNameEn,
-            location:doctors[i].location,
-            rating: doctors[i].rating,
-            time: doctors[i].availableTime
-          ),
+          child: DoctorCardItem(doctorEntity: doctors[i],),
         );
       }
     );

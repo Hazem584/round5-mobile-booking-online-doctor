@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:mobile_booking_online_doctor/core/service/auth_manager.dart';
 import 'package:hive/hive.dart';
+import 'package:mobile_booking_online_doctor/features/favorite/data/data%20source/favorite_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source_impl.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/repo/specialties_repo.dart';
@@ -283,6 +284,12 @@ Future<void> _setupDoctorDependencies() async {
             () => SearchRepoImpl(searchRemoteDataSource: getIt<SearchRemoteDataSource>()),
       );
     }
+
+    // Favorites box
+    final favoritesBox = Hive.box('favorites');
+    getIt.registerSingleton<FavoriteLocalDataSource>(
+      FavoriteLocalDataSource(favoritesBox),
+    );
 
     final searchBox = Hive.box<String>('search_history');
     if (!getIt.isRegistered<SearchHistoryDataSource>()) {

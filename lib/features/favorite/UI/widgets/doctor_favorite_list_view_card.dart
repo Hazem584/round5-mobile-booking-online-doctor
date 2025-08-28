@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../data/models/doctor_and_hospital_model.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
 import 'doctor_favorite_card.dart';
 
 class DoctorsListWidget extends StatelessWidget {
-  final List<Doctor> favoriteDoctors;
+  final List<DoctorModel> favoriteDoctors;
   final Function(int) onFavoriteToggle;
 
   const DoctorsListWidget({

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/theming/styles.dart';
-import '../../data/models/doctor_and_hospital_model.dart';
 
 class DoctorFavoriteCard extends StatelessWidget {
-  final Doctor doctor;
+  final DoctorModel doctor;
   final VoidCallback onFavoriteToggle;
 
   const DoctorFavoriteCard({
@@ -29,13 +29,16 @@ class DoctorFavoriteCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            width: 90,
-            height: 90,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(doctor.image),
-                fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: BorderRadius.only(topLeft:Radius.circular(15), bottomLeft: Radius.circular(15)),
+            child: Container(
+              width: 90,
+              height: 90,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(doctor.image),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -49,7 +52,7 @@ class DoctorFavoriteCard extends StatelessWidget {
                   Text(doctor.name, style: TextStyles.font16BlackNormal),
                   verticalSpace(4),
                   Text(
-                    '${doctor.specialty} | ${doctor.hospital}',
+                    '${doctor.specialtyNameEn} | ${doctor.hospitalName}',
                     style: TextStyles.font12lightGrayNormal,
                   ),
                   verticalSpace(5),
@@ -72,9 +75,12 @@ class DoctorFavoriteCard extends StatelessWidget {
                         size: 16,
                       ),
                       horizontalSpace(4),
-                      Text(
-                        doctor.workingHours,
-                        style: TextStyles.font14LightBlackNormal.copyWith(fontSize: 12),
+                      Expanded(
+                        child: Text(
+                          doctor.availableTime,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyles.font14LightBlackNormal.copyWith(fontSize: 12),
+                        ),
                       ),
                     ],
                   ),
@@ -86,8 +92,8 @@ class DoctorFavoriteCard extends StatelessWidget {
           IconButton(
             onPressed: onFavoriteToggle,
             icon: Icon(
-              doctor.isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: doctor.isFavorite ? Colors.red : Colors.grey,
+              doctor.isFav ? Icons.favorite : Icons.favorite_border,
+              color: doctor.isFav ? Colors.red : Colors.grey,
               size: 24,
             ),
           ),
