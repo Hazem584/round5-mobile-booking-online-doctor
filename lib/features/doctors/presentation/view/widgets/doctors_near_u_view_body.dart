@@ -30,7 +30,7 @@ class DoctorsNearUViewBody extends StatelessWidget {
             SpecialtiesListView(specialties: specialties),
             SizedBox(height: 16,),
             Expanded(
-              child: ListOfDoctors(doctors: doctors,)
+              child: ListOfDoctors(doctors: doctors, itemCount: doctors.length,)
             ),
           ],
         ),

@@ -24,7 +24,7 @@ class DoctorsSpecialtyViewBody extends StatelessWidget {
               }else{
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListOfDoctors(doctors: state.doctors),
+                  child: ListOfDoctors(doctors: state.doctors, itemCount: state.doctors.length,),
                 );
               }
             case SearchError():

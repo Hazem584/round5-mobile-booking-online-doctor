@@ -132,6 +132,7 @@ class _HoneViewBodyState extends State<HoneViewBody> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           doctors: doctorsState.doctors,
+                          itemCount: 4,
                         )
                       else if (doctorsState is DoctorError)
                         Padding(

@@ -124,6 +124,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     );
                   }else if (state is SearchSuccess){
                     return ListOfDoctors(
+                      itemCount: state.doctors.length,
                       doctors: state.doctors,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),

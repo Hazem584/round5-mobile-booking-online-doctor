@@ -6,11 +6,11 @@ import '../../features/home/view/widgets/doctor_card_item.dart';
 
 class ListOfDoctors extends StatelessWidget {
   const ListOfDoctors({
-    super.key, required this.doctors, this.shrinkWrap = false, this.physics,
+    super.key, required this.doctors, this.shrinkWrap = false, this.physics, required this.itemCount,
   });
 
   // final dynamic state;
-  // final int itemCount;
+  final int itemCount;
   final List<DoctorEntity> doctors;
   final bool shrinkWrap;
   final ScrollPhysics? physics;
@@ -20,7 +20,7 @@ class ListOfDoctors extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: shrinkWrap,
       physics: physics,
-      itemCount: doctors.length > 4 ? 4 : doctors.length,
+      itemCount: itemCount,
       itemBuilder: (context, i){
         return GestureDetector(
           onTap: (){
