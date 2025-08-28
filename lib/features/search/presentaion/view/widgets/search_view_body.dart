@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:mobile_booking_online_doctor/core/di/dependency_injection.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
 import 'package:mobile_booking_online_doctor/features/home/view/widgets/custom_specialty_card.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search%20history/search_histoy_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/presentaion/view/widgets/search_history_item.dart';
 import '../../../../../core/theming/app_colors.dart';
 import '../../../../../core/theming/styles.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
@@ -10,14 +14,25 @@ import '../../../../home/view/widgets/custom_search_text_fiield.dart';
 import '../../../../specialties/presentation/view/doctors_specialty_view.dart';
 import '../../cubit/search_doctors_cubit.dart';
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   SearchViewBody({super.key, required this.specialties});
 
    final List<SpecialtyEntity> specialties;
 
-   List<String> history = [
-     'Psychiatrist', 'Robert Johnson', 'Helwan', 'Heart doctor',
-   ];
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+   final searchBox = getIt<SearchHistoryDataSource>();
+
+   TextEditingController controller = TextEditingController();
+
+   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +43,14 @@ class SearchViewBody extends StatelessWidget {
           child: Column(
             children: [
               CustomSearchTextFiled(
+                controller: controller,
                 onChange: (value){
+                  if(value.toString().trim().isEmpty){
+                    context.read<SearchCubit>().search(query: value.toString().trim());
+                  }
+                },
+                onSubmitted: (value){
+                  searchBox.saveSearch(value);
                   context.read<SearchCubit>().search(query: value.toString().trim());
                 },
               ),
@@ -53,47 +75,53 @@ class SearchViewBody extends StatelessWidget {
                           Wrap(
                             runSpacing: 8,
                             children: List.generate(
-                              specialties.length,
+                              widget.specialties.length,
                               (i) => GestureDetector(
                                 onTap: (){
-                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: specialties[i].nameEn,);
+                                  Navigator.pushNamed(context, DoctorsSpecialtyView.routeName, arguments: widget.specialties[i].nameEn,);
                                 },
-                                child: CustomSpecialtyCard(specialties: specialties[i])
+                                child: CustomSpecialtyCard(specialties: widget.specialties[i])
                               )
                             ).toList(),
                           ),
                           const SizedBox(height: 16,),
-                          Text('History',style: TextStyles.medium18,),
-                          const SizedBox(height: 16,),
-                          Wrap(
-                            children: List.generate(
-                              history.length,
-                              (i) => Padding(
-                                padding: const EdgeInsets.only(right:8.0, bottom: 8.0),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(
-                                        width: 1,
-                                        color: ColorsManger.borderColor
-                                    )
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Text(history[i],style: TextStyles.regular14),
-                                    ],
-                                  ),
-                                ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('History',style: TextStyles.medium18,),
+                              TextButton(
+                                onPressed: (){
+                                  searchBox.clearHistory();
+                                }, child: Text('clear', style: TextStyles.regular14.copyWith(color: ColorsManger.lightPrimaryColor))
                               )
-                            ).toList(),
+                            ],
                           ),
+                          const SizedBox(height: 16,),
+                          ValueListenableBuilder(
+                            valueListenable: searchBox.listenable(),
+                              builder: (context , Box<String> boxBuilder,_) {
+                                final history = boxBuilder.values.toList();
+                                return Wrap(
+                                  children: List.generate(
+                                    history.length, (i) => GestureDetector(
+                                      onTap: (){
+                                        controller.text = history[i];
+                                        context.read<SearchCubit>().search(query: controller.text.trim());
+                                      },
+                                      child: SearchHistoryItem(history: history[i])
+                                    ),
+                                  ).toList(),
+                                );
+                              }
+                            ),
                         ],
                       ),
                     );
                   }else if (state is SearchLoading){
-                    return Center(child: CircularProgressIndicator(),);
+                    return SizedBox(
+                      height: MediaQuery.of(context).size.height *.7 ,
+                      child: const Center(child: CircularProgressIndicator(),)
+                    );
                   }else if (state is SearchSuccess){
                     return ListOfDoctors(
                       doctors: state.doctors,

@@ -6,10 +6,12 @@ import '../../../../core/theming/styles.dart';
 
 class CustomSearchTextFiled extends StatelessWidget {
   const CustomSearchTextFiled({
-    super.key, this.onTap, this.readOnly = false, this.onChange,
+    super.key, this.onTap, this.readOnly = false, this.onChange, this.onSubmitted, this.controller,
   });
+  final TextEditingController? controller;
   final VoidCallback? onTap;
   final ValueChanged? onChange;
+  final ValueChanged? onSubmitted;
   final bool readOnly;
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,10 @@ class CustomSearchTextFiled extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: TextField(
+          controller: controller,
           onTap: onTap,
           onChanged: onChange,
+          onSubmitted: onSubmitted,
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: 'Search for specialty, doctor',

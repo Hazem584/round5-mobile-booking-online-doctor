@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source_impl.dart';
 import 'package:mobile_booking_online_doctor/features/home/domain/repo/specialties_repo.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search%20history/search_histoy_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search%20history/search_histoy_data_source_impl.dart';
 import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source_impl.dart';
 import 'package:mobile_booking_online_doctor/features/search/data/repos/search_repo_impl.dart';
@@ -149,6 +152,13 @@ Future<void> _setupDoctorDependencies() async {
     if (!getIt.isRegistered<SearchRepo>()) {
       getIt.registerLazySingleton<SearchRepo>(
             () => SearchRepoImpl(searchRemoteDataSource: getIt<SearchRemoteDataSource>()),
+      );
+    }
+
+    final searchBox = Hive.box<String>('search_history');
+    if (!getIt.isRegistered<SearchHistoryDataSource>()) {
+      getIt.registerLazySingleton<SearchHistoryDataSource>(
+            () => SearchHistoryDataSourceImpl(box: searchBox),
       );
     }
 

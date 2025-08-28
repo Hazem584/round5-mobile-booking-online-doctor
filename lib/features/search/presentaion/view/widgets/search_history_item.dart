@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mobile_booking_online_doctor/core/theming/app_colors.dart';
 import 'package:mobile_booking_online_doctor/core/theming/styles.dart';
-import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
 
-class CustomSpecialtyCard extends StatelessWidget {
-  const CustomSpecialtyCard({
+class SearchHistoryItem extends StatelessWidget {
+  const SearchHistoryItem({
     super.key,
-    required this.specialties,
+    required this.history,
   });
 
-  final SpecialtyEntity specialties;
+  final String history;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
+      padding: const EdgeInsets.only(right:8.0, bottom: 8.0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
@@ -28,14 +26,7 @@ class CustomSpecialtyCard extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SvgPicture.asset(
-              specialties.icon,
-              errorBuilder: (context, error, stackTrace){
-                return SvgPicture.asset('assets/icons/General Practitioner.svg');
-              },
-            ),
-            SizedBox(width: 8,),
-            Text(specialties.nameEn,style: TextStyles.regular14,),
+            Text(history,style: TextStyles.regular14),
           ],
         ),
       ),
