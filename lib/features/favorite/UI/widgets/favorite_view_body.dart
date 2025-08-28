@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile_booking_online_doctor/core/di/dependency_injection.dart';
 import 'package:mobile_booking_online_doctor/features/favorite/data/data%20source/favorite_remote_data_source.dart';
 import 'package:mobile_booking_online_doctor/features/home/data/models/doctor_model.dart';
-import 'package:mobile_booking_online_doctor/features/home/view/home_view.dart';
 
 import '../../../../core/helpers/assets.dart';
 import '../../../../core/theming/styles.dart';
@@ -109,7 +108,7 @@ class _FavoriteViewBodyState extends State<FavoriteViewBody> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black, size: 20),
-          onPressed: () => Navigator.pushReplacementNamed(context, HomeView.routeName),
+          onPressed: () => Navigator.pop(context),
         ),
         title: Text('Your Favorite', style: TextStyles.font20LightBlackNormal),
         centerTitle: true,
