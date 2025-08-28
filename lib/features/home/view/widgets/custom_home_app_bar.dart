@@ -45,7 +45,7 @@ class CustomHomeAppBar extends StatelessWidget implements PreferredSizeWidget{
           ),
           buildIconButton(
             onTap: () {
-              Navigator.pushNamed(context, FavoriteView.routeName);
+              Navigator.pushReplacementNamed(context, FavoriteView.routeName);
             }, icon: SvgPicture.asset('assets/icons/Favourite-Heart.svg')),
           const SizedBox(width: 16),
           buildIconButton(
