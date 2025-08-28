@@ -56,9 +56,9 @@ class _DoctorCardItemState extends State<DoctorCardItem> {
                   const SizedBox(height: 4.0),
                   Row(
                     children: [
-                      Text(widget.specialist, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
+                      Text(widget.specialist, overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
                       Text(' | ', style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
-                      Text(widget.location, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor,),),
+                      Expanded(child: Text(widget.location,overflow: TextOverflow.ellipsis, style: TextStyles.regular12.copyWith(color: ColorsManger.greyColor, ),)),
                     ],
                   ),
                   const SizedBox(height: 4.0),

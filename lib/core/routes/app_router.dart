@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_booking_online_doctor/core/routes/routes.dart';
+import 'package:mobile_booking_online_doctor/features/home/domain/entities/specialty_entity.dart';
 import '../../features/auth/forget_password/view/forget_password_screen.dart';
 import '../../features/auth/login/view/login.dart';
 import '../../features/auth/login/view/login_with_phone.dart';
@@ -87,11 +88,12 @@ class AppRouter {
       case HomeView.routeName:
         return MaterialPageRoute(builder: (_) => const HomeView());
       case SearchView.routeName:
-        return MaterialPageRoute(builder: (_) => const SearchView());
+        return MaterialPageRoute(builder: (_) => SearchView(specialties: arguments as List<SpecialtyEntity>,));
       case SpecialtiesView.routeName:
-        return MaterialPageRoute(builder: (_) => const SpecialtiesView());
+        return MaterialPageRoute(builder: (_) =>  SpecialtiesView(specialties: arguments as List<SpecialtyEntity>));
       case DoctorsNearUView.routeName:
-        return MaterialPageRoute(builder: (_) => const DoctorsNearUView());
+        final argus = settings.arguments as DoctorsNearUView;
+        return MaterialPageRoute(builder: (_) =>  argus);
       case DoctorsSpecialtyView.routeName:
         final args = settings.arguments as String;
         return MaterialPageRoute(

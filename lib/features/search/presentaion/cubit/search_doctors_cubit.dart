@@ -1,32 +1,32 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:mobile_booking_online_doctor/features/search/domain/repos/search_repo.dart';
 import '../../../home/domain/entities/doctor_entity.dart';
-import '../../../home/domain/repo/doctor_repo.dart';
 
 part 'search_doctors_state.dart';
 
-class SearchDoctorsCubit extends Cubit<SearchDoctorsState> {
-  SearchDoctorsCubit(this.doctorRepo) : super(SearchDoctorsInitial());
+class SearchCubit extends Cubit<SearchState> {
+  SearchCubit(this.searchRepo) : super(SearchInitial());
 
-  final DoctorRepo doctorRepo;
+  final SearchRepo searchRepo;
 
-  Future<void> searchDoctors(String query) async{
-    emit(SearchDoctorsLoading());
-    final doctors = await doctorRepo.getDoctors();
+  String _lastQuery = '';
+
+  Future<void> search({required String query}) async{
+    _lastQuery = query;
     if (query.trim().isEmpty) {
-      emit(SearchDoctorsInitial());
-    }else{
-      doctors.fold(
-        (failure) => emit(SearchDoctorsError(message: failure.message)),
-        (doctorsEntity){
-          final filter = doctorsEntity.where((doctor){
-            final nameMatch = doctor.name.toLowerCase().contains(query.toLowerCase());
-            final specialistMatch = doctor.specialist.toLowerCase().contains(query.toLowerCase());
-            return nameMatch || specialistMatch;
-          }).toList();
-          emit(SearchDoctorsSuccess(doctors: filter));
-        }
-      );
+      emit(SearchInitial());
+      return;
     }
+    emit(SearchLoading());
+    final doctors = await searchRepo.getSearchResult(query: query);
+    if (_lastQuery != query) return;
+    doctors.fold(
+      (failure) => emit(SearchError(message: failure.message)),
+      (doctorsEntity){
+        emit(SearchSuccess(doctors: doctorsEntity));
+      }
+    );
   }
+
 }

@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_booking_online_doctor/features/search/presentaion/cubit/search_doctors_cubit.dart';
 
 import '../../../../../core/widgets/custom_appbar.dart';
 import '../../../../../core/widgets/custom_list_of_doctors.dart';
-import '../../cubit/doctors_specialty_cubit.dart';
 
 class DoctorsSpecialtyViewBody extends StatelessWidget {
   const DoctorsSpecialtyViewBody({super.key, required this.specialty});
   final String specialty;
   @override
   Widget build(BuildContext context) {
-    context.read<DoctorsSpecialtyCubit>().loadDoctorsBySpecialty(specialty);
+    context.read<SearchCubit>().search(query: specialty);
     return Scaffold(
       appBar: CustomAppbar(title: specialty,),
-      body: BlocBuilder<DoctorsSpecialtyCubit, DoctorsSpecialtyState>(
+      body: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
           switch(state){
-            case DoctorsSpecialtyLoading():
+            case SearchLoading():
               return Center(child: CircularProgressIndicator(),);
-            case DoctorsSpecialtySuccess():
+            case SearchSuccess():
               if(state.doctors.isEmpty){
                 return Center(child: Text('Not Found!'),);
               }else{
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: ListOfDoctors(state: state, itemCount: state.doctors.length),
+                  child: ListOfDoctors(doctors: state.doctors),
                 );
               }
-            case DoctorsSpecialtyError():
+            case SearchError():
               return Center(child: Text('Not Found!'),);
             default:
               return SizedBox();

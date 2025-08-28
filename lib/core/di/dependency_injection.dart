@@ -2,6 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:mobile_booking_online_doctor/core/service/auth_manager.dart';
+import 'package:hive/hive.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/home/data/datasource/specialty_remote_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/home/domain/repo/specialties_repo.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search%20history/search_histoy_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search%20history/search_histoy_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/datasource/search_remote_data_source_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/data/repos/search_repo_impl.dart';
+import 'package:mobile_booking_online_doctor/features/search/domain/repos/search_repo.dart';
 
 import '../../features/auth/signup/data/repository/signup_repository.dart';
 import '../../features/auth/signup/logic/signup_cubit.dart';
@@ -11,6 +21,7 @@ import '../../features/auth/login/logic/cubit/login_cubit.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source.dart';
 import '../../features/home/data/datasource/doctor_remote_data_source_impl.dart';
 import '../../features/home/data/repo/doctor_repo_impl.dart';
+import '../../features/home/data/repo/specialties_repo_impl.dart';
 import '../../features/home/domain/repo/doctor_repo.dart';
 import '../../features/notifications/data/repos/notifications_repository.dart';
 import '../../features/notifications/logic/cubit/notifications_cubit.dart';
@@ -35,6 +46,7 @@ Future<void> setupGetIt() async {
     await _setupAuthManager();
     await _setupCoreDependencies();
     await _setupDoctorDependencies();
+    await _setupSpecialtyDependencies();
     await _setupNotificationsDependencies();
     await _setupAuthDependencies();
     await _setupProfileDependencies();
@@ -260,6 +272,26 @@ Future<void> _setupDoctorDependencies() async {
       );
     }
 
+    if (!getIt.isRegistered<SearchRemoteDataSource>()) {
+      getIt.registerLazySingleton<SearchRemoteDataSource>(
+            () => SearchRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<SearchRepo>()) {
+      getIt.registerLazySingleton<SearchRepo>(
+            () => SearchRepoImpl(searchRemoteDataSource: getIt<SearchRemoteDataSource>()),
+      );
+    }
+
+    final searchBox = Hive.box<String>('search_history');
+    if (!getIt.isRegistered<SearchHistoryDataSource>()) {
+      getIt.registerLazySingleton<SearchHistoryDataSource>(
+            () => SearchHistoryDataSourceImpl(box: searchBox),
+      );
+    }
+
+
     if (kDebugMode) {
       print('✅ Doctor dependencies setup complete');
     }
@@ -270,6 +302,39 @@ Future<void> _setupDoctorDependencies() async {
   }
 }
 
+/// Setup doctor-related dependencies
+Future<void> _setupSpecialtyDependencies() async {
+  try {
+    if (kDebugMode) {
+      print('🔧 Setting up specialty dependencies...');
+    }
+
+    // Uncomment and modify these lines based on your actual classes
+
+    if (!getIt.isRegistered<SpecialtyRemoteDataSource>()) {
+      getIt.registerLazySingleton<SpecialtyRemoteDataSource>(
+            () => SpecialtyRemoteDataSourceImpl(),
+      );
+    }
+
+    if (!getIt.isRegistered<SpecialtiesRepo>()) {
+      getIt.registerLazySingleton<SpecialtiesRepo>(
+            () => SpecialtiesRepoImpl(specialtyRemoteDataSource: getIt<SpecialtyRemoteDataSource>()),
+      );
+    }
+
+
+    if (kDebugMode) {
+      print('✅ Specialty dependencies setup complete');
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error setting up Specialty dependencies: $e');
+    }
+  }
+}
+
+/// Setup notifications dependencies
 Future<void> _setupNotificationsDependencies() async {
   try {
     if (kDebugMode) {
